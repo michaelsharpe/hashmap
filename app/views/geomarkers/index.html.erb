@@ -6,6 +6,7 @@
 
 <%= @geomarker.each do |geomarker| %>
   <p><%= link_to geomarker.name, geomarker_path(geomarker) %>
+    <span>|<%= geomarker.tag_list %>|</span>
     <span><%= geomarker.description %></span>
     <span><%= geomarker.latitude %></span>
   <span><%= geomarker.longitude %></span>

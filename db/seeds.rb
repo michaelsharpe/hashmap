@@ -6,6 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+tags = %w(fruit tree dumpster restaurant gingerbread graffiti streetcar black_market_eggs santa_hat)
+
 def address()
   r = Random.new
   number = r.rand(100..400)
@@ -19,5 +21,7 @@ end
   location = location()
   lat = location[0]
   lng = location[1]
-  Geomarker.create(name: Faker::Name.name, description: Faker::Company.catch_phrase,latitude: lat, longitude: lng)
+  geomarker = Geomarker.create(name: Faker::Name.name, description: Faker::Company.catch_phrase,latitude: lat, longitude: lng)
+  geomarker.tag_list = tags.sample(2).join(', ')
+  geomarker.save
 end
