@@ -16,5 +16,6 @@ end
 
 group :development do
   gem 'irbtools', require: false
+  gem 'faker'
 end
 
