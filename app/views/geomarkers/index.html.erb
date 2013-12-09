@@ -4,9 +4,24 @@
 <br>
 <br>
 
-<%= @geomarker.each do |geomarker| %>
+<%= form_tag geomarkers_path, :method => "get" do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
+
+<% if params[:tag].present? %>
+    <h2>Geomarkers tagged with <%= params[:tag] %></h2>
+<% elsif params[:search].present? %>
+    <h2>Geomarkers tagged with <%= params[:search] %></h2>
+<% else %>
+    <h2>All Geomarkers</h2>
+<% end %>
+<br>
+<% @geomarkers.each do |geomarker| %>
   <p><%= link_to geomarker.name, geomarker_path(geomarker) %>
-    <span>|<%= geomarker.tag_list %>|</span>
+    <span><%= geomarker.tag_list %>|</span>
     <span><%= geomarker.description %></span>
     <span><%= geomarker.latitude %></span>
   <span><%= geomarker.longitude %></span>

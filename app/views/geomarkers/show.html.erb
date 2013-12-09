@@ -4,6 +4,11 @@
 <p>Latitude: <%= @geomarker.latitude %></p>
 <p>Longitude: <%= @geomarker.longitude %></p>
 <br>
+<% @geomarker.tags.any? %>
+ <p>Tags: <% @geomarker.tags.each do |tag| %>
+   <span><%= link_to tag.name, geomarkers_path(:tag => tag.name) %></span>
+ </p>
+<% end %>
 <%= link_to "Home", geomarkers_path, :class => "button" %>
 <%= link_to "Edit Geomarker", edit_geomarker_path(@geomarker), :class => "button" %>
 <%= link_to "Delete", @geomarker, method: :delete, :class => "button" %>

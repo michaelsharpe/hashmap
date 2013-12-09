@@ -1,6 +1,12 @@
 class GeomarkersController < ApplicationController
   def index
-    @geomarker = Geomarker.all
+    if params[:search].present?
+      @geomarkers = Geomarker.tagged_with(params[:search], :any => true)
+    elsif params[:tag].present?
+      @geomarkers = Geomarker.tagged_with(params[:tag])
+    else
+      @geomarkers = Geomarker.all
+    end
   end
   
   def show
@@ -41,6 +47,6 @@ class GeomarkersController < ApplicationController
 
   private
   def geomarker_params
-    params.require(:geomarker).permit(:name, :description, :latitude, :longitude)
+    params.require(:geomarker).permit(:name, :description, :latitude, :longitude, :tag)
   end
 end
