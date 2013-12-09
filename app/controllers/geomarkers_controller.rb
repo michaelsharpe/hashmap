@@ -47,6 +47,6 @@ class GeomarkersController < ApplicationController
 
   private
   def geomarker_params
-    params.require(:geomarker).permit(:name, :description, :latitude, :longitude, :tag)
+    params.require(:geomarker).permit(:name, :description, :latitude, :longitude, :tag_list)
   end
 end
