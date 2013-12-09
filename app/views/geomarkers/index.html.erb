@@ -1,5 +1,13 @@
 <h1>Geomarkers</h1>
 
+<% if current_user %>
+  <%= link_to "Sign out", signout_path %>
+<% else %>
+  <%= link_to "Sign up", signup_path %>
+  <%= link_to "Sign in", signin_path %>
+<% end %>
+<br>
+<br>
 <%= link_to "Add some hash!", new_geomarker_path %>
 <br>
 <br>
