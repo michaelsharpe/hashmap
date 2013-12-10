@@ -26,13 +26,12 @@ class CollectionsController < ApplicationController
 
   def edit
     @collection = @user.collections.find(params[:id])
-    
   end
 
   def update
     @collection = @user.collections.find(params[:id])
     if @collection.update_attributes(collection_params)
-      redirect_to user_collection_path(@collection)
+      redirect_to user_collection_path(@user.id, @collection.id)
     else
       render "edit"
     end

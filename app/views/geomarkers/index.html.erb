@@ -1,25 +1,31 @@
 <h1>Geomarkers</h1>
 
+<%= link_to "Markers in your Collections", geomarkers_path(:view => "collection"), class: "button" %>
+
 <% if current_user %>
-  <%= link_to "Sign out", signout_path %>
-  <%= link_to "YOU", user_path(current_user.id) %>
+  <%= link_to "Sign out", signout_path, class: "button" %>
+  <%= link_to "YOU", user_path(current_user.id), class: "button" %>
 <% else %>
   <%= link_to "Sign up", signup_path %>
   <%= link_to "Sign in", signin_path %>
 <% end %>
-<br>
-<br>
-<%= link_to "Add some hash!", new_geomarker_path %>
+<%= link_to "New Marker!", new_geomarker_path, class: "button" %>
 <br>
 
-
-<%= form_tag geomarkers_path, :method => "get" do %>
+<div style="width: 300px">
+  <%= form_tag geomarkers_path, :method => "get" do %>
   <p>
     <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Search", :name => nil %>
-    <%= select_tag(:option, options_for_select([["Any", 1], ["All", 2]])) %>
+    <%= submit_tag "Search", :name => nil, class: "button small" %>
+    <div style="width: 80px">
+      <%= select_tag(:option, options_for_select([["Any", 1], ["All", 2]])) %>
+    </div>
+
   </p>
 <% end %>
+
+</div>
+
 
 <% if params[:tag].present? %>
     <h2>Geomarkers tagged with <%= params[:tag] %></h2>

@@ -9,7 +9,11 @@ class GeomarkersController < ApplicationController
     elsif params[:tag].present?
       @geomarkers = Geomarker.tagged_with(params[:tag], :any => true)
     else
-      @geomarkers = Geomarker.all
+      if params[:view] == "collection"
+        @geomarkers = Geomarker.tagged_with(Geomarker.all_collection_tags(current_user), :any => true)
+      else
+        @geomarkers = Geomarker.all
+      end
     end
   end
   
@@ -54,6 +58,6 @@ class GeomarkersController < ApplicationController
 
   private
   def geomarker_params
-    params.require(:geomarker).permit(:name, :description, :latitude, :longitude, :tag_list)
+    params.require(:geomarker).permit(:name, :description, :latitude, :longitude, :tag_list, :view)
   end
 end
