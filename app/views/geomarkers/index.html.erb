@@ -2,6 +2,7 @@
 
 <% if current_user %>
   <%= link_to "Sign out", signout_path %>
+  <%= link_to "YOU", user_path(current_user.id) %>
 <% else %>
   <%= link_to "Sign up", signup_path %>
   <%= link_to "Sign in", signin_path %>

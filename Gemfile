@@ -12,6 +12,8 @@ gem 'jbuilder', '~> 1.2'
 gem 'foundation-rails'
 gem 'acts-as-taggable-on'
 gem 'sorcery'
+gem 'geocoder'
+gem 'geokit-rails'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

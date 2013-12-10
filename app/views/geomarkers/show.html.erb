@@ -4,9 +4,10 @@
 <p>Latitude: <%= @geomarker.latitude %></p>
 <p>Longitude: <%= @geomarker.longitude %></p>
 <br>
-<% @geomarker.tags.any? %>
+<% if @geomarker.tags.any? %>
  <p>Tags: <% @geomarker.tags.each do |tag| %>
    <span><%= link_to tag.name, geomarkers_path(:tag => tag.name) %></span>
+   <% end %>
  </p>
 <% end %>
 <%= link_to "Home", geomarkers_path, :class => "button" %>

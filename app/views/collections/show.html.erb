@@ -1,0 +1,6 @@
+<h1><%= @collection.name %></h1>
+<p><%= @collection.description %></p>
+<p><% @collection.tags.each do |tag| %></p>
+  <%= link_to tag.name, geomarkers_path(:tag => tag.name) %>
+  <% end %>
+</p>  

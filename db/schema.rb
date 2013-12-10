@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131209214809) do
+ActiveRecord::Schema.define(version: 20131210193200) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "collections", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "geomarkers", force: true do |t|
     t.string   "name"
@@ -23,6 +31,7 @@ ActiveRecord::Schema.define(version: 20131209214809) do
     t.datetime "updated_at"
     t.decimal  "latitude",    precision: 8, scale: 6
     t.decimal  "longitude",   precision: 9, scale: 6
+    t.integer  "user_id"
   end
 
   create_table "taggings", force: true do |t|

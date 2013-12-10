@@ -1,5 +1,4 @@
-class Geomarker < ActiveRecord::Base
+class Collection < ActiveRecord::Base
   acts_as_taggable
   belongs_to :user
-
 end
