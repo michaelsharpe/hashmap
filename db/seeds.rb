@@ -18,13 +18,13 @@ def location()
 end
 
 @user = User.create(username: "user", email: "test@test.com", password: "test888", password_confirmation: "test888")
-@user2 = User.create(username: "user2", email "test2@test.com", password: "test888", password_confirmation: "test888")
+@user2 = User.create(username: "user2", email: "test2@test.com", password: "test888", password_confirmation: "test888")
 
 500.times do |num|
   location = location()
   lat = location[0]
   lng = location[1]
-  geomarker = Geomarker.create(name: Faker::Name.name, description: Faker::Company.catch_phrase,latitude: lat, longitude: lng, user_id: @user)
+  geomarker = Geomarker.create(name: Faker::Name.name, description: Faker::Company.catch_phrase,latitude: lat, longitude: lng, user_id: @user.id)
   geomarker.tag_list = tags.sample(3).join(', ')
   geomarker.save
 end
@@ -33,7 +33,7 @@ end
   location = location()
   lat = location[0]
   lng = location[1]
-  geomarker = Geomarker.create(name: Faker::Name.name, description: Faker::Company.catch_phrase,latitude: lat, longitude: lng, user_id: @user2)
+  geomarker = Geomarker.create(name: Faker::Name.name, description: Faker::Company.catch_phrase,latitude: lat, longitude: lng, user_id: @user2.id)
   geomarker.tag_list = tags.sample(3).join(', ')
   geomarker.save
 end

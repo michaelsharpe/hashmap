@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :collections
+  acts_as_tagger
 
   authenticates_with_sorcery!
 

@@ -1,6 +1,8 @@
 <h1>Your Collections</h1>
 <br>
 <%= link_to "Start a collection", new_user_collection_path(@user) %>
+<br>
+<%= link_to "New Marker", new_geomarker_path %>
 <% @collections.each do |collection| %>
   <p><%= collection.name %></p>
   <p>Tags: <% collection.tags.each do |tag| %>

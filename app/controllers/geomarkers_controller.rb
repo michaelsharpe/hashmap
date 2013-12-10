@@ -11,6 +11,7 @@ class GeomarkersController < ApplicationController
   
   def show
     @geomarker = Geomarker.find(params[:id])
+    @user = User.find(@geomarker.user_id)
   end
   
   def new
@@ -19,6 +20,7 @@ class GeomarkersController < ApplicationController
   
   def create
     @geomarker = Geomarker.new(geomarker_params)
+    @geomarker.user_id = current_user.id
     if @geomarker.save
       redirect_to geomarker_path(@geomarker)
     else
@@ -32,6 +34,7 @@ class GeomarkersController < ApplicationController
   
   def update
     @geomarker = Geomarker.find(params[:id])
+    params[:geomarker][:user_id] = current_user.id
     if @geomarker.update_attributes(geomarker_params)
       redirect_to geomarker_path(@geomarker)
     else
