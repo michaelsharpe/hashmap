@@ -4,7 +4,7 @@
 <br>
 <%= link_to "New Marker", new_geomarker_path %>
 <% @collections.each do |collection| %>
-  <p><%= collection.name %></p>
+  <p><%= link_to collection.name, user_collection_path(collection.user_id, collection.id) %></p>
   <p>Tags: <% collection.tags.each do |tag| %>
     <span><%= link_to tag.name, geomarkers_path(:tag => tag.name) %></span>
   <% end %></p>

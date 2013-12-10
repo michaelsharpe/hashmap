@@ -4,3 +4,5 @@
   <%= link_to tag.name, geomarkers_path(:tag => tag.name) %>
   <% end %>
 </p>  
+
+<%= link_to "Show all geomarkers", geomarkers_path(:tag => @collection.tag_list) %>

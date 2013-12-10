@@ -1,9 +1,13 @@
 class GeomarkersController < ApplicationController
   def index
     if params[:search].present?
-      @geomarkers = Geomarker.tagged_with(params[:search], :any => true)
+      if params[:option] == "1"
+        @geomarkers = Geomarker.tagged_with(params[:search], :any => true)
+      else
+        @geomarkers = Geomarker.tagged_with(params[:search], :all => true)
+      end
     elsif params[:tag].present?
-      @geomarkers = Geomarker.tagged_with(params[:tag])
+      @geomarkers = Geomarker.tagged_with(params[:tag], :any => true)
     else
       @geomarkers = Geomarker.all
     end
