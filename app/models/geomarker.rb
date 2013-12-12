@@ -1,5 +1,10 @@
 class Geomarker < ActiveRecord::Base
   acts_as_taggable
+  acts_as_mappable :lat_column_name => :latitude,
+                   :lng_column_name => :longitude
+
+
+
   belongs_to :user
 
   def self.all_collection_tags(user)

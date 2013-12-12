@@ -15,6 +15,16 @@ class GeomarkersController < ApplicationController
         @geomarkers = Geomarker.all
       end
     end
+    respond_to do |format|
+      format.html
+      format.json {render json: @geomarkers}
+      format.js do
+        ne = params[:ne].split(',').collect{|e|e.to_f}  
+        sw = params[:sw].split(',').collect{|e|e.to_f}
+        @geomarkers = Geomarker.in_bounds([sw, ne])
+        render :json => @geomarkers.to_json 
+      end
+    end
   end
   
   def show
@@ -58,6 +68,6 @@ class GeomarkersController < ApplicationController
 
   private
   def geomarker_params
-    params.require(:geomarker).permit(:name, :description, :latitude, :longitude, :tag_list, :view)
+    params.require(:geomarker).permit(:name, :description, :latitude, :longitude, :tag_list, :view, :sw, :ne)
   end
 end
