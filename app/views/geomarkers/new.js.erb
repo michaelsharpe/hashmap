@@ -1,0 +1,3 @@
+$("#map").append("<div id='geomarker-form'><%= j render 'geomarkers/new_form' %></div>");
+$("#cancelFormButton").on("click", quitGeomarkerForm);
+$("#new_geomarker").on("submit", quitGeomarkerForm);

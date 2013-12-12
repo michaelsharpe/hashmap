@@ -1,11 +1,7 @@
 class GeomarkersController < ApplicationController
   def index
     if params[:search].present?
-      if params[:option] == "1"
-        @geomarkers = Geomarker.tagged_with(params[:search], :any => true)
-      else
-        @geomarkers = Geomarker.tagged_with(params[:search], :all => true)
-      end
+      @geomarkers = search
     elsif params[:tag].present?
       @geomarkers = Geomarker.tagged_with(params[:tag], :any => true)
     else
@@ -34,15 +30,24 @@ class GeomarkersController < ApplicationController
   
   def new
     @geomarker = Geomarker.new
+
+    respond_to do |format|
+      format.js
+      format.html
+    end
   end
   
   def create
     @geomarker = Geomarker.new(geomarker_params)
-    @geomarker.user_id = current_user.id
-    if @geomarker.save
-      redirect_to geomarker_path(@geomarker)
-    else
-      render "new"
+    @geomarker.user_id = current_user.id if current_user
+    respond_to do |format|
+      if @geomarker.save
+        format.html { redirect_to geomarker_path(@geomarker) }
+        format.js
+      else
+        format.html { render "new" }
+        format.js
+      end
     end
   end
   
@@ -69,5 +74,13 @@ class GeomarkersController < ApplicationController
   private
   def geomarker_params
     params.require(:geomarker).permit(:name, :description, :latitude, :longitude, :tag_list, :view, :sw, :ne)
+  end
+
+  def search
+    if params[:option] == "1"
+      return Geomarker.tagged_with(params[:search], :any => true)
+    else
+      return Geomarker.tagged_with(params[:search], :all => true)
+    end    
   end
 end

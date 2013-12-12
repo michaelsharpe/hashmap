@@ -14,6 +14,7 @@ gem 'acts-as-taggable-on'
 gem 'sorcery'
 gem 'geocoder'
 gem 'geokit-rails'
+gem 'newrelic_rpm'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

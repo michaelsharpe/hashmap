@@ -3,6 +3,8 @@ var mapCenter;
 var currentPositionMarker;
 var positionTimer;
 var markers = new Array();
+var geocoder;
+var tempMarker;
 
 function initMapProcedure(){
   if (navigator.geolocation) {
@@ -18,8 +20,10 @@ function locError(error) {
 // Use Map Controller to add in functional flows that need access to current position
 
 function mapController(position){
+    geocoder = new google.maps.Geocoder();
     initializeMap(position);
     updateMap();
+    setButtonListeners();
     map.on('moveend', updateMap);
 }
 
@@ -39,16 +43,96 @@ function initializeMap(position){
   currentPositionMarker = L.marker(latLng).addTo(map);
 }
 
-function loadMarkers(){
-  $.ajax({
-    url: "geomarkers.json",
-    context: map,
-  }).done(function(markers){
-    for(var i=0; i < markers.length; i++) {
-      makeMarker(markers[i].latitude, markers[i].longitude, markers[i])
-    }
-  })
+function setButtonListeners(){
+  $("#newMarkerButton").on("click", newMarkerMode);
 }
+
+function newMarkerMode(){
+  $("#newMarkerButton").off("click", newMarkerMode);
+  $("#newMarkerButton").val("Cancel");
+  $("#newMarkerButton").on("click", endNewMarkerMode);
+  map.removeLayer(currentPositionMarker);
+  tempMarker = L.marker(currentPositionMarker._latlng, {
+    draggable: true
+  });
+  tempMarker.bindPopup("<h6>Drag me where you want me, or enter an address up top!</h6>").addTo(map);
+  toggleGeocoder();
+  tempMarker.addEventListener("dblclick", function(){
+    tempMarker.dragging.disable();
+    tempMarker.unbindPopup();
+    var lat = tempMarker.getLatLng().lat;
+    var lng = tempMarker.getLatLng().lng;
+    getGeomarkerForm(lat, lng);
+  });
+}
+
+function endNewMarkerMode(){
+  $("#newMarkerButton").off("click", endNewMarkerMode);
+  $("#newMarkerButton").val("point and click");
+  $("#newMarkerButton").on("click", newMarkerMode);
+  map.removeLayer(tempMarker);
+  currentPositionMarker.addTo(map);
+  tempMarker = undefined;
+  toggleGeocoder();
+}
+
+function toggleGeocoder(){
+  if($("#addressSearch").length > 0){
+    $("#addressSearch").remove();
+  } else {
+    $("#map").append('<div id="addressSearch"><input id="address" type="textbox" value="Bermuda Triangle"><input id="addressLookup" type="button" value="Encode"></div>');
+    $("#addressLookup").on("click", moveToAddress);
+  }
+}
+
+function moveToAddress(){
+  var address = $("#address").val();
+  geocoder.geocode( { 'address': address}, function(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+      var center = L.latLng(results[0].geometry.location.lat(),results[0].geometry.location.lng());
+      map.panTo(center);
+      if(tempMarker){
+        tempMarker.setLatLng(center);
+      }
+    } else {
+      alert("Geocode was not successful for the following reason: " + status);
+    }
+  });
+}
+
+function getGeomarkerForm(lat, lng){
+  $.ajax({
+    type: "GET",
+    url: "/geomarkers/new",
+    dataType: "script",
+    data: { geomarker: {
+      latitude: lat,
+      longitude: lng
+    }}    
+  });
+}
+
+function quitGeomarkerForm(){
+  $("#geomarker-form").remove();
+  endNewMarkerMode();
+}
+
+function changeFocus(lat, lng, zoom){
+  var latlng = L.latLng(lat, lng);
+  map.panTo(latlng);
+  map.setZoom(zoom);
+}
+
+// function loadMarkers(){
+//   $.ajax({
+//     url: "geomarkers.json",
+//     context: map,
+//   }).done(function(markers){
+//     for(var i=0; i < markers.length; i++) {
+//       makeMarker(markers[i].latitude, markers[i].longitude, markers[i])
+//     }
+//   })
+// }
 
 function updateMap() {
   var bounds = map.getBounds()
@@ -88,9 +172,9 @@ function removeMarkersOutsideOfMapBounds() {
 function makeMarker(lat, lng, markerJSON){
   var latlng = L.latLng(lat, lng);
   var marker = L.marker(latlng,{title: markerJSON.name}).addTo(map);
+  return marker;
 }
 
 $(document).ready(function(){
   initMapProcedure();
-
 });

@@ -1,4 +1,33 @@
 #map {
   width: 100%;
   height: 100%;
+  position: relative;
+}
+
+#newMarkerButton {
+  bottom: 20px;
+  right: 20px;
+  position: absolute;
+  z-index: 100;
+}
+
+#addressSearch {
+  top: 0;
+  left: 50%;
+  // margin: 0 auto;
+  position: absolute;
+  z-index: 100;
+}
+
+#geomarker-form {
+  width: 160px;
+  top: 43%;
+  left: 43%;
+  padding: 30px;
+  position: absolute;
+  border: 1px solid black;
+  border-radius: 7px;
+  z-index: 100;
+  background-color: #fff;
+  text-align: center;
 }
