@@ -1,0 +1,38 @@
+{
+  "name": "jQuery.mmenu",
+  "main": "src/js/jquery.mmenu.js",
+  "version": "4.1.6",
+  "homepage": "http://mmenu.frebsite.nl/",
+  "authors": [
+    "Fred Heusschen <info@frebsite.nl>"
+  ],
+  "description": "A jQuery plugin that creates slick app look-alike sliding menus for your (mobile) website with horizontal or vertical submenus. It's easy to customize and has options for headers, labels, counters, a searchfield and more.",
+  "keywords": [
+    "mmenu",
+    "menu",
+    "navigation",
+    "mobile",
+    "panels",
+    "app"
+  ],
+  "ignore": [
+    ".jshintrc",
+    "Guardfile",
+    "index.html",
+    "*.json",
+    "README.md"
+  ],
+  "dependencies": {
+    "jquery": ">= 1.7.0"
+  },
+  "_release": "4.1.6",
+  "_resolution": {
+    "type": "version",
+    "tag": "v4.1.6",
+    "commit": "609d7b8faed11bf97a0d82c8311ac0f702e6d793"
+  },
+  "_source": "git://github.com/BeSite/jQuery.mmenu.git",
+  "_target": "~4.1.6",
+  "_originalSource": "jQuery.mmenu",
+  "_direct": true
+}

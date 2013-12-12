@@ -13,6 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
+//= require jQuery.mmenu/src/js/jquery.mmenu.min.all
+//= require right_menu
+//= require maps
 //= require_tree .
 
 $(function(){ $(document).foundation(); });

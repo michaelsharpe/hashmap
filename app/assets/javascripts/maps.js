@@ -92,5 +92,4 @@ function makeMarker(lat, lng, markerJSON){
 
 $(document).ready(function(){
   initMapProcedure();
-
 });

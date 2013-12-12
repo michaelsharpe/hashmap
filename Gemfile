@@ -14,6 +14,7 @@ gem 'acts-as-taggable-on'
 gem 'sorcery'
 gem 'geocoder'
 gem 'geokit-rails'
+gem 'foundation-icons-sass-rails'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -24,5 +25,10 @@ group :development do
   gem 'irbtools', require: false
   gem 'faker'
   gem 'pry'
+  gem 'guard', '>= 2.2.2',       :require => false
+  gem 'guard-livereload',        :require => false
+  gem 'rack-livereload'
+  gem 'rb-fsevent',              :require => false
+  gem 'quiet_assets'
 end
 
