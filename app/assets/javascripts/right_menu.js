@@ -1,4 +1,4 @@
 $(document).ready(function(){
-  $("#right-menu").mmenu({
-  });
+  $("#right-menu").mmenu();
+
 });

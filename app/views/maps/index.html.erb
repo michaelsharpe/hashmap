@@ -1,5 +1,6 @@
+<div id="map"></div> 
 <div class="map-wrapper">
-  <div id="map"></div> 
+  
   <div class="map-overlay">
     <a href="#right-menu"><i class="open-menu fi-list"></i></a>
   </div>
@@ -12,13 +13,7 @@
         <a href="#"><%= collection.name %></a>
         <ul>
           <% collection.tag_list.each do |tag| %>
-          <li><a href="#"><%= tag %></a>
-            <ul>
-              <% @geomarkers.tagged_with(tag).each do |geomarker| %>
-                <li><a href="#"><%= geomarker.name %></a></li>
-              <% end %>
-            </ul>
-          </li>
+          <li><a href="#"><%= tag %></a></li>
           <% end %>
         </ul>
       </li>
