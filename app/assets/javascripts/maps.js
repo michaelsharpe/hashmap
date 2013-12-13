@@ -5,6 +5,7 @@ var positionTimer;
 var markers = new Array();
 var geocoder;
 var tempMarker;
+var newMode = false;
 
 function initMapProcedure(){
   if (navigator.geolocation) {
@@ -51,12 +52,17 @@ function newMarkerMode(){
   $("#newMarkerButton").off("click", newMarkerMode);
   $("#newMarkerButton").val("Cancel");
   $("#newMarkerButton").on("click", endNewMarkerMode);
-  map.removeLayer(currentPositionMarker);
-  tempMarker = L.marker(currentPositionMarker._latlng, {
+  tempMarker = L.marker(map.getCenter(), {
     draggable: true
   });
   tempMarker.bindPopup("<h6>Drag me where you want me, or enter an address up top!</h6>").addTo(map);
   toggleGeocoder();
+  newMode = true;
+  for(var i = 0; i < markers.length; i++){
+    if (markers[i]){
+      markers[i].setOpacity(0.5);
+    }
+  }
   tempMarker.addEventListener("dblclick", function(){
     tempMarker.dragging.disable();
     tempMarker.unbindPopup();
@@ -71,8 +77,13 @@ function endNewMarkerMode(){
   $("#newMarkerButton").val("point and click");
   $("#newMarkerButton").on("click", newMarkerMode);
   map.removeLayer(tempMarker);
-  currentPositionMarker.addTo(map);
   tempMarker = undefined;
+  newMode = false;
+  for (var i = 0; i < markers.length; i++){
+    if (markers[i]){
+      markers[i].setOpacity(1);
+    }
+  }
   toggleGeocoder();
 }
 
@@ -172,6 +183,9 @@ function removeMarkersOutsideOfMapBounds() {
 function makeMarker(lat, lng, markerJSON){
   var latlng = L.latLng(lat, lng);
   var marker = L.marker(latlng,{title: markerJSON.name}).addTo(map);
+  if (newMode) {
+    marker.setOpacity(0.5);
+  }
   return marker;
 }
 
