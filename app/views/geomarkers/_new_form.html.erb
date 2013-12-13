@@ -1,0 +1,14 @@
+<div id='geomarker-form-errors'></div>
+<%= form_for @geomarker, :remote => true do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <br>
+  <%= f.label "Description" %>
+  <%= f.text_area :description %>
+  <br>
+  <%= f.hidden_field :latitude, :value => params[:geomarker][:latitude] %>
+  <%= f.hidden_field :longitude, :value => params[:geomarker][:longitude] %>
+  <hr>
+  <input id="cancelFormButton" class="button small" type="button" value="Cancel"/>
+  <%= f.submit "Submit", :class => "button small" %>
+<% end %>
