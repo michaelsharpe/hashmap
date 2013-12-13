@@ -7,13 +7,15 @@
 </div>
 
 <nav id="right-menu">
+
   <ul>
     <% @collections.each do |collection| %>
       <li>
-        <a href="#"><%= collection.name %></a>
+        <span><i class="fi-eye"></i><a href="#" class="collection-item"></a><%= collection.name %></span>
+        
         <ul>
           <% collection.tag_list.each do |tag| %>
-          <li><a href="#"><%= tag %></a></li>
+          <li><span><i class="fi-eye"></i></span><a href="#"><%= tag %></a></li>
           <% end %>
         </ul>
       </li>
