@@ -6,6 +6,9 @@
   <%= f.label "Description" %>
   <%= f.text_area :description %>
   <br>
+  <%= f.label "Tags (a comma separated list)" %>
+  <%= f.text_field :tag_list %>
+  <br>
   <%= f.hidden_field :latitude, :value => params[:geomarker][:latitude] %>
   <%= f.hidden_field :longitude, :value => params[:geomarker][:longitude] %>
   <hr>
