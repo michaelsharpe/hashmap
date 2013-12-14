@@ -1,4 +1,15 @@
 @import "jQuery.mmenu/src/scss/jquery.mmenu";
 @import "jQuery.mmenu/src/scss/inc/variables";
-@include sizing("", 0.8, 140px, 300px, 0.8, 140px, 880px)
+@import "jQuery.mmenu/src/scss/addons/jquery.mmenu.header";
+@import "jQuery.mmenu/src/scss/addons/jquery.mmenu.searchfield";
+@import "jQuery.mmenu/src/scss/extensions/jquery.mmenu.effects";
+@import "jQuery.mmenu/src/scss/addons/jquery.mmenu.labels";
+
+@include sizing("", 0.8, 140px, 300px, 0.8, 140px, 880px);
+
+.collection-eye, .tag-eye{
+  color: white;
+  font-size: 20px;
+  margin-right: 20px;
+}
 

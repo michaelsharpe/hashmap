@@ -3,7 +3,6 @@ class MapsController < ApplicationController
 
   def index
     @collections = @user.collections.all
-    @geomarkers = Geomarker.all
   end
 
   private
