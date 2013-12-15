@@ -7,15 +7,19 @@ class CollectionsController < ApplicationController
   end
 
   def new
-    @collection = @user.collections.build
+   @collection = @user.collection.build
   end
 
   def create
     @collection = @user.collections.create(collection_params)
-    if @collection.save
-      render "show"
-    else
-      render "new"
+    @collection.user_id = current_user.id if current_user
+    respond_to do |format|
+      if @collection.save
+        format.html { render "show" }
+        format.js
+      else
+        format.html { render "new" }
+      end
     end
   end
 
@@ -38,6 +42,7 @@ class CollectionsController < ApplicationController
   end
   
   private
+  
   def collection_params
     params.require(:collection).permit(:user_id, :name, :description, :tag_list)
   end
