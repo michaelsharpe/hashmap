@@ -1,8 +1,6 @@
 <% if @geomarker.errors.any? %>
   $('#geomarker-form-errors').html('<%= escape_javascript(render "geomarker_form_errors") %>' );
 <% else %>
-  makeMarker(<%= @geomarker.latitude %>, <%= @geomarker.longitude %>, @geomarker);
-  changeFocus(<%= @geomarker.latitude %>, <%= @geomarker.longitude %>, 12);
-  $("#geomarker-form").remove();
+  updateMap()
   quitGeomarkerForm();
 <% end %>

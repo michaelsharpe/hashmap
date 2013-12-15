@@ -134,17 +134,6 @@ function changeFocus(lat, lng, zoom){
   map.setZoom(zoom);
 }
 
-// function loadMarkers(){
-//   $.ajax({
-//     url: "geomarkers.json",
-//     context: map,
-//   }).done(function(markers){
-//     for(var i=0; i < markers.length; i++) {
-//       makeMarker(markers[i].latitude, markers[i].longitude, markers[i])
-//     }
-//   })
-// }
-
 function updateMap() {
   var bounds = map.getBounds()
   var southWest = bounds._southWest.lat + "," + bounds._southWest.lng
@@ -182,7 +171,8 @@ function removeMarkersOutsideOfMapBounds() {
 
 function makeMarker(lat, lng, markerJSON){
   var latlng = L.latLng(lat, lng);
-  var marker = L.marker(latlng,{title: markerJSON.name}).addTo(map);
+  var marker = L.marker(latlng,{title: markerJSON.name});
+  marker.addTo(map);
   if (newMode) {
     marker.setOpacity(0.5);
   }
