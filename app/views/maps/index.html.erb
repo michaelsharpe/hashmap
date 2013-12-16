@@ -10,19 +10,23 @@
       <li data-collection="<%= collection.name %>" data-show="disabled">
         <a><i class="collection-eye fa fa-eye-slash" ></i><span><%= collection.name %></span></a>
         <ul>
-          <% collection.tag_list.each do |tag| %>
-          <li data-tag="<%= tag %>" data-show="disabled"><a><i class="tag-eye fa fa-eye-slash"></i><span><%= tag %></span></a></li>
+          <% collection.collectionTags.each do |tag| %>
+          <li data-tag="<%= tag.name %>" data-show="disabled"><a><i class="tag-eye fa fa-eye-slash"></i><span><%= tag.name %></span></a></li>
           <% end %>
         </ul>
       </li>
     <% end %>
-    <li>
+    <li id="collection-form">
       <span>
         <div>
           <%= render "collection_form" %>
         </div>
       </span>
     </li>
+    <li id="new-collection">
+      <a><span>Add a new collection!</span></a>
+    </li>
+    
   </ul>
 </nav>
 

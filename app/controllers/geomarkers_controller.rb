@@ -13,7 +13,7 @@ class GeomarkersController < ApplicationController
     end
     respond_to do |format|
       format.html
-      format.json {render json: @geomarkers}
+      format.json
       format.js do
         ne = params[:ne].split(',').collect{|e|e.to_f}  
         sw = params[:sw].split(',').collect{|e|e.to_f}
