@@ -3,6 +3,7 @@ $("#cancelFormButton").on("click", quitGeomarkerForm);
 $("#new_geomarker").on("submit", function(){
   $("#blank_iframe").on("load", function(){
     $(this).remove();
+    updateMap();
   });
   quitGeomarkerForm();
 });
