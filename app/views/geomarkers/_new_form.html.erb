@@ -1,5 +1,5 @@
 <div id='geomarker-form-errors'></div>
-<%= form_for @geomarker, :remote => true do |f| %>
+<%= form_for @geomarker, :html => { :multipart => true, :target => "blank_iframe" }, :remote => true do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %>
   <br>
@@ -11,6 +11,9 @@
   <br>
   <%= f.hidden_field :latitude, :value => params[:geomarker][:latitude] %>
   <%= f.hidden_field :longitude, :value => params[:geomarker][:longitude] %>
+  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+  <%= f.label :image %>
+  <%= f.file_field :image %>
   <hr>
   <input id="cancelFormButton" class="button small" type="button" value="Cancel"/>
   <%= f.submit "Submit", :class => "button small" %>

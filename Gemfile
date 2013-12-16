@@ -16,6 +16,7 @@ gem 'geocoder'
 gem 'geokit-rails'
 gem 'newrelic_rpm'
 gem 'foundation-icons-sass-rails'
+gem 'carrierwave'
 
 
 group :doc do
