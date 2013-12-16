@@ -17,7 +17,9 @@ class GeomarkersController < ApplicationController
       format.js do
         ne = params[:ne].split(',').collect{|e|e.to_f}  
         sw = params[:sw].split(',').collect{|e|e.to_f}
-        @geomarkers = Geomarker.in_bounds([sw, ne])
+        tags = params[:search]
+        @geomarkers = Geomarker.tagged_with(tags, :any => true).in_bounds([sw, ne]) unless tags == ""
+        @geomarkers = Geomarker.in_bounds([sw, ne]) if tags == ""
         render :json => @geomarkers.to_json 
       end
     end

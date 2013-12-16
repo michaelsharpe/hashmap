@@ -139,6 +139,7 @@ function changeFocus(lat, lng, zoom){
 }
 
 function updateMap() {
+  var tags = currentTags.join(', ')
   var bounds = map.getBounds()
   var southWest = bounds._southWest.lat + "," + bounds._southWest.lng
   var northEast = bounds._northEast.lat + "," + bounds._northEast.lng
@@ -146,7 +147,7 @@ function updateMap() {
   $.ajax({
     url: "geomarkers.js",
     type: "GET",
-    data: {sw:southWest, ne: northEast}, 
+    data: {sw:southWest, ne: northEast, search: tags, option: 1}, 
   }).done( function(transport){
     var markersJSON = $.parseJSON(transport);
     if(markers.length > 0) {
@@ -162,6 +163,15 @@ function updateMap() {
       }
     }
   })
+}
+
+function removeAllMarkers() {
+  for(i in markers) {
+    if(i > 0 && markers[i]) {
+      map.removeLayer(markers[i]);
+      markers[i] = null;
+    }
+  }
 }
 
 function removeMarkersOutsideOfMapBounds() {
