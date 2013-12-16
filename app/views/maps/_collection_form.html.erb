@@ -3,3 +3,7 @@
   <%= text_field_tag 'collection[name]' %>
   <%= submit_tag("Add") %>
 <% end %>
+
+<%= javascript_tag do %>
+var current_user_id = <%= current_user.id %>
+<% end %>

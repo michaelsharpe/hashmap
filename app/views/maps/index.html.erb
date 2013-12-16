@@ -7,11 +7,11 @@
 
   <ul>
     <% @collections.each do |collection| %>
-      <li data-collection="<%= collection.name %>">
-        <a><i class="collection-eye fa fa-eye-slash" data-show="disabled"></i><span><%= collection.name %></span></a>
+      <li data-collection="<%= collection.name %>" data-show="disabled">
+        <a><i class="collection-eye fa fa-eye-slash" ></i><span><%= collection.name %></span></a>
         <ul>
           <% collection.tag_list.each do |tag| %>
-          <li data-tag="<%= tag %>"><a><i class="tag-eye fa fa-eye-slash" data-show="disabled"></i><span><%= tag %></span></a></li>
+          <li data-tag="<%= tag %>" data-show="disabled"><a><i class="tag-eye fa fa-eye-slash"></i><span><%= tag %></span></a></li>
           <% end %>
         </ul>
       </li>
@@ -25,3 +25,4 @@
     </li>
   </ul>
 </nav>
+
