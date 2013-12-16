@@ -18,6 +18,7 @@ gem 'newrelic_rpm'
 gem 'foundation-icons-sass-rails'
 gem 'carrierwave'
 gem 'rmagick'
+gem "font-awesome-rails"
 
 
 group :doc do

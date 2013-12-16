@@ -3,7 +3,6 @@ class MapsController < ApplicationController
 
   def index
     @collections = @user.collections.all
-    @geomarkers = Geomarker.all
   end
 
   private
@@ -11,4 +10,7 @@ class MapsController < ApplicationController
   def load_user
     @user = current_user
   end
+
+  
+
 end

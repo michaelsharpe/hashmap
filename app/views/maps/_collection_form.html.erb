@@ -1,0 +1,5 @@
+<%= form_tag(user_collections_path(@user.id), method: "post",  remote: true,) do %>
+  <%= label_tag'collection[name]' %>
+  <%= text_field_tag 'collection[name]' %>
+  <%= submit_tag("Add") %>
+<% end %>
