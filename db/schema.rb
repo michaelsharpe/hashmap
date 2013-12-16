@@ -32,7 +32,6 @@ ActiveRecord::Schema.define(version: 20131216181808) do
     t.decimal  "latitude",    precision: 8, scale: 6
     t.decimal  "longitude",   precision: 9, scale: 6
     t.integer  "user_id"
-    t.string   "image"
   end
 
   create_table "taggings", force: true do |t|
