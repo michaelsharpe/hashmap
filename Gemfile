@@ -17,6 +17,7 @@ gem 'geokit-rails'
 gem 'newrelic_rpm'
 gem 'foundation-icons-sass-rails'
 gem 'carrierwave'
+gem 'rmagick'
 
 
 group :doc do
