@@ -37,6 +37,21 @@
   text-align: center;
 }
 
+#geomarker-show {
+  width: 40em;
+  height: 60em;
+  top: 10%;
+  left: 33%;
+  padding: 30px;
+  position: absolute;
+  border: 1px solid black;
+  border-radius: 7px;
+  z-index: 100;
+  background-color: #fff;
+  text-align: center;
+  overflow: scroll;
+}
+
 #blank_iframe {
   display: none;
   height: 0;

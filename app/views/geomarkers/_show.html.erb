@@ -1,0 +1,15 @@
+<h2><%= @geomarker.name %></h2>
+<h5><%= @geomarker.tag_list %></h5>
+<p><%= @geomarker.description %></p>
+<p>Latitude: <%= @geomarker.latitude %></p>
+<p>Longitude: <%= @geomarker.longitude %></p>
+<br>
+<% if @geomarker.image %>
+  <%= image_tag @geomarker.image.to_s %>
+<% end %>
+<br>
+<p>Created by: <%= @user.username %></p>
+<% if @geomarker.tags.any? %>
+ <p>Tags: <%= @geomarker.tag_list %> </p>
+<% end %>
+<input id="closeShowButton" class="button small" type="button" value="Close"/>
