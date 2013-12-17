@@ -23,7 +23,6 @@ function locError(error) {
 }
 
 // Use Map Controller to add in functional flows that need access to current position
-
 function mapController(position){
     geocoder = new google.maps.Geocoder();
     initializeMap(position);
@@ -132,6 +131,10 @@ function quitGeomarkerForm(){
   endNewMarkerMode();
 }
 
+function removeIFrame(){
+  $("#blank_iframe").remove();
+}
+
 function changeFocus(lat, lng, zoom){
   var latlng = L.latLng(lat, lng);
   map.panTo(latlng);
@@ -145,21 +148,20 @@ function updateMap() {
   var northEast = bounds._northEast.lat + "," + bounds._northEast.lng
 
   $.ajax({
-    url: "geomarkers.js",
+    url: "geomarkers",
     type: "GET",
-    data: {sw:southWest, ne: northEast, search: tags, option: 1}, 
+    dataType: "json",
+    data: {sw:southWest, ne: northEast, tags: tags}
   }).done( function(transport){
-    var markersJSON = $.parseJSON(transport);
+    var markersJSON = transport;
     if(markers.length > 0) {
       removeMarkersOutsideOfMapBounds();
     }
     for (var i=0; i < markersJSON.length; i++){
       var marker = markersJSON[i];
       var id = marker.id;
-      var lat = marker.latitude;
-      var lng = marker.longitude;
       if (!markers[id] || markers[id] == null) {
-        markers[id] = makeMarker(lat, lng, marker);
+        markers[id] = makeMarker(marker);
       }
     }
   })
@@ -177,73 +179,26 @@ function removeAllMarkers() {
 function removeMarkersOutsideOfMapBounds() {
   for(i in markers) {
     if(i > 0 && markers[i] && !map.getBounds().contains(markers[i].getLatLng())) {
+      debugger
       map.removeLayer(markers[i]);
       markers[i] = null;
     }
   }
 }
 
-function makeMarker(lat, lng, markerJSON){
-  var latlng = L.latLng(lat, lng);
+function makeMarker(markerJSON){
+  var latlng = L.latLng(markerJSON.latitude, markerJSON.longitude);
   var marker = L.marker(latlng,{title: markerJSON.name});
-  marker.bindPopup("<div class='marker-popup'><p>Name: " + markerJSON.name + "</p><br><img src='" + markerJSON.image + "' /></div>");
+  var imgURL = "";
+  if (markerJSON.image.thumb) {
+    imgURL = "<img src='" + markerJSON.image.thumb + "' />";
+  } else {
+    imgURL = "<p>No image attached</p>";
+  }
+  marker.bindPopup("<div class='marker-popup'><p>Name: " + markerJSON.name + "</p><br>" + imgURL + "</div>");
   marker.addTo(map);
   if (newMode) {
     marker.setOpacity(0.5);
   }
-  return marker;
+  return marker
 }
-
-// Simulating asynchronous file upload
-// function fileUpload(form, action_url, div_id) {
-//   // Create the iframe...
-//   var iframe = document.createElement("iframe");
-//   iframe.setAttribute("id", "upload_iframe");
-//   iframe.setAttribute("name", "upload_iframe");
-//   iframe.setAttribute("width", "0");
-//   iframe.setAttribute("height", "0");
-//   iframe.setAttribute("border", "0");
-//   iframe.setAttribute("style", "width: 0; height: 0; border: none;");
-
-//   // Add to document...
-//   form.parentNode.appendChild(iframe);
-//   window.frames['upload_iframe'].name = "upload_iframe";
-
-//   iframeId = document.getElementById("upload_iframe");
-
-//   // Add event...
-//   var eventHandler = function () {
-
-//           if (iframeId.detachEvent) iframeId.detachEvent("onload", eventHandler);
-//           else iframeId.removeEventListener("load", eventHandler, false);
-
-//           // Message from server...
-//           if (iframeId.contentDocument) {
-//               content = iframeId.contentDocument.body.innerHTML;
-//           } else if (iframeId.contentWindow) {
-//               content = iframeId.contentWindow.document.body.innerHTML;
-//           } else if (iframeId.document) {
-//               content = iframeId.document.body.innerHTML;
-//           }
-
-//           document.getElementById(div_id).innerHTML = content;
-
-//           // Del the iframe...
-//           setTimeout('iframeId.parentNode.removeChild(iframeId)', 250);
-//       }
-
-//   if (iframeId.addEventListener) iframeId.addEventListener("load", eventHandler, true);
-//   if (iframeId.attachEvent) iframeId.attachEvent("onload", eventHandler);
-
-//   // Set properties of form...
-//   form.setAttribute("target", "upload_iframe");
-//   form.setAttribute("action", action_url);
-//   form.setAttribute("method", "post");
-//   form.setAttribute("enctype", "multipart/form-data");
-//   form.setAttribute("encoding", "multipart/form-data");
-
-//   // Submit the form...
-//   form.submit();
-
-//   document.getElementById(div_id).innerHTML = "Uploading...";
-// }
