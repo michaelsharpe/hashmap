@@ -1,27 +1,13 @@
 class GeomarkersController < ApplicationController
   def index
-    if params[:search].present?
-      @geomarkers = search
-    elsif params[:tag].present?
-      @geomarkers = Geomarker.tagged_with(params[:tag], :any => true)
+    ne = params[:ne].split(',').collect{|e|e.to_f}  
+    sw = params[:sw].split(',').collect{|e|e.to_f}
+    params[:tags] != "" ? params[:tags] : params[:tags] = nil
+  
+    if params[:tags]
+      @geomarkers = Geomarker.tagged_with(params[:tags], :any => true).in_bounds([sw, ne]) 
     else
-      if params[:view] == "collection"
-        @geomarkers = Geomarker.tagged_with(Geomarker.all_collection_tags(current_user), :any => true)
-      else
-        @geomarkers = Geomarker.all
-      end
-    end
-    respond_to do |format|
-      format.html
-      format.json {render json: @geomarkers}
-      format.js do
-        ne = params[:ne].split(',').collect{|e|e.to_f}  
-        sw = params[:sw].split(',').collect{|e|e.to_f}
-        tags = params[:search]
-        @geomarkers = Geomarker.tagged_with(tags, :any => true).in_bounds([sw, ne]) unless tags == ""
-        @geomarkers = Geomarker.in_bounds([sw, ne]) if tags == ""
-        render :json => @geomarkers.to_json 
-      end
+      @geomarkers = Geomarker.all.in_bounds([sw, ne])
     end
   end
   
@@ -76,13 +62,5 @@ class GeomarkersController < ApplicationController
   private
   def geomarker_params
     params.require(:geomarker).permit(:name, :description, :latitude, :longitude, :tag_list, :view, :sw, :ne, :image)
-  end
-
-  def search
-    if params[:option] == "1"
-      return Geomarker.tagged_with(params[:search], :any => true)
-    else
-      return Geomarker.tagged_with(params[:search], :all => true)
-    end    
   end
 end

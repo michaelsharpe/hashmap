@@ -42,3 +42,12 @@
   height: 0;
   width: 0;
 }
+.leaflet-popup-content {
+  padding: 0 auto;
+}
+.marker-popup {
+  width: 200px;
+  img {
+    // margin: 0 10px;
+  }
+}
