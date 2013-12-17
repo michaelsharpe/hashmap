@@ -14,6 +14,11 @@ class GeomarkersController < ApplicationController
   def show
     @geomarker = Geomarker.find(params[:id])
     @user = User.find(@geomarker.user_id)
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
   
   def new
