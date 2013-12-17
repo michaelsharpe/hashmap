@@ -89,10 +89,16 @@ var updateTags = function() {
   })
 };
 
-var loadItem = function(collection){
+var loadCollection = function(collection){
   $menu.remove();
   loadMenu();
   $("#collection-form").slideUp(400, function(){
     $("[data-collection = '" + collection + "'] ").slideDown(400);
   });
+}
+
+var loadTag = function(tag) {
+  $menu.remove();
+  loadMenu();
+  $("[data-tag = '" + tag + "']").slideDown(400)
 }

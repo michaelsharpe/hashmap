@@ -1,0 +1,7 @@
+var tag_name = "<%= @collection_tag.name %>"
+var tag = "<li data-tag='" +tag_name + "' data-show='enabled' style='display: none;'><a><i class='tag-eye fa fa-eye'></i><span>" + tag_name + "</span></a></li>";
+$(".mm-opened").find(".tag-form").before(tag);
+debugger
+loadTag(tag_name);
+
+
