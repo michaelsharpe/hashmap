@@ -179,7 +179,6 @@ function removeAllMarkers() {
 function removeMarkersOutsideOfMapBounds() {
   for(i in markers) {
     if(i > 0 && markers[i] && !map.getBounds().contains(markers[i].getLatLng())) {
-      debugger
       map.removeLayer(markers[i]);
       markers[i] = null;
     }

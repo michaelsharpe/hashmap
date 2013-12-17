@@ -93,6 +93,6 @@ var loadItem = function(collection){
   $menu.remove();
   loadMenu();
   $("#collection-form").slideUp(400, function(){
-    $('*[data-collection = ' + collection + ']').slideDown(400);
+    $("[data-collection = '" + collection + "'] ").slideDown(400);
   });
 }
