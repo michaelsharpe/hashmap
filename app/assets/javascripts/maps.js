@@ -135,6 +135,16 @@ function removeIFrame(){
   $("#blank_iframe").remove();
 }
 
+function getGeomarkerShow(){
+  var id = $(".marker-popup").attr("data-id");
+  
+  $.ajax({
+    type: "GET",
+    url: "/geomarkers/" + id,
+    dataType: "script"
+  });
+}
+
 function changeFocus(lat, lng, zoom){
   var latlng = L.latLng(lat, lng);
   map.panTo(latlng);
@@ -189,13 +199,14 @@ function removeMarkersOutsideOfMapBounds() {
 function makeMarker(markerJSON){
   var latlng = L.latLng(markerJSON.latitude, markerJSON.longitude);
   var marker = L.marker(latlng,{title: markerJSON.name});
+  var tags = markerJSON.tag_list.join(', ');
   var imgURL = "";
   if (markerJSON.image.thumb) {
     imgURL = "<img src='" + markerJSON.image.thumb + "' />";
   } else {
     imgURL = "<p>No image attached</p>";
   }
-  marker.bindPopup("<div class='marker-popup'><p>Name: " + markerJSON.name + "</p><br>" + imgURL + "</div>");
+  marker.bindPopup("<div class='marker-popup' data-id='" + markerJSON.id + "'><p>Name: " + markerJSON.name + "</p><p>Tags: " + tags + "</p>" + imgURL + "</div>");
   marker.addTo(map);
   if (newMode) {
     marker.setOpacity(0.5);
