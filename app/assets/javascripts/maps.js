@@ -194,7 +194,7 @@ function makeMarker(markerJSON){
   } else {
     imgURL = "<p>No image attached</p>";
   }
-  marker.bindPopup("<div class='marker-popup'><p>Name: " + markerJSON.name + "</p><br>" + imgURL + "</div>");
+  marker.bindPopup("<div class='marker-popup'><p>Name: " + markerJSON.name + "</p><p>Tags: " + markerJSON.tag_list + "</p><br>" + imgURL + "</div>");
   marker.addTo(map);
   if (newMode) {
     marker.setOpacity(0.5);
