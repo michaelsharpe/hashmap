@@ -5,6 +5,10 @@ var menuOptions = {};
 
 $(document).ready(function(){
   loadMenu();
+  $("#new-collection").on("click", function(e){
+    e.preventDefault();
+    $("#collection-form").slideToggle(400);
+  })
 });
 
 var loadMenu = function(){

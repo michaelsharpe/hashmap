@@ -17,8 +17,8 @@ def location()
   loc = Random.new.location(43.6464941, -79.39257729999997, 5000)
 end
 
-@user = User.create(username: "user", email: "test@test.com", password: "test888", password_confirmation: "test888")
-@user2 = User.create(username: "user2", email: "test2@test.com", password: "test888", password_confirmation: "test888")
+@user = User.create!(username: "user", email: "test@test.com", password: "test888", password_confirmation: "test888")
+@user2 = User.create!(username: "user2", email: "test2@test.com", password: "test888", password_confirmation: "test888")
 
 500.times do |num|
   location = location()
@@ -40,12 +40,22 @@ end
 
 10.times do |num|
   collection = Collection.create(name:Faker::Commerce.department, description:Faker::Company.bs, user_id: @user.id )
-  collection.tag_list = tags.sample(3).join(', ')
+  3.times do
+    tag_name = tags.sample
+    tag = collection.collectionTags.create(name:tag_name, user_id: @user.id, visibility: false)
+    tag.tag_list = tag_name
+    tag.save
+  end
   collection.save
 end
 
 10.times do |num|
   collection = Collection.create(name:Faker::Commerce.department, description:Faker::Company.bs, user_id: @user2.id )
-  collection.tag_list = tags.sample(3).join(', ')
+  3.times do
+    tag_name = tags.sample
+    tag = collection.collectionTags.create(name:tag_name, user_id: @user.id, visibility: false)
+    tag.tag_list = tag_name
+    tag.save
+  end
   collection.save
 end
