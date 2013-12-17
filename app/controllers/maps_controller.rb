@@ -11,6 +11,7 @@ class MapsController < ApplicationController
     @user = current_user
   end
 
-  
+
+
 
 end

@@ -11,6 +11,7 @@ class GeomarkersController < ApplicationController
         @geomarkers = Geomarker.all
       end
     end
+
     respond_to do |format|
       format.html
       format.json

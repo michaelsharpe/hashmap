@@ -1,11 +1,9 @@
 var collection_length = <%= current_user.collections.length %>;
 var collection_name = "<%= @collection.name %>";
 var menu_id = "mm-m0-p" + collection_length;
-var collection_list_item = "<li data-collection=" + collection_name + "><a class='mm-subopen' href=#" + menu_id + "></a><a><i class='collection-eye fa fa-eye' data-show='enabled'></i><span>" + collection_name + "</span></a></li>"
+var collection_list_item = "<li data-collection=" + collection_name + " style='display: none;'><a class='mm-subopen' href=#" + menu_id + "></a><a><i class='collection-eye fa fa-eye' data-show='enabled'></i><span>" + collection_name + "</span></a></li>"
 var collection_menu = "<ul class='mm-list mm-panel' id='" + menu_id + "'><li class='mm-subtitle'><a class='mm-subclose' href='#mm-m0-p0'>" + collection_name + "</a></li></ul>"
 
-$("#mm-m0-p0 li:last").before(collection_list_item);
+$("#collection-form").before(collection_list_item);
 $("#right-menu").append(collection_menu);
-$menu.remove();
-loadMenu();
-
+loadItem(collection_name);
