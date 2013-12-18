@@ -1,4 +1,5 @@
-$("#map").append("<div id='geomarker-show'><%= j render 'geomarkers/show' %></div>");
+$("#map").append("<div id='geomarker-show' data-id='<%= @geomarker.id %>'><%= j render 'geomarkers/show' %></div>");
+
 $("#optionsButton").on("click", function(e){
   if ($("#optionsMenu").is(":hidden")){
     $("#optionsMenu").slideDown("slow");
@@ -10,4 +11,14 @@ $(document).on("click", function(){
     $("#optionsMenu").slideUp();
   }
 });
-$("#closeShowButton").on("click", removeGeomarkerShow);
+
+$("#editButton").on("click", function(e){
+  var id = $("#geomarker-show").attr("data-id");
+  getGeomarkerEdit(id);
+  e.stopPropagation();
+});
+
+$("#closeShowButton").on("click", function(){
+  enableMap();
+  removeGeomarkerShow();
+});

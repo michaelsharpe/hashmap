@@ -1,5 +1,7 @@
 $(document).ready(function(){
-  initMapProcedure();
+  // if (!($("#blank_iframe")){
+    initMapProcedure();
+  // }
 });
 
 var map;
@@ -89,6 +91,7 @@ function newMarkerMode(){
     tempMarker.unbindPopup();
     var lat = tempMarker.getLatLng().lat;
     var lng = tempMarker.getLatLng().lng;
+    disableMap();
     getGeomarkerForm(lat, lng);
   });
 }
@@ -133,7 +136,6 @@ function moveToAddress(){
 }
 
 function getGeomarkerForm(lat, lng){
-  disableMap();
   $.ajax({
     type: "GET",
     url: "/geomarkers/new",
@@ -146,18 +148,17 @@ function getGeomarkerForm(lat, lng){
 }
 
 function quitGeomarkerForm(){
-  enableMap();
   $("#geomarker-form").remove();
-  endNewMarkerMode();
+  if (newMode) {
+    endNewMarkerMode();
+  }
 }
 
 function removeIFrame(){
   $("#blank_iframe").remove();
 }
 
-function getGeomarkerShow(){
-  var id = $(".marker-popup").attr("data-id");
-  disableMap();
+function getGeomarkerShow(id){
   $.ajax({
     type: "GET",
     url: "/geomarkers/" + id,
@@ -166,8 +167,30 @@ function getGeomarkerShow(){
 }
 
 function removeGeomarkerShow(){
-  enableMap();
   $("#geomarker-show").remove();
+}
+
+function getGeomarkerEdit(id){
+  $.ajax({
+    type: "GET",
+    url: "/geomarkers/" + id + "/edit",
+    dataType: "script"
+  });
+}
+
+function deleteGeomarkerImage(){
+  var id = $("#geomarker-form").attr("data-id");
+  $.ajax({
+    type: "PATCH",
+    url: "/geomarkers/" + id,
+    dataType: "script",
+    data: { geomarker: {
+      remove_image: 1
+    }}
+  }).done(function(transport){
+    removeGeomarkerShow();
+    getGeomarkerEdit(id);
+  });
 }
 
 function changeFocus(latlng, zoom){
@@ -233,7 +256,9 @@ function makeMarker(markerJSON){
   marker.addTo(map);
   marker.on("popupopen", function(){
     $(".marker-popup").on("click", function(){
-      getGeomarkerShow();
+      var id = $(".marker-popup").attr("data-id");
+      getGeomarkerShow(id);
+      disableMap();
       marker.closePopup();
     });
   });
@@ -242,4 +267,9 @@ function makeMarker(markerJSON){
   }
 
   return marker
+}
+
+function removeMarker(id){
+  map.removeLayer(markers[id]);
+  markers[id] = null;
 }

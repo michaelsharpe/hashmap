@@ -1,0 +1,31 @@
+<div id='geomarker-form-errors'></div>
+<%= form_for @geomarker, :html => { :multipart => true,  :target => "blank_iframe" }, :remote => true do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <br>
+  <%= f.label "Description" %>
+  <%= f.text_area :description %>
+  <br>
+  <%= f.label "Tags (a comma separated list)" %>
+  <%= f.text_field :tag_list %>
+  <br>
+  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+  <p>
+    <label>
+  <% if @geomarker.image.present? %>
+    <%= image_tag @geomarker.image.thumb.to_s %>
+    <br>
+    <%= f.check_box :remove_image %>
+    Remove Image
+  <% else %>
+    <section id='fileUploadSection'>
+      <%= f.label :image %>
+      <%= f.file_field :image %>
+    </section>
+  <% end %>
+  </label>
+    </p>
+  <hr>
+  <input id="cancelFormButton" class="button small" type="button" value="Cancel"/>
+  <%= f.submit "Submit", :class => "button small" %>
+<% end %>
