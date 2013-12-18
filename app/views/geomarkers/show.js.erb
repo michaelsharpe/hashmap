@@ -1,2 +1,13 @@
 $("#map").append("<div id='geomarker-show'><%= j render 'geomarkers/show' %></div>");
+$("#optionsButton").on("click", function(e){
+  if ($("#optionsMenu").is(":hidden")){
+    $("#optionsMenu").slideDown("slow");
+    e.stopPropagation();
+  };
+});
+$(document).on("click", function(){
+  if ($("#optionsMenu").is(":visible")){
+    $("#optionsMenu").slideUp();
+  }
+});
 $("#closeShowButton").on("click", removeGeomarkerShow);

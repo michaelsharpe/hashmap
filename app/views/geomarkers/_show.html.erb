@@ -1,3 +1,10 @@
+<% if current_user.id == @geomarker.user_id %>
+  <input id="optionsButton" class="button tiny" type="button" value="Options" />
+  <ul id="optionsMenu">
+    <li><a href="#">Edit</a></li>
+    <li><a href="#">Delete</a></li>
+  </ul>
+<% end %>
 <h2><%= @geomarker.name %></h2>
 <p><%= @geomarker.description %></p>
 <p>Latitude: <%= @geomarker.latitude %></p>
