@@ -18,6 +18,12 @@ $("#editButton").on("click", function(e){
   e.stopPropagation();
 });
 
+$("#deleteButton").on("click", function(e){
+  var id = $("#geomarker-show").attr("data-id");
+  deleteGeomarker(id);
+  e.stopPropagation();
+});
+
 $("#closeShowButton").on("click", function(){
   enableMap();
   removeGeomarkerShow();

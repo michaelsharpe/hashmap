@@ -71,7 +71,11 @@ class GeomarkersController < ApplicationController
   def destroy
     @geomarker = Geomarker.find(params[:id])
     @geomarker.destroy
-    redirect_to geomarkers_path
+
+    respond_to do |format|
+      format.html { redirect_to geomarkers_path }
+      format.js
+    end
   end
 
   private

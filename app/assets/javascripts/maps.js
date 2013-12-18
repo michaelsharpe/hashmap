@@ -178,18 +178,13 @@ function getGeomarkerEdit(id){
   });
 }
 
-function deleteGeomarkerImage(){
-  var id = $("#geomarker-form").attr("data-id");
+function deleteGeomarker(id){
   $.ajax({
-    type: "PATCH",
+    type: "DELETE",
     url: "/geomarkers/" + id,
-    dataType: "script",
-    data: { geomarker: {
-      remove_image: 1
-    }}
+    dataType: "script"
   }).done(function(transport){
-    removeGeomarkerShow();
-    getGeomarkerEdit(id);
+    removeMarker(id);
   });
 }
 
