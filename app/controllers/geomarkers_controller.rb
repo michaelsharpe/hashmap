@@ -57,10 +57,7 @@ class GeomarkersController < ApplicationController
     @geomarker = Geomarker.find(params[:id])
     if @geomarker.update_attributes(geomarker_params)
       respond_to do |format|
-        format.html do
-          render "update.js.erb" if params[:image]
-          redirect_to geomarker_path(@geomarker)
-        end
+        format.html { redirect_to geomarker_path(@geomarker) }
         format.js
       end
     else
@@ -79,6 +76,6 @@ class GeomarkersController < ApplicationController
 
   private
   def geomarker_params
-    params.require(:geomarker).permit(:name, :description, :latitude, :longitude, :tag_list, :view, :sw, :ne, :image, :remove_image)
+    params.require(:geomarker).permit(:name, :description, :latitude, :longitude, :tag_list, :view, :sw, :ne, :image)
   end
 end

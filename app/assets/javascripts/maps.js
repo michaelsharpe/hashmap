@@ -203,7 +203,6 @@ function updateMap() {
   var bounds = map.getBounds()
   var southWest = bounds._southWest.lat + "," + bounds._southWest.lng
   var northEast = bounds._northEast.lat + "," + bounds._northEast.lng
-
   $.ajax({
     url: "geomarkers",
     type: "GET",
