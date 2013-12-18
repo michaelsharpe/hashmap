@@ -51,24 +51,6 @@ function setButtonListeners(){
   $("#newMarkerButton").on("click", newMarkerMode);
 }
 
-function disableMap(){
-  map.dragging.disable();
-  map.touchZoom.disable();
-  map.doubleClickZoom.disable();
-  map.scrollWheelZoom.disable();
-  map.boxZoom.disable();
-  map.keyboard.disable();
-}
-
-function enableMap(){
-  map.dragging.enable();
-  map.touchZoom.enable();
-  map.doubleClickZoom.enable();
-  map.scrollWheelZoom.enable();
-  map.boxZoom.enable();
-  map.keyboard.enable();
-}
-
 function newMarkerMode(){
   $("#newMarkerButton").off("click", newMarkerMode);
   $("#newMarkerButton").val("Cancel");
@@ -133,7 +115,6 @@ function moveToAddress(){
 }
 
 function getGeomarkerForm(lat, lng){
-  disableMap();
   $.ajax({
     type: "GET",
     url: "/geomarkers/new",
@@ -146,7 +127,6 @@ function getGeomarkerForm(lat, lng){
 }
 
 function quitGeomarkerForm(){
-  enableMap();
   $("#geomarker-form").remove();
   endNewMarkerMode();
 }
@@ -155,22 +135,8 @@ function removeIFrame(){
   $("#blank_iframe").remove();
 }
 
-function getGeomarkerShow(){
-  var id = $(".marker-popup").attr("data-id");
-  disableMap();
-  $.ajax({
-    type: "GET",
-    url: "/geomarkers/" + id,
-    dataType: "script"
-  });
-}
-
-function removeGeomarkerShow(){
-  enableMap();
-  $("#geomarker-show").remove();
-}
-
-function changeFocus(latlng, zoom){
+function changeFocus(lat, lng, zoom){
+  var latlng = L.latLng(lat, lng);
   map.panTo(latlng);
   map.setZoom(zoom);
 }
@@ -222,24 +188,16 @@ function removeMarkersOutsideOfMapBounds() {
 function makeMarker(markerJSON){
   var latlng = L.latLng(markerJSON.latitude, markerJSON.longitude);
   var marker = L.marker(latlng,{title: markerJSON.name});
-  var tags = markerJSON.tag_list.join(', ');
   var imgURL = "";
   if (markerJSON.image.thumb) {
     imgURL = "<img src='" + markerJSON.image.thumb + "' />";
   } else {
     imgURL = "<p>No image attached</p>";
   }
-  marker.bindPopup("<div class='marker-popup' data-id='" + markerJSON.id + "'><p>Name: " + markerJSON.name + "</p><p>Tags: " + tags + "</p>" + imgURL + "</div>");
+  marker.bindPopup("<div class='marker-popup'><p>Name: " + markerJSON.name + "</p><p>Tags: " + markerJSON.tag_list + "</p><br>" + imgURL + "</div>");
   marker.addTo(map);
-  marker.on("popupopen", function(){
-    $(".marker-popup").on("click", function(){
-      getGeomarkerShow();
-      marker.closePopup();
-    });
-  });
   if (newMode) {
     marker.setOpacity(0.5);
   }
-
   return marker
 }

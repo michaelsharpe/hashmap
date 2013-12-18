@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require foundation
 //= require jQuery.mmenu/src/js/jquery.mmenu.min.all
+//= require jquery.wheelmenu.min
 //= require right_menu
 //= require maps
 //= require_tree .

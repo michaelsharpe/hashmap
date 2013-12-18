@@ -1,7 +1,9 @@
 var currentTags = [];
 var activeCollection;
 var $menu = $('#right-menu');
-var menuOptions = {};
+var menuOptions = {
+      classes: "mm-dark"
+    };
 
 $(document).ready(function(){
   loadMenu();
