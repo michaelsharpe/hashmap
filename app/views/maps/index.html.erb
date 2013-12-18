@@ -13,7 +13,7 @@
           <% collection.collectionTags.each do |tag| %>
           <li data-tag="<%= tag.name %>" data-show="disabled"><a><i class="tag-eye fa fa-eye-slash"></i><span><%= tag.name %></span></a></li>
           <% end %>
-            <li class="tag-form">
+            <li class="tag-form" style="display:none;">
               <span>
                 <div>
                   <%= render partial: "tag_form", locals: {collection: collection, user: collection.user} %>
