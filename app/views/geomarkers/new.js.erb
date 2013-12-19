@@ -1,4 +1,4 @@
-$(".form-container").append("<div class='geomarker-form'><%= j render 'geomarkers/new_form' %></div><iframe id='blank_iframe' name='blank_iframe'></iframe>");
+$(".form-container").append("<div class='geomarker-form'><%= j render 'geomarkers/new_form' %></div><iframe id='blank_iframe' name='blank_iframe'><div id='map'></div></iframe>");
 $("#cancelFormButton").on("click", function(){
   enableMap();
   $("#new-marker-button").trigger("click");

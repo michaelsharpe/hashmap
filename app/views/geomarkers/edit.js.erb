@@ -8,7 +8,7 @@ $("#cancelFormButton").on("click", function(){
 });
 
 $(".edit_geomarker").on("submit", function(){
-  var id = $("#geomarker-form").attr("data-id");
+  var id = $(".geomarker-form").attr("data-id");
   $("#blank_iframe").on("load", function(){
     removeMarker(id);
     updateMap();

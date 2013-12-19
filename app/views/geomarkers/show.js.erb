@@ -13,13 +13,13 @@ $(document).on("click", function(){
 });
 
 $("#editButton").on("click", function(e){
-  var id = $("#geomarker-show").attr("data-id");
+  var id = $(".geomarker-show").attr("data-id");
   getGeomarkerEdit(id);
   e.stopPropagation();
 });
 
 $("#deleteButton").on("click", function(e){
-  var id = $("#geomarker-show").attr("data-id");
+  var id = $(".geomarker-show").attr("data-id");
   deleteGeomarker(id);
   e.stopPropagation();
 });

@@ -135,7 +135,7 @@ function getGeomarkerForm(lat, lng){
 
 function quitGeomarkerForm(){
   $(".geomarker-form").remove();
-  if (newMode) {
+  if (newMarkerModeOn) {
     endNewMarkerMode();
   }
 }
