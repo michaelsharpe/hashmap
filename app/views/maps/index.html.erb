@@ -17,7 +17,7 @@
 
 <nav id="left-menu">
 
-  <ul class="sortable">
+  <ul class="sortable" data-update-url="<%= sort_maps_path %>">
     <% @collections.each do |collection| %>
       <li data-collection="<%= collection.name %>" id="collection_<%= collection.id %>" data-show="disabled" class="collection sortable-active" >
         <a><i class="collection-eye fa fa-eye-slash"></i><span><%= collection.name %></span></a>
