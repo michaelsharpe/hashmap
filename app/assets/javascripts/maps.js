@@ -47,6 +47,24 @@ function initializeMap(position){
   currentPositionMarker = L.marker(latLng).addTo(map);
 }
 
+function disableMap(){
+  map.dragging.disable();
+  map.touchZoom.disable();
+  map.doubleClickZoom.disable();
+  map.scrollWheelZoom.disable();
+  map.boxZoom.disable();
+  map.keyboard.disable();
+}
+
+function enableMap(){
+  map.dragging.enable();
+  map.touchZoom.enable();
+  map.doubleClickZoom.enable();
+  map.scrollWheelZoom.enable();
+  map.boxZoom.enable();
+  map.keyboard.enable();
+}
+
 function newMarkerMode(){
   tempMarker = L.marker(map.getCenter(), {
     draggable: true
