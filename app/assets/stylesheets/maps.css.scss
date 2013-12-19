@@ -25,9 +25,10 @@
 }
 
 #geomarker-form {
-  width: 360px;
-  top: 23%;
-  left: 43%;
+  width: 40em;
+  height: 60em;
+  top: 10%;
+  left: 33%;
   padding: 30px;
   position: absolute;
   border: 1px solid black;
@@ -35,6 +36,7 @@
   z-index: 100;
   background-color: #fff;
   text-align: center;
+  overflow: scroll;
 }
 
 #geomarker-show {
@@ -57,12 +59,24 @@
   height: 0;
   width: 0;
 }
+
 .leaflet-popup-content {
   padding: 0 auto;
 }
+
 .marker-popup {
   width: 200px;
-  img {
-    // margin: 0 10px;
-  }
+}
+
+#optionsMenu {
+  z-index: 120;
+  display: none;
+  list-style: none;
+}
+
+#removeImage {
+  color: #900;
+  font-size: 1.4em;
+  background-color: #FFF;
+  border: none;
 }

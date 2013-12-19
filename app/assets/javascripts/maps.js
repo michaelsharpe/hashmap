@@ -1,5 +1,7 @@
 $(document).ready(function(){
-  initMapProcedure();
+  // if (!($("#blank_iframe")){
+    initMapProcedure();
+  // }
 });
 
 var map;
@@ -61,6 +63,7 @@ function newMarkerMode(){
     tempMarker.unbindPopup();
     var lat = tempMarker.getLatLng().lat;
     var lng = tempMarker.getLatLng().lng;
+    disableMap();
     getGeomarkerForm(lat, lng);
   });
 }
@@ -114,15 +117,55 @@ function getGeomarkerForm(lat, lng){
 
 function quitGeomarkerForm(){
   $("#geomarker-form").remove();
-  endNewMarkerMode();
+  if (newMode) {
+    endNewMarkerMode();
+  }
 }
 
 function removeIFrame(){
   $("#blank_iframe").remove();
 }
 
-function changeFocus(lat, lng, zoom){
-  var latlng = L.latLng(lat, lng);
+function getGeomarkerShow(id){
+  $.ajax({
+    type: "GET",
+    url: "/geomarkers/" + id,
+    dataType: "script"
+  });
+}
+
+function getLastGeomarkerCreatedByUser(){
+  $.ajax({
+    type: "GET",
+    url: "/geomarkers/show",
+    dataType: "script",
+    data: { newMarker: true }
+  });
+}
+
+function removeGeomarkerShow(){
+  $("#geomarker-show").remove();
+}
+
+function getGeomarkerEdit(id){
+  $.ajax({
+    type: "GET",
+    url: "/geomarkers/" + id + "/edit",
+    dataType: "script"
+  });
+}
+
+function deleteGeomarker(id){
+  $.ajax({
+    type: "DELETE",
+    url: "/geomarkers/" + id,
+    dataType: "script"
+  }).done(function(transport){
+    removeMarker(id);
+  });
+}
+
+function changeFocus(latlng, zoom){
   map.panTo(latlng);
   map.setZoom(zoom);
 }
@@ -132,7 +175,6 @@ function updateMap() {
   var bounds = map.getBounds()
   var southWest = bounds._southWest.lat + "," + bounds._southWest.lng
   var northEast = bounds._northEast.lat + "," + bounds._northEast.lng
-
   $.ajax({
     url: "geomarkers",
     type: "GET",
@@ -182,8 +224,21 @@ function makeMarker(markerJSON){
   }
   marker.bindPopup("<div class='marker-popup'><p>Name: " + markerJSON.name + "</p><p>Tags: " + markerJSON.tag_list + "</p><br>" + imgURL + "</div>");
   marker.addTo(map);
+  marker.on("popupopen", function(){
+    $(".marker-popup").on("click", function(){
+      var id = $(".marker-popup").attr("data-id");
+      getGeomarkerShow(id);
+      disableMap();
+      marker.closePopup();
+    });
+  });
   if (newMarkerModeOn) {
     marker.setOpacity(0.5);
   }
   return marker
+}
+
+function removeMarker(id){
+  map.removeLayer(markers[id]);
+  markers[id] = null;
 }

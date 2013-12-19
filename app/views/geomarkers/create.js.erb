@@ -1,6 +1,7 @@
 <% if @geomarker.errors.any? %>
   $('#geomarker-form-errors').html('<%= escape_javascript(render "geomarker_form_errors") %>' );
 <% else %>
-  updateMap()
+  getGeomarkerShow(<%= @geomarker.id %>);
+  updateMap();
   quitGeomarkerForm();
 <% end %>
