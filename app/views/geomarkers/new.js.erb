@@ -1,6 +1,7 @@
 $("#map").append("<div id='geomarker-form'><%= j render 'geomarkers/new_form' %></div><iframe id='blank_iframe' name='blank_iframe'></iframe>");
 $("#cancelFormButton").on("click", function(){
   enableMap();
+  $("#new-marker-button").trigger("click");
   quitGeomarkerForm();
   removeIFrame();
 });
@@ -10,5 +11,6 @@ $("#new_geomarker").on("submit", function(){
     $(this).remove();
     updateMap();
   });
+  $("#new-marker-button").trigger("click");
   quitGeomarkerForm();
 });
