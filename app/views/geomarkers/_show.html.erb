@@ -1,21 +1,24 @@
 <% if current_user.id == @geomarker.user_id %>
-  <input id="optionsButton" class="button tiny" type="button" value="Options" />
+  <input id="optionsButton" type="button" value="Options" />
   <ul id="optionsMenu">
     <li><a id="editButton" href="#">Edit</a></li>
     <li><a id="deleteButton" href="#">Delete</a></li>
   </ul>
 <% end %>
+<input id="closeShowButton" type="button" value="Close"/>
+<h1><%= params[:windowWidth] %></h1>
 <h2><%= @geomarker.name %></h2>
 <p><%= @geomarker.description %></p>
-<p>Latitude: <%= @geomarker.latitude %></p>
-<p>Longitude: <%= @geomarker.longitude %></p>
 <br>
 <% if @geomarker.image %>
-  <%= image_tag @geomarker.image.to_s %>
+  <% if params[:windowWidth].to_f < 40 %>
+    <%= image_tag @geomarker.image.thumb.to_s %>
+  <% else %>
+    <%= image_tag @geomarker.image.to_s %>
+  <% end %>
 <% end %>
 <br>
 <p>Created by: <%= @user.username %></p>
 <% if @geomarker.tags.any? %>
  <p>Tags: <%= @geomarker.tag_list %> </p>
 <% end %>
-<input id="closeShowButton" class="button small" type="button" value="Close"/>

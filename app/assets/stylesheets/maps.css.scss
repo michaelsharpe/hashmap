@@ -42,7 +42,13 @@
   @extend .small-centered;
   @extend .columns;
   top: 5%;
-  max-height: 90%;
+  @media only screen and (min-width: 40em) {
+    max-height: 90%;
+  }
+  @media only screen and (max-width: 40em) {
+    max-height: 100%;
+  }
+  padding: 1em;
   border: 1px solid black;
   border-radius: 7px;
   z-index: 1001;
@@ -59,8 +65,13 @@
   @extend .medium-centered;
   @extend .small-centered;
   @extend .columns;
-  top: 5%;
-  max-height: 90%;
+  @media only screen and (min-width: 40em) {
+    top: 5%;
+    max-height: 90%;
+  }
+  @media only screen and (max-width: 40em) {
+    max-height: 100%;
+  }
   padding: 30px;
   border: 1px solid black;
   border-radius: 7px;
@@ -95,4 +106,14 @@
   font-size: 1.4em;
   background-color: #FFF;
   border: none;
+}
+
+#optionsButton {
+  @extend .button;
+  @extend .tiny;
+}
+
+#closeShowButton {
+  @extend .button;
+  @extend .tiny;
 }

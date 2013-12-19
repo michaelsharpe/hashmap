@@ -145,10 +145,12 @@ function removeIFrame(){
 }
 
 function getGeomarkerShow(id){
+  var windowWidth = $(window).width() / parseFloat($("body").css("font-size"));
   $.ajax({
     type: "GET",
     url: "/geomarkers/" + id,
-    dataType: "script"
+    dataType: "script",
+    data: { windowWidth: windowWidth }
   });
 }
 
