@@ -55,6 +55,11 @@ class GeomarkersController < ApplicationController
   
   def update
     @geomarker = Geomarker.find(params[:id])
+    if params[:geomarker][:remove_image].present?
+      @geomarker.remove_image!
+      @geomarker.save
+      params[:geomarker][:remove_image] = nil
+    end
     if @geomarker.update_attributes(geomarker_params)
       respond_to do |format|
         format.html { redirect_to geomarker_path(@geomarker) }
@@ -80,6 +85,6 @@ class GeomarkersController < ApplicationController
 
   private
   def geomarker_params
-    params.require(:geomarker).permit(:name, :description, :latitude, :longitude, :tag_list, :view, :sw, :ne, :image)
+    params.require(:geomarker).permit(:name, :description, :latitude, :longitude, :tag_list, :view, :sw, :ne, :remove_image, :image)
   end
 end
