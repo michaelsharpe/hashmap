@@ -16,6 +16,13 @@
 
 #collection-form {
   display: none;
-  
+}
+
+.open-menu {
+  position: absolute;
+  color: white;
+  font-size: 50px;
+  left: 50px;
+  z-index: 100;
 }
 

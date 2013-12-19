@@ -9,7 +9,6 @@ var positionTimer;
 var markers = new Array();
 var geocoder;
 var tempMarker;
-var newMode = false;
 
 function initMapProcedure(){
   if (navigator.geolocation) {
@@ -27,7 +26,6 @@ function mapController(position){
     geocoder = new google.maps.Geocoder();
     initializeMap(position);
     updateMap();
-    setButtonListeners();
     map.on('moveend', updateMap);
 }
 
@@ -47,20 +45,12 @@ function initializeMap(position){
   currentPositionMarker = L.marker(latLng).addTo(map);
 }
 
-function setButtonListeners(){
-  $("#newMarkerButton").on("click", newMarkerMode);
-}
-
 function newMarkerMode(){
-  $("#newMarkerButton").off("click", newMarkerMode);
-  $("#newMarkerButton").val("Cancel");
-  $("#newMarkerButton").on("click", endNewMarkerMode);
   tempMarker = L.marker(map.getCenter(), {
     draggable: true
   });
   tempMarker.bindPopup("<h6>Drag me where you want me, or enter an address up top!</h6>").addTo(map);
   toggleGeocoder();
-  newMode = true;
   for(var i = 0; i < markers.length; i++){
     if (markers[i]){
       markers[i].setOpacity(0.5);
@@ -76,12 +66,8 @@ function newMarkerMode(){
 }
 
 function endNewMarkerMode(){
-  $("#newMarkerButton").off("click", endNewMarkerMode);
-  $("#newMarkerButton").val("point and click");
-  $("#newMarkerButton").on("click", newMarkerMode);
   map.removeLayer(tempMarker);
   tempMarker = undefined;
-  newMode = false;
   for (var i = 0; i < markers.length; i++){
     if (markers[i]){
       markers[i].setOpacity(1);
@@ -196,7 +182,7 @@ function makeMarker(markerJSON){
   }
   marker.bindPopup("<div class='marker-popup'><p>Name: " + markerJSON.name + "</p><p>Tags: " + markerJSON.tag_list + "</p><br>" + imgURL + "</div>");
   marker.addTo(map);
-  if (newMode) {
+  if (newMarkerModeOn) {
     marker.setOpacity(0.5);
   }
   return marker

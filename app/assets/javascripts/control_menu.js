@@ -1,4 +1,6 @@
 var controlOpen = false;
+var newMarkerModeOn = false;
+var globalView = false;
 
 $(document).ready(function(){
   $(".wheel-button").wheelmenu({
@@ -18,7 +20,38 @@ $(document).ready(function(){
   $("[href='#right-menu']").on("click", function(){
     if(controlOpen){
       $(".wheel-button").trigger("click");
+    };
+    if(globalView){
+      $("#global-view").trigger("click");
     }
   })
 });
 
+$(document).ready(function(){
+  $("#new-marker-button").on("click", function(){
+    if(!newMarkerModeOn){
+      $(this).addClass("icon-glow");
+      newMarkerMode();
+      newMarkerModeOn = true;
+    } else {
+      endNewMarkerMode();
+      $(this).removeClass("icon-glow");
+      newMarkerModeOn = false;
+    }
+  })
+});
+
+$(document).ready(function(){
+  $("#global-view").on("click", function(){
+    if(!globalView){
+      currentTags = [];
+      $(this).addClass("icon-glow");
+      updateMap();
+      globalView = true;
+    } else {
+      $(this).removeClass("icon-glow");
+      updateMapTags();
+      globalView = false;
+    }
+  })
+});

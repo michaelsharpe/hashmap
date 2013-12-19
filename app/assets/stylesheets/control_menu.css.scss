@@ -50,7 +50,7 @@
 
 .wheel-button.ne {
   border-color: white;
-  background: #1ABC9C;
+  background: #7EDF46;
   color: #34FFFF;
   position: absolute;
   bottom: 10px;
@@ -68,19 +68,19 @@
 }
 
 .wheel-button.active span{
-  transform: rotate(135deg);
-  -ms-transform: rotate(135deg); /* IE 9 */
-  -webkit-transform: rotate(135deg); /* Safari and Chrome */
+  transform: rotate(360deg);
+  -ms-transform: rotate(360deg); /* IE 9 */
+  -webkit-transform: rotate(360deg); /* Safari and Chrome */
 }
 
 .wheel li a, .wheel li a:visited{
   background: rgba(0,0,0,0.65);
   border-radius: 50px;
   font-weight: bold;
-  padding: 10px;
+  padding: 0.5em;
   text-align: center;
-  width: 35px;
-  height: 35px;
+  width: 2.5em;
+  height: 2.5em;
   border: 1px solid black;
   box-shadow: 0 1px 2px rgba(0,0,0,0.25), inset 0 1px 1px rgba(255,255,255,0.5);
   -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.25), inset 0 1px 1px rgba(255,255,255,0.5);
@@ -105,14 +105,18 @@
 .icon {
   position: absolute;
   font-size: 20px;
-  top: 8px;
-  left: 9px;
+  top: 10px;
+  left: 12px;
 }
 
 .icon.fa.fa-map-marker {
-  left: 11px;
-  top: 5px;
+  left: 14px;
+  top: 8px;
   font-size: 25px;
+}
+
+.icon-glow {
+  text-shadow: 3px 3px 10px #F5F5F5, -3px -3px 10px #F5F5F5;
 }
 
 #control-menu {

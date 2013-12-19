@@ -1,5 +1,5 @@
 <div id="map">
-  <a href="#right-menu"><i class="open-menu fi-list"></i></a>
+  <a href="#" id="open-menu"><i class="open-menu fi-list"></i></a>
 </div> 
 
 <div id="control-menu">
@@ -7,9 +7,9 @@
     <span class="menu-open">#</i>  </span>
   </a>
   <ul id="wheel2" data-angle="NE" class="wheel">
-    <li class="item" id="global"><a href="#home"><i class="icon fa fa-globe"></i></a></li>
+    <li class="item" id="global-view"><a href="#home"><i class="icon fa fa-globe"></i></a></li>
     <li class="item" id="new-collection"><a href="#home"><i class="icon fa fa-book"></i></a></li>
-    <li class="item" id="newMarkerButton" value="point and click"><a href="#home"><i class="icon fa fa-map-marker"></i></a></li>
+    <li class="item" id="new-marker-button" value="point and click"><a href="#home"><i class="icon fa fa-map-marker"></i></a></li>
     <li class="item" id="user"><a href="#home"><i class="icon fa fa-user"></i></a></li>
     <li class="item" id="settings"><a href="#home"><i class="icon fa fa-cog"></i></a></li>
   </ul>
@@ -19,11 +19,11 @@
 
   <ul>
     <% @collections.each do |collection| %>
-      <li data-collection="<%= collection.name %>" data-show="disabled">
-        <a><i class="collection-eye fa fa-eye-slash" ></i><span><%= collection.name %></span></a>
+      <li data-collection="<%= collection.name %>" data-show="disabled" class="collection">
+        <a><i class="collection-eye fa fa-eye-slash"></i><span><%= collection.name %></span></a>
         <ul>
           <% collection.collectionTags.each do |tag| %>
-          <li data-tag="<%= tag.name %>" data-show="disabled"><a><i class="tag-eye fa fa-eye-slash"></i><span><%= tag.name %></span></a></li>
+          <li data-tag="<%= tag.name %>" data-show="disabled" class="tag"><a><i class="tag-eye fa fa-eye-slash"></i><span><%= tag.name %></span></a></li>
           <% end %>
             <li class="tag-form" style="display:none;">
               <span>
