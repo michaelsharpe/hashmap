@@ -5,14 +5,18 @@ class GeomarkersController < ApplicationController
     params[:tags] != "" ? params[:tags] : params[:tags] = nil
   
     if params[:tags]
-      @geomarkers = Geomarker.tagged_with(params[:tags], :any => true).in_bounds([sw, ne]) 
+      @geomarkers = Geomarker.tagged_with(params[:tags], :any => true).in_bounds([sw, ne])
     else
       @geomarkers = Geomarker.all.in_bounds([sw, ne])
     end
   end
   
   def show
-    @geomarker = Geomarker.find(params[:id])
+    if params[:newMarker]
+      @geomarker = Geomarker.order("created_at").reverse_order.find_by_user_id(current_user.id)
+    else
+      @geomarker = Geomarker.find(params[:id])
+    end
     @user = User.find(@geomarker.user_id)
 
     respond_to do |format|

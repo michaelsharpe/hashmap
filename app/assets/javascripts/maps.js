@@ -166,6 +166,15 @@ function getGeomarkerShow(id){
   });
 }
 
+function getLastGeomarkerCreatedByUser(){
+  $.ajax({
+    type: "GET",
+    url: "/geomarkers/show",
+    dataType: "script",
+    data: { newMarker: true }
+  });
+}
+
 function removeGeomarkerShow(){
   $("#geomarker-show").remove();
 }

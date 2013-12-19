@@ -6,6 +6,7 @@ $("#cancelFormButton").on("click", function(){
 });
 $("#new_geomarker").on("submit", function(){
   $("#blank_iframe").on("load", function(){
+    getLastGeomarkerCreatedByUser();
     $(this).remove();
     updateMap();
   });
