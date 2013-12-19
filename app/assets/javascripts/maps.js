@@ -134,7 +134,7 @@ function getGeomarkerForm(lat, lng){
 }
 
 function quitGeomarkerForm(){
-  $("#geomarker-form").remove();
+  $(".geomarker-form").remove();
   if (newMode) {
     endNewMarkerMode();
   }
@@ -162,7 +162,7 @@ function getLastGeomarkerCreatedByUser(){
 }
 
 function removeGeomarkerShow(){
-  $("#geomarker-show").remove();
+  $(".geomarker-show").remove();
 }
 
 function getGeomarkerEdit(id){
@@ -236,11 +236,11 @@ function makeMarker(markerJSON){
   var marker = L.marker(latlng,{title: markerJSON.name});
   var imgURL = "";
   if (markerJSON.image.thumb) {
-    imgURL = "<img src='" + markerJSON.image.thumb + "' />";
+    imgURL = "<img class='th' src='" + markerJSON.image.thumb + "' />";
   } else {
     imgURL = "<p>No image attached</p>";
   }
-  marker.bindPopup("<div class='marker-popup'><p>Name: " + markerJSON.name + "</p><p>Tags: " + markerJSON.tag_list + "</p><br>" + imgURL + "</div>");
+  marker.bindPopup("<div class='marker-popup' data-id='" + markerJSON.id + "'><p>Name: " + markerJSON.name + "</p><p>Tags: " + markerJSON.tag_list + "</p><br>" + imgURL + "</div>");
   marker.addTo(map);
   marker.on("popupopen", function(){
     $(".marker-popup").on("click", function(){

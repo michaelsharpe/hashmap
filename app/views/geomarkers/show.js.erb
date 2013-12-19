@@ -1,4 +1,4 @@
-$("#map").append("<div id='geomarker-show' data-id='<%= @geomarker.id %>'><%= j render 'geomarkers/show' %></div>");
+$(".form-container").append("<div class='geomarker-show' data-id='<%= @geomarker.id %>'><%= j render 'geomarkers/show' %></div>");
 
 $("#optionsButton").on("click", function(e){
   if ($("#optionsMenu").is(":hidden")){
