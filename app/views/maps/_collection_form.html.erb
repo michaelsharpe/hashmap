@@ -1,6 +1,6 @@
 <%= form_tag(user_collections_path(@user.id), method: "post",  remote: true,) do %>
   <%= text_field_tag 'collection[name]', nil, placeholder: "Collection name..." %>
-<!--   <%= text_field_tag 'collection[tag_list]', nil, placeholder: "Tags..." %> -->
+  <%= text_field_tag 'tag_list', nil, placeholder: "Tags..." %>
   <%= submit_tag("Add") %>
 <% end %>
 

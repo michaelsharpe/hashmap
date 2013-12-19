@@ -6,8 +6,11 @@ Hashmap::Application.routes.draw do
   get "signout" => "sessions#destroy", as: "signout"
 
   resources :users, only: [:new, :show, :create, :destroy] do
-    resources :collections
+    resources :collections do
+      resources :collection_tags, only: [:new, :create] 
+    end
   end
+
   resources :sessions, only: [:index, :new, :create, :destroy]
   resources :geomarkers
 end

@@ -12,6 +12,7 @@ class CollectionsController < ApplicationController
 
   def create
     @collection = @user.collections.create(collection_params)
+    create_tags(@collection, params[:tag_list])
     @collection.user_id = current_user.id if current_user
     respond_to do |format|
       if @collection.save
@@ -44,11 +45,17 @@ class CollectionsController < ApplicationController
   private
   
   def collection_params
-    params.require(:collection).permit(:user_id, :name, :description, :tag_list)
+    params.require(:collection).permit(:user_id, :name, :description)
   end
 
   def load_user
     @user = current_user
+  end
+
+  def create_tags(collection, tag_list)
+    tag_list.split(", ").each do |tag|
+      new_tag = collection.collectionTags.create!(name: tag, visibility: true)
+    end
   end
 
 end
