@@ -17,6 +17,7 @@
 //= require jquery.ui.mouse
 //= require jquery.ui.position
 //= require jquery.ui.sortable
+//= require jquery.ui.effect-explode
 //= require foundation
 //= require jQuery.mmenu/src/js/jquery.mmenu.min.all
 //= require jquery.wheelmenu.min

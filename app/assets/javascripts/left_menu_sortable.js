@@ -5,7 +5,6 @@ $(document).ready(function(){
     placeholder: "sortable-placeholder",
     items: "> li.sortable-active",
     cursor: "move",
-    opacity: 1,
     axis: "y",
     over: function(){
       removeIntent = false;
@@ -13,11 +12,13 @@ $(document).ready(function(){
     out: function(){
       removeIntent = true;
     },
-    beforeStop: function(){
+    beforeStop: function(event, ui){
       if(removeIntent){
-        ui.item.remove()
+        ui.item.remove();
       }
     },
+    update: function(){
+      
+    }
   });
-
 });
