@@ -15,15 +15,15 @@
   </ul>
 </div>
 
-<nav id="right-menu">
+<nav id="left-menu">
 
-  <ul>
+  <ul class="sortable">
     <% @collections.each do |collection| %>
-      <li data-collection="<%= collection.name %>" data-show="disabled" class="collection">
+      <li data-collection="<%= collection.name %>" id="collection_<%= collection.id %>" data-show="disabled" class="collection sortable-active" >
         <a><i class="collection-eye fa fa-eye-slash"></i><span><%= collection.name %></span></a>
-        <ul>
+        <ul class="sortable">
           <% collection.collectionTags.each do |tag| %>
-          <li data-tag="<%= tag.name %>" data-show="disabled" class="tag"><a><i class="tag-eye fa fa-eye-slash"></i><span><%= tag.name %></span></a></li>
+          <li data-tag="<%= tag.name %>" data-show="disabled" id="collectionTag_<%= tag.id%>" class="tag collectionTag sortable-active"><a><i class="tag-eye fa fa-eye-slash"></i><span><%= tag.name %></span></a></li>
           <% end %>
             <li class="tag-form" style="display:none;">
               <span>
