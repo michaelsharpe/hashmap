@@ -66,7 +66,7 @@ $(document).ready(function(){
     } else {
       // trigger something
       $(this).removeClass("icon-glow");
-      searchMode = false;git co
+      searchMode = false;
     }
   })
 });
