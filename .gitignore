@@ -16,4 +16,7 @@
 /tmp
 
 #ignore everything in components folder
+/vendor/assets/components
+
+/public/uploads
 
