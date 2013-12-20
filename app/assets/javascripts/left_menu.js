@@ -48,7 +48,7 @@ function loadMenu(){
     // Make this collection visible
     $(this).find(".collection-eye").toggleClass("fa-eye fa-eye-slash");
     $(this).find(".collection-eye").parent().parent().attr("data-show","enabled");
-    var element = $(this).parent().parent()
+    var element = $(this)
     setCollectionTags(element);
   });
 
@@ -83,7 +83,7 @@ function setCollectionTags(element){
 // Update current tags
 function updateMapTags() {
   currentTags = [];
-  $("#right-menu").children().each(function(){
+  $("#left-menu").children().each(function(){
     $(this).children().each(function(){
       if ($(this).attr("data-tag") !== undefined && $(this).attr("data-show") == "enabled") {
       currentTags.push($(this).attr("data-tag"))
