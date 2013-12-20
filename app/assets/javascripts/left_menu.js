@@ -20,6 +20,7 @@ function loadMenu(){
     $(".collection-eye").each( function(){
       $(this).parent().parent().attr("data-show", "disabled");
       $(this).removeClass("fa-eye").addClass("fa-eye-slash");
+      $(this).removeClass("icon-glow")
       $(this).children().each(function(){
         $(this).parent().parent().attr("data-show", "disabled");
         $(this).removeClass("fa-eye").addClass("fa-eye-slash");
@@ -48,6 +49,7 @@ function loadMenu(){
     })
     // Make this collection visible
     $(this).find(".collection-eye").toggleClass("fa-eye fa-eye-slash");
+    $(this).find(".collection-eye").addClass("icon-glow");
     $(this).find(".collection-eye").parent().parent().attr("data-show","enabled");
     var element = $(this)
     setCollectionTags(element);

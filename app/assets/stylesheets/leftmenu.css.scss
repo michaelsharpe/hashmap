@@ -5,8 +5,18 @@
 @import "jQuery.mmenu/src/scss/extensions/jquery.mmenu.effects";
 @import "jQuery.mmenu/src/scss/extensions/jquery.mmenu.themes";
 @import "jQuery.mmenu/src/scss/addons/jquery.mmenu.labels";
+@include colors( 
+  $text: white
+ );
+
 
 @include sizing("", 0.8, 140px, 300px, 0.8, 140px, 880px);
+
+#left-menu {
+  background-color: $brand-color;
+  font-color: white;  
+  font-family: $font-stack;
+}
 
 .collection-eye, .tag-eye{
   color: white;
@@ -20,7 +30,8 @@
 
 .open-menu {
   position: absolute;
-  color: white;
+  color: $brand-color;
+  // text-shadow: 2px 2px 2px 3px rgba(0, 0, 0, 0.4);
   font-size: 50px;
   left: 50px;
   z-index: 100;

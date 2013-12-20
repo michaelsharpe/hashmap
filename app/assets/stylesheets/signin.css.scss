@@ -1,0 +1,68 @@
+@import "foundation_and_overrides";
+
+.container {
+  height: 100%;
+  width: 100%;
+  background-color: $brand-color;
+  position: relative;
+}
+
+.banner{
+  @extend .columns;
+  @extend .large-centered;
+  @extend .large-12;
+  text-align: center;
+  p {
+    text-align: center;
+    font-size: 10em;
+  }
+}
+
+#logo {
+  position: absolute;
+  bottom: 65px;
+  border: 8px solid white;
+  font-size: 8em;
+  border-radius: 300px;
+  width: 150px;
+  height: 150px;
+  color: white;
+  left: -40px;
+  padding: 10px;
+}
+
+#hash {
+  // font-family: OpenSans-bold;
+  color: $second-brand-color;
+  font-size: 0.9em;
+}
+
+#mapp{
+  font-family: $brand-font;
+  color: white;
+}
+.signin-form {
+  @extend .columns;
+  @extend .large-4;
+  @extend .large-centered;
+  font-family: $font-stack;
+  color: white;
+  padding: 4em;
+  padding-top: 2em;
+}
+
+#username, #password {
+  border-radius: 20px;
+  font-family: $brand-font;
+}
+
+.field-label {
+  font-family: $brand-font;
+  color: white;
+  font-size: 14px;
+  text-align: center;
+}
+
+.actions {
+  text-align: center;
+}

@@ -13,9 +13,11 @@
   src: font-url('/assets/fonts/OpenSans-Regular.ttf')
 }
 
-$primary-color: #81C453;
+$brand-color: #81C453;
+$second-brand-color: #FFBC4D;
 $brand-font: Multicolore;
-$copy-font: OpenSans;
+
+$font-stack: OpenSans;
 
 html {
   height: 100%;
