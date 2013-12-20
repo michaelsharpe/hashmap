@@ -1,6 +1,7 @@
 var controlOpen = false;
 var newMarkerModeOn = false;
 var globalView = false;
+var searchMode = false;
 
 $(document).ready(function(){
   $(".wheel-button").wheelmenu({
@@ -52,6 +53,20 @@ $(document).ready(function(){
       $(this).removeClass("icon-glow");
       updateMapTags();
       globalView = false;
+    }
+  })
+});
+
+$(document).ready(function(){
+  $("#search-button").on("click", function(){
+    if(!searchMode){
+      $(this).addClass("icon-glow");
+      // trigger something
+      searchMode = true;
+    } else {
+      // trigger something
+      $(this).removeClass("icon-glow");
+      searchMode = false;git co
     }
   })
 });
