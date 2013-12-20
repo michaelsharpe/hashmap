@@ -13,6 +13,10 @@
 <% if @geomarker.image %>
   <% if params[:windowWidth].to_f < 40 %>
     <%= image_tag @geomarker.image.thumb.to_s %>
+  <% elsif params[:windowWidth].to_f >= 40 && params[:windowWidth].to_f < 60 && @geomarker.image.medium %>
+    <%= image_tag @geomarker.image.medium.to_s %>
+  <% elsif params[:windowWidth].to_f >= 60 && @geomarker.image.large %>
+    <%= image_tag @geomarker.image.large.to_s %>
   <% else %>
     <%= image_tag @geomarker.image.to_s %>
   <% end %>
