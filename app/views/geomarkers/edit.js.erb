@@ -1,21 +1,21 @@
 removeGeomarkerShow();
-$(".form-container").append("<div class='geomarker-form' data-id=<%= params[:id] %>><%= j render 'geomarkers/edit' %></div><iframe id='blank_iframe' name='blank_iframe'><div id='map'></div></iframe>");
+$(".form-container").append("<div class='geomarker-edit' data-id=<%= params[:id] %>><%= j render 'geomarkers/edit' %></div><iframe id='blank_iframe' name='blank_iframe'><div id='map'></div></iframe>");
 
 $("#cancelFormButton").on("click", function(){
   enableMap();
-  quitGeomarkerForm();
+  removeGeomarkerEdit();
   removeIFrame();
 });
 
 $(".edit_geomarker").on("submit", function(){
-  var id = $(".geomarker-form").attr("data-id");
+  var id = $(".geomarker-edit").attr("data-id");
   $("#blank_iframe").on("load", function(){
     removeMarker(id);
     updateMap();
     getGeomarkerShow(id);
     $(this).remove();
   });
-  quitGeomarkerForm();
+  removeGeomarkerEdit();
 });
 
 if ($("#geomarker_remove_image")) {

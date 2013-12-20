@@ -192,6 +192,10 @@ function removeGeomarkerShow(){
   $(".geomarker-show").remove();
 }
 
+function removeGeomarkerEdit(){
+  $(".geomarker-edit").remove();
+}
+
 function getGeomarkerEdit(id){
   $.ajax({
     type: "GET",
