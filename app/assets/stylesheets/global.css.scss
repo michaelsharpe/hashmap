@@ -1,3 +1,16 @@
+@font-face {
+    font-family: 'Multicolore';
+    src: font-url('/assets/fonts/Mulitcolore.otf');
+}
+
+
+$primary-color: #81C453;
+$brand-font: Multicolore;
+
+
+
+
+
 html {
   height: 100%;
 }

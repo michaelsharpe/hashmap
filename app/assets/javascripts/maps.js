@@ -27,6 +27,7 @@ function mapController(position){
     $(".addressLookup").on("click", moveToAddress);
     initializeMap(position);
     updateMap();
+    watchCurrentPosition();
     map.on('moveend', updateMap);
 }
 
@@ -44,6 +45,30 @@ function initializeMap(position){
     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>'
   }).addTo(map);
   currentPositionMarker = L.marker(latLng).addTo(map);
+}
+
+function watchCurrentPosition(){
+  positionTimer = navigator.geolocation.watchPosition(watchSuccess, watchError, watchOptions)
+}
+
+function watchSuccess(position){
+  setMarkerPosition(currentPositionMarker, position);
+}
+
+function watchError(err){
+  console.warn('ERROR(' + err.code + '): ' + err.message);
+}
+
+var watchOptions = {
+  enableHighAccuracy: true,
+  timeout: Infinity,
+  maximumAge: Infinity
+}
+
+function setMarkerPosition(marker, position) {
+  var latLng = L.latLng(position.coords.latitude, position.coords.longitude);
+  marker.setLatLng(latLng);
+  map.panTo(latLng);
 }
 
 function disableMap(){
@@ -189,6 +214,8 @@ function changeFocus(latlng, zoom){
   map.panTo(latlng);
   map.setZoom(zoom);
 }
+
+
 
 function updateMap() {
   var tags = currentTags.join(', ')
