@@ -24,7 +24,7 @@ function locError(error) {
 // Use Map Controller to add in functional flows that need access to current position
 function mapController(position){
     geocoder = new google.maps.Geocoder();
-    $(".addressLookup").on("click", moveToAddress);
+    $("#addressLookup").on("click", moveToAddress);
     initializeMap(position);
     updateMap();
     watchCurrentPosition();
