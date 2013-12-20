@@ -17,6 +17,11 @@
 
 <nav id="left-menu">
   <ul class="sortable-collections" data-update-url="<%= sort_maps_path %>">
+    <li>
+      <span id="collection-header">
+        <div><p>Your collections</p></div>
+      </span>
+    </li>
     <% @collections.each do |collection| %>
       <li data-collection="<%= collection.name %>" id="collection_<%= collection.id %>" data-show="disabled" class="collection sortable-active" >
         <a href="#">
@@ -26,6 +31,11 @@
         </a>
         <ul class="sortable-tags" data-update-url="<%= sort_maps_path %>"> 
           <% collection.collectionTags.each do |tag| %>
+          <li>
+            <span class="tag-header">
+              <div><p>Your collections</p></div>
+            </span>
+          </li>
           <li data-tag="<%= tag.name %>" data-show="disabled" id="collectionTag_<%= tag.id%>" class="tag collectionTag sortable-active">
             <a>
               <span class="handle"><i class="fa fa-sort"></i></span>
