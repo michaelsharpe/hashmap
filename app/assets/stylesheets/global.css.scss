@@ -3,13 +3,19 @@
     src: font-url('/assets/fonts/Mulitcolore.otf');
 }
 
+@font-face {
+  font-family: 'OpenSans-bold';
+  src: font-url('/assets/fonts/OpenSans-Bold.ttf');
+}
+
+@font-face {
+  font-family: 'OpenSans';
+  src: font-url('/assets/fonts/OpenSans-Regular.ttf')
+}
 
 $primary-color: #81C453;
 $brand-font: Multicolore;
-
-
-
-
+$copy-font: OpenSans;
 
 html {
   height: 100%;

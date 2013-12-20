@@ -12,6 +12,7 @@ $(document).ready(function(){
 function loadMenu(){
   // Load mmenu
   $menu.mmenu(menuOptions);
+  activateSortable();
 
   //Triggered when a collection is set
   $(".collection").on('click', function(){
@@ -116,6 +117,7 @@ function disableLastCreatedCollection(newCollection){
 
 function loadTag(tag) {
   $menu.remove();
+  debugger
   loadMenu();
   $("[data-tag = '" + tag + "']").slideDown(400, function(){
     $(this).siblings(".tag-form").find("form")[0].reset()

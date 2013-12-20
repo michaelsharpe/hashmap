@@ -1,5 +1,4 @@
-
-$(document).ready(function(){
+function activateSortable(){
   $(".sortable-collections").sortable({
     placeholder: "sortable-placeholder",
     items: "> li.sortable-active",
@@ -9,10 +8,7 @@ $(document).ready(function(){
       $.post($(this).data('update-url'), $(this).sortable('serialize'))
     }
   });
-});
 
-
-$(document).ready(function(){
   $(".sortable-tags").sortable({
     placeholder: "sortable-placeholder",
     items: "> li.sortable-active",
@@ -22,4 +18,6 @@ $(document).ready(function(){
       $.post($(this).data('update-url'), $(this).sortable('serialize'))
     }
   });
-});
+}
+
+  
