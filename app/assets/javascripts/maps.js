@@ -1,7 +1,5 @@
 $(document).ready(function(){
-  // if (!($("#blank_iframe")){
     initMapProcedure();
-  // }
 });
 
 var map;
@@ -26,6 +24,7 @@ function locError(error) {
 // Use Map Controller to add in functional flows that need access to current position
 function mapController(position){
     geocoder = new google.maps.Geocoder();
+    $(".addressLookup").on("click", moveToAddress);
     initializeMap(position);
     updateMap();
     watchCurrentPosition();
@@ -96,7 +95,6 @@ function newMarkerMode(){
   });
   tempMarker.bindPopup("<h6>Drag me where you want me, then push the button!</h6>").addTo(map);
   tempMarker.openPopup();
-  toggleGeocoder();
   for(var i = 0; i < markers.length; i++){
     if (markers[i]){
       markers[i].setOpacity(0.5);
@@ -123,15 +121,13 @@ function endNewMarkerMode(){
       markers[i].setOpacity(1);
     }
   }
-  toggleGeocoder();
 }
 
 function toggleGeocoder(){
-  if($("#addressSearch").length > 0){
-    $("#addressSearch").remove();
-  } else {
-    $("#map").append('<div id="addressSearch"><input id="address" type="textbox" value="Bermuda Triangle"><input id="addressLookup" type="button" value="Encode"></div>');
-    $("#addressLookup").on("click", moveToAddress);
+  if($(".geocoder-bar").is(":visible")){
+    $(".geocoder-bar").slideUp("slow");
+  } else if($(".geocoder-bar").is(":hidden")) {
+    $(".geocoder-bar").slideDown("slow");
   }
 }
 
@@ -194,6 +190,10 @@ function getLastGeomarkerCreatedByUser(){
 
 function removeGeomarkerShow(){
   $(".geomarker-show").remove();
+}
+
+function removeGeomarkerEdit(){
+  $(".geomarker-edit").remove();
 }
 
 function getGeomarkerEdit(id){

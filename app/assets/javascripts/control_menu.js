@@ -61,10 +61,10 @@ $(document).ready(function(){
   $("#search-button").on("click", function(){
     if(!searchMode){
       $(this).addClass("icon-glow");
-      // trigger something
+      toggleGeocoder();
       searchMode = true;
     } else {
-      // trigger something
+      toggleGeocoder();
       $(this).removeClass("icon-glow");
       searchMode = false;
     }

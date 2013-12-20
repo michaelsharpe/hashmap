@@ -30,11 +30,41 @@
   text-align: center;
 }
 
-#addressSearch {
-  top: 0;
-  left: 50%;
-  position: absolute;
+.geocoder-bar {
+  @extend .large-4;
+  @extend .medium-6;
+  @extend .small-9;
+  @extend .large-centered;
+  @extend .medium-centered;
+  @extend .small-offset-3;
+  @extend .columns;
+  display: none;
+}
+
+.geocoder-wrapper {
+  @extend .row;
+  @extend .collapse;
+}
+
+.addressSearch {
+  @extend .large-8;
+  @extend .medium-8;
+  @extend .small-9;
+  @extend .columns;
   z-index: 100;
+}
+
+.searchButton {
+  @extend .large-4;
+  @extend .medium-4;
+  @extend .small-3;
+  @extend .columns;
+}
+
+#addressLookup {
+  @extend .button;
+  @extend .tiny;
+  @extend .postfix;
 }
 
 .form-container {
@@ -44,7 +74,7 @@
 }
 
 .geomarker-form {
-  @extend .large-4;
+  @extend .large-5;
   @extend .medium-6;
   @extend .small-12;
   @extend .large-centered;
@@ -53,9 +83,11 @@
   @extend .columns;
   @media only screen and (min-width: 40em) {
     max-height: 90%;
+    padding: 2em;
   }
   @media only screen and (max-width: 40em) {
     max-height: 100%;
+    padding: 1em;
   }
   @media only screen and (max-height: 40em) {
     top: 5%;
@@ -63,13 +95,50 @@
   @media only screen and (min-height: 40em) {
     top: 12.5%;
   }
-  padding: 1em;
   border: 1px solid black;
   border-radius: 7px;
   z-index: 1001;
   background-color: #fff;
   text-align: center;
   overflow: scroll;
+}
+.geomarker-edit {
+  @extend .large-5;
+  @extend .medium-6;
+  @extend .small-12;
+  @extend .large-centered;
+  @extend .medium-centered;
+  @extend .small-centered;
+  @extend .columns;
+  @media only screen and (min-width: 40em) {
+    max-height: 90%;
+    padding: 2em;
+  }
+  @media only screen and (max-width: 40em) {
+    max-height: 100%;
+    padding: 1em;
+  }
+  @media only screen and (max-height: 40em) {
+    top: 1%;
+  }
+  @media only screen and (min-height: 40em) {
+    top: 7.5%;
+  }
+  border: 1px solid black;
+  border-radius: 7px;
+  z-index: 1001;
+  background-color: #fff;
+  text-align: center;
+  overflow: scroll;
+}
+
+#geomarker_description {
+  @media only screen and (min-width: 40em) {
+    height: 7.5rem;
+  }
+  @media only screen and (max-width: 40em) {
+    height: 4.75rem;
+  }
 }
 
 .geomarker-show {
