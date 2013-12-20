@@ -10,7 +10,6 @@
   width: 100%;
   height: 100%;
   position: relative;
-  // z-index: 50;
 }
 
 #newMarkerButton {
@@ -95,12 +94,6 @@
   width: 200px;
 }
 
-#optionsMenu {
-  z-index: 120;
-  display: none;
-  list-style: none;
-}
-
 #removeImage {
   color: #900;
   font-size: 1.4em;
@@ -108,12 +101,50 @@
   border: none;
 }
 
+.showOptions {
+  list-style: none;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  li {
+    float: left;
+    display: block;
+    position: relative;
+    z-index: 1111;
+  }
+}
+
 #optionsButton {
   @extend .button;
   @extend .tiny;
+  display: block;
+  margin-bottom: 0;
+}
+
+#optionsMenu {
+  z-index: 120;
+  display: none;
+  list-style: none;
+  position: absolute;
+  margin-left: 0;
+  li {
+    display: inline-block;
+    text-align: center;
+    float: left;
+    background-color: #fff;
+    border: 1px solid #999;
+    width: 78px;
+  }
+  li:first-child {
+    border-bottom: 1px solid #999;
+  }
+  li:last-child {
+    border-top: none;
+  }
 }
 
 #closeShowButton {
   @extend .button;
   @extend .tiny;
+  display: inline-block;
 }
