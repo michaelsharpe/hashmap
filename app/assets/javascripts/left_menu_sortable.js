@@ -1,22 +1,23 @@
-var removeIntent = false;
 
 $(document).ready(function(){
-  $(".sortable").sortable({
+  $(".sortable-collections").sortable({
     placeholder: "sortable-placeholder",
     items: "> li.sortable-active",
     handle: ".handle",
     axis: "y",
-    over: function(){
-      removeIntent = false;
-    },
-    out: function(){
-      removeIntent = true;
-    },
-    beforeStop: function(event, ui){
-      if(removeIntent){
-        ui.item.remove();
-      }
-    },
+    update: function(){
+      $.post($(this).data('update-url'), $(this).sortable('serialize'))
+    }
+  });
+});
+
+
+$(document).ready(function(){
+  $(".sortable-tags").sortable({
+    placeholder: "sortable-placeholder",
+    items: "> li.sortable-active",
+    handle: ".handle",
+    axis: "y",
     update: function(){
       $.post($(this).data('update-url'), $(this).sortable('serialize'))
     }

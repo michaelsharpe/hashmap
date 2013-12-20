@@ -110,7 +110,6 @@ function loadCollection(collection){
 function disableLastCreatedCollection(newCollection){
   var lastCollection = $("[data-collection = '" + newCollection + "'] ").prev();
   $(lastCollection).attr("data-show", "false");
-  debugger
   $(lastCollection).find("i").removeClass("fa-eye").addClass("fa-eye-slash");
 }
 

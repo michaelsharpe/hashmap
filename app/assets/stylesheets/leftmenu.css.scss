@@ -26,5 +26,14 @@
   z-index: 100;
 }
 
-
+#delete-area {
+  position: relative;
+  color: black;
+  padding: 50px;
+  height: 100px;
+  text-align: center;
+  span {
+    margin-bottom: 25px;
+  }
+}
 

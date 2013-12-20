@@ -16,8 +16,7 @@
 </div>
 
 <nav id="left-menu">
-
-  <ul class="sortable" data-update-url="<%= sort_maps_path %>">
+  <ul class="sortable-collections" data-update-url="<%= sort_maps_path %>">
     <% @collections.each do |collection| %>
       <li data-collection="<%= collection.name %>" id="collection_<%= collection.id %>" data-show="disabled" class="collection sortable-active" >
         <a href="#">
@@ -25,9 +24,13 @@
           <i class="collection-eye fa fa-eye-slash"></i>
           <span><%= collection.name %></span>
         </a>
-        <ul class="sortable">
+        <ul class="sortable-tags" data-update-url="<%= sort_maps_path %>"> 
           <% collection.collectionTags.each do |tag| %>
-          <li data-tag="<%= tag.name %>" data-show="disabled" id="collectionTag_<%= tag.id%>" class="tag collectionTag sortable-active"><a><i class="tag-eye fa fa-eye-slash"></i><span><%= tag.name %></span></a></li>
+          <li data-tag="<%= tag.name %>" data-show="disabled" id="collectionTag_<%= tag.id%>" class="tag collectionTag sortable-active">
+            <a>
+              <span class="handle"><i class="fa fa-sort"></i></span>
+              <i class="tag-eye fa fa-eye-slash"></i>
+              <span><%= tag.name %></span></a></li>
           <% end %>
             <li class="tag-form" style="display:none;">
               <span>
@@ -52,7 +55,8 @@
     <li id="new-collection">
       <a><span>Add a new collection!</span></a>
     </li>
-    
+    <li id="delete-area">
+      <span><p> Drag here to delete</p></span>
+    </li>  
   </ul>
 </nav>
-
