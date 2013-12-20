@@ -15,8 +15,9 @@
 /log/*.log
 /tmp
 
-#ignore everything in components folder
-/vendor/assets/components
+# Ignore uploads
+/public/uploads/*
 
-/public/uploads
+#ignore everything in components folder
+/vendor/components/*
 

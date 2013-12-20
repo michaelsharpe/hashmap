@@ -11,6 +11,10 @@ Hashmap::Application.routes.draw do
     end
   end
 
+  resources :maps do
+    collection {post :sort} 
+  end
+
   resources :sessions, only: [:index, :new, :create, :destroy]
   resources :geomarkers
 end

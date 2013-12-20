@@ -1,0 +1,50 @@
+@import "jQuery.mmenu/src/scss/jquery.mmenu";
+@import "jQuery.mmenu/src/scss/inc/variables";
+@import "jQuery.mmenu/src/scss/addons/jquery.mmenu.header";
+@import "jQuery.mmenu/src/scss/addons/jquery.mmenu.searchfield";
+@import "jQuery.mmenu/src/scss/extensions/jquery.mmenu.effects";
+@import "jQuery.mmenu/src/scss/extensions/jquery.mmenu.themes";
+@import "jQuery.mmenu/src/scss/addons/jquery.mmenu.labels";
+
+@include sizing("", 0.8, 140px, 300px, 0.8, 140px, 880px);
+
+.collection-eye, .tag-eye{
+  color: white;
+  font-size: 20px;
+  margin-right: 5px;
+}
+
+#collection-form {
+  display: none;
+}
+
+.open-menu {
+  position: absolute;
+  color: white;
+  font-size: 50px;
+  left: 50px;
+  z-index: 100;
+}
+
+#delete-area {
+  position: relative;
+  color: black;
+  padding: 50px;
+  height: 100px;
+  text-align: center;
+  span {
+    margin-bottom: 25px;
+  }
+}
+
+#mm-m0-p0 {
+padding-top: 10px;
+}
+
+#collection-header {
+  padding: 5px 5px 5px 10px;
+  text-align: center;
+  p {
+    margin-bottom: 0.5em; 
+  }
+}

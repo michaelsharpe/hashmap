@@ -12,10 +12,17 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.ui.core
+//= require jquery.ui.widget
+//= require jquery.ui.mouse
+//= require jquery.ui.position
+//= require jquery.ui.sortable
+//= require jquery.ui.effect-explode
 //= require foundation
 //= require jQuery.mmenu/src/js/jquery.mmenu.min.all
 //= require jquery.wheelmenu.min
-//= require right_menu
+//= require left_menu
+//= require left_menu_sortable
 //= require maps
 //= require_tree .
 
