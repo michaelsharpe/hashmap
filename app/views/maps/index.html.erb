@@ -31,27 +31,28 @@
           <span><%= collection.name %></span>
         </a>
         <ul class="sortable-tags" data-update-url="<%= sort_maps_path %>"> 
-          <% collection.collectionTags.each do |tag| %>
           <li>
             <span class="tag-header">
-              <div><p>Your collections</p></div>
+              <div><p>Item description to go here.</p></div>
             </span>
           </li>
-          <li data-tag="<%= tag.name %>" data-show="disabled" id="collectionTag_<%= tag.id%>" class="tag collectionTag sortable-active">
-            <a>
-              <span class="handle"><i class="fa fa-sort"></i></span>
-              <i class="tag-eye fa fa-eye-slash"></i>
-              <span><%= tag.name %></span></a></li>
+          <% collection.collectionTags.each do |tag| %>
+            <li data-tag="<%= tag.name %>" data-show="disabled" id="collectionTag_<%= tag.id%>" class="tag collectionTag sortable-active">
+              <a>
+                <span class="handle"><i class="fa fa-sort"></i></span>
+                <i class="tag-eye fa fa-eye-slash"></i>
+                <span><%= tag.name %></span></a>
+            </li>
           <% end %>
             <li class="tag-form" style="display:none;">
               <span>
                 <div>
                   <%= render partial: "tag_form", locals: {collection: collection, user: collection.user} %>
-              †  </div>
+                </div>
               </span>
             </li>
             <li class="new-tag">
-              <a><span>Add a Tag!</span></a>
+              <a><span>Add a Tag.</span></a>
             </li>
         </ul>
       </li>
@@ -64,10 +65,10 @@
       </span>
     </li>
     <li id="new-collection">
-      <a><span>Add a new collection!</span></a>
+      <a><span>Add a new collection.</span></a>
     </li>
-    <li id="delete-area">
-      <span><p> Drag here to delete</p></span>
-    </li>  
+    <li>
+      <a href="<%= signout_path %>">Sign out.</a>
+    </li> 
   </ul>
 </nav>
