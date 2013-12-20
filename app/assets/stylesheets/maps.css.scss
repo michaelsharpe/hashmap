@@ -51,12 +51,17 @@
   @extend .medium-centered;
   @extend .small-centered;
   @extend .columns;
-  top: 5%;
   @media only screen and (min-width: 40em) {
     max-height: 90%;
   }
   @media only screen and (max-width: 40em) {
     max-height: 100%;
+  }
+  @media only screen and (max-height: 40em) {
+    top: 5%;
+  }
+  @media only screen and (min-height: 40em) {
+    top: 12.5%;
   }
   padding: 1em;
   border: 1px solid black;
