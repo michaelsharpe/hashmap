@@ -69,14 +69,17 @@ function newMarkerMode(){
   tempMarker = L.marker(map.getCenter(), {
     draggable: true
   });
-  tempMarker.bindPopup("<h6>Drag me where you want me, or enter an address up top!</h6>").addTo(map);
+  tempMarker.bindPopup("<h6>Drag me where you want me, then push the button!</h6>").addTo(map);
+  tempMarker.openPopup();
   toggleGeocoder();
   for(var i = 0; i < markers.length; i++){
     if (markers[i]){
       markers[i].setOpacity(0.5);
     }
   }
-  tempMarker.addEventListener("dblclick", function(){
+  $(".form-container").append("<div id='newMarkerButton'>Mark it</div>");
+  $("#newMarkerButton").on("click", function(){
+    $(this).remove();
     tempMarker.dragging.disable();
     tempMarker.unbindPopup();
     var lat = tempMarker.getLatLng().lat;
@@ -87,6 +90,7 @@ function newMarkerMode(){
 }
 
 function endNewMarkerMode(){
+  $("#newMarkerButton").remove();
   map.removeLayer(tempMarker);
   tempMarker = undefined;
   for (var i = 0; i < markers.length; i++){

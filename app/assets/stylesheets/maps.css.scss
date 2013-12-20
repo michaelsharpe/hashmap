@@ -13,10 +13,21 @@
 }
 
 #newMarkerButton {
-  bottom: 20px;
-  right: 20px;
-  position: absolute;
+  @extend .large-1;
+  @extend .medium-2;
+  @extend .small-3;
+  @extend .columns;
+  @extend .button;
+  @media only screen and (min-width: 40em) {
+    right: 45%;
+  }
+  @media only screen and (max-width: 40em) {
+    right: 3em;
+  }
+  bottom: 3em;
   z-index: 100;
+  position: absolute;
+  text-align: center;
 }
 
 #addressSearch {
