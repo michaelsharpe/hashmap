@@ -6,6 +6,9 @@ class MapsController < ApplicationController
   end
 
   def sort
+    params[:collection].each_with_index do |id, index|
+    Collection.where(id: id).update_all(position: index+1)
+  end
     render nothing: true
   end
 

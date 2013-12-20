@@ -8,7 +8,7 @@
   </a>
   <ul id="wheel2" data-angle="NE" class="wheel">
     <li class="item" id="global-view"><a href="#home"><i class="icon fa fa-globe"></i></a></li>
-    <li class="item" id="new-collection"><a href="#home"><i class="icon fa fa-book"></i></a></li>
+    <li class="item" id="new-collection"><a href="#home"><i class="icon fa fa-umbrella"></i></a></li>
     <li class="item" id="new-marker-button" value="point and click"><a href="#home"><i class="icon fa fa-map-marker"></i></a></li>
     <li class="item" id="user"><a href="#home"><i class="icon fa fa-user"></i></a></li>
     <li class="item" id="settings"><a href="#home"><i class="icon fa fa-cog"></i></a></li>
@@ -20,7 +20,11 @@
   <ul class="sortable" data-update-url="<%= sort_maps_path %>">
     <% @collections.each do |collection| %>
       <li data-collection="<%= collection.name %>" id="collection_<%= collection.id %>" data-show="disabled" class="collection sortable-active" >
-        <a><i class="collection-eye fa fa-eye-slash"></i><span><%= collection.name %></span></a>
+        <a href="#">
+          <span class="handle"><i class="fa fa-sort"></i></span>
+          <i class="collection-eye fa fa-eye-slash"></i>
+          <span><%= collection.name %></span>
+        </a>
         <ul class="sortable">
           <% collection.collectionTags.each do |tag| %>
           <li data-tag="<%= tag.name %>" data-show="disabled" id="collectionTag_<%= tag.id%>" class="tag collectionTag sortable-active"><a><i class="tag-eye fa fa-eye-slash"></i><span><%= tag.name %></span></a></li>

@@ -4,7 +4,7 @@ $(document).ready(function(){
   $(".sortable").sortable({
     placeholder: "sortable-placeholder",
     items: "> li.sortable-active",
-    cursor: "move",
+    handle: ".handle",
     axis: "y",
     over: function(){
       removeIntent = false;
@@ -18,7 +18,7 @@ $(document).ready(function(){
       }
     },
     update: function(){
-      
+      $.post($(this).data('update-url'), $(this).sortable('serialize'))
     }
   });
 });

@@ -25,6 +25,7 @@ GEM
       multi_json (~> 1.3)
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
+    acts-as-list (0.1.2)
     acts-as-taggable-on (2.4.1)
       rails (>= 3, < 5)
     alias (0.2.3)
@@ -239,6 +240,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts-as-list
   acts-as-taggable-on
   carrierwave
   coffee-rails (~> 4.0.0)
