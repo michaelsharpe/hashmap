@@ -30,11 +30,41 @@
   text-align: center;
 }
 
-#addressSearch {
-  top: 0;
-  left: 50%;
-  position: absolute;
+.geocoder-bar {
+  @extend .large-4;
+  @extend .medium-6;
+  @extend .small-9;
+  @extend .large-centered;
+  @extend .medium-centered;
+  @extend .small-offset-3;
+  @extend .columns;
+  display: none;
+}
+
+.geocoder-wrapper {
+  @extend .row;
+  @extend .collapse;
+}
+
+.addressSearch {
+  @extend .large-8;
+  @extend .medium-8;
+  @extend .small-9;
+  @extend .columns;
   z-index: 100;
+}
+
+.searchButton {
+  @extend .large-4;
+  @extend .medium-4;
+  @extend .small-3;
+  @extend .columns;
+}
+
+#addressLookup {
+  @extend .button;
+  @extend .tiny;
+  @extend .postfix;
 }
 
 .form-container {

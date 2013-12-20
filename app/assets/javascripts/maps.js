@@ -1,7 +1,5 @@
 $(document).ready(function(){
-  // if (!($("#blank_iframe")){
     initMapProcedure();
-  // }
 });
 
 var map;
@@ -26,6 +24,7 @@ function locError(error) {
 // Use Map Controller to add in functional flows that need access to current position
 function mapController(position){
     geocoder = new google.maps.Geocoder();
+    $(".addressLookup").on("click", moveToAddress);
     initializeMap(position);
     updateMap();
     map.on('moveend', updateMap);
@@ -100,11 +99,10 @@ function endNewMarkerMode(){
 }
 
 function toggleGeocoder(){
-  if($("#addressSearch").length > 0){
-    $("#addressSearch").remove();
-  } else {
-    $("#map").append('<div id="addressSearch"><input id="address" type="textbox" value="Bermuda Triangle"><input id="addressLookup" type="button" value="Encode"></div>');
-    $("#addressLookup").on("click", moveToAddress);
+  if($(".geocoder-bar").is(":visible")){
+    $(".geocoder-bar").slideUp("slow");
+  } else if($(".geocoder-bar").is(":hidden")) {
+    $(".geocoder-bar").slideDown("slow");
   }
 }
 
