@@ -44,7 +44,7 @@
 }
 
 .geomarker-form {
-  @extend .large-4;
+  @extend .large-5;
   @extend .medium-6;
   @extend .small-12;
   @extend .large-centered;
@@ -53,9 +53,11 @@
   @extend .columns;
   @media only screen and (min-width: 40em) {
     max-height: 90%;
+    padding: 2em;
   }
   @media only screen and (max-width: 40em) {
     max-height: 100%;
+    padding: 1em;
   }
   @media only screen and (max-height: 40em) {
     top: 5%;
@@ -63,13 +65,21 @@
   @media only screen and (min-height: 40em) {
     top: 12.5%;
   }
-  padding: 1em;
   border: 1px solid black;
   border-radius: 7px;
   z-index: 1001;
   background-color: #fff;
   text-align: center;
   overflow: scroll;
+}
+
+#geomarker_description {
+  @media only screen and (min-width: 40em) {
+    height: 7.5rem;
+  }
+  @media only screen and (max-width: 40em) {
+    height: 4.75rem;
+  }
 }
 
 .geomarker-show {

@@ -71,7 +71,6 @@ function newMarkerMode(){
   });
   tempMarker.bindPopup("<h6>Drag me where you want me, then push the button!</h6>").addTo(map);
   tempMarker.openPopup();
-  toggleGeocoder();
   for(var i = 0; i < markers.length; i++){
     if (markers[i]){
       markers[i].setOpacity(0.5);
@@ -98,7 +97,6 @@ function endNewMarkerMode(){
       markers[i].setOpacity(1);
     }
   }
-  toggleGeocoder();
 }
 
 function toggleGeocoder(){
