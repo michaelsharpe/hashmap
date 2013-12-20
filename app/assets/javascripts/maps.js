@@ -24,7 +24,7 @@ function locError(error) {
 // Use Map Controller to add in functional flows that need access to current position
 function mapController(position){
     geocoder = new google.maps.Geocoder();
-    $(".addressLookup").on("click", moveToAddress);
+    $("#addressLookup").on("click", moveToAddress);
     initializeMap(position);
     updateMap();
     watchCurrentPosition();
@@ -167,6 +167,17 @@ function quitGeomarkerForm(){
 
 function removeIFrame(){
   $("#blank_iframe").remove();
+}
+
+function extractIFrameErrors(){
+  var rawErrors;
+  var iframeId = $("#blank_iframe");
+  $("#blank_iframe").on("load",function(){
+    if (iframeId.contents()) {
+        rawErrors = $("#blank_iframe").contents().find(".error_messages").html();
+    }
+  });
+  return rawErrors;
 }
 
 function getGeomarkerShow(id){

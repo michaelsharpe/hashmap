@@ -1,7 +1,5 @@
 $(".form-container").append("<div class='geomarker-form'><%= j render 'geomarkers/new_form' %></div><iframe id='blank_iframe' name='blank_iframe'><div id='map'></div></iframe>");
 
-console.log($(window).height() / parseFloat($("body").css("font-size")));
-
 $("#cancelFormButton").on("click", function(){
   enableMap();
   $("#new-marker-button").trigger("click");
@@ -10,9 +8,14 @@ $("#cancelFormButton").on("click", function(){
 });
 $("#new_geomarker").on("submit", function(){
   $("#blank_iframe").on("load", function(){
-    getLastGeomarkerCreatedByUser();
-    $(this).remove();
-    updateMap();
+    var errors = extractIFrameErrors();
+    if (errors){
+      $("#geomarker-form-errors").append(errors);
+    } else {
+      getLastGeomarkerCreatedByUser();
+      $("#blank_iframe").remove();
+      updateMap();
+    }
   });
   $("#new-marker-button").trigger("click");
   quitGeomarkerForm();
