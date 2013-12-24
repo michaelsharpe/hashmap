@@ -2,7 +2,7 @@ class MapsController < ApplicationController
   before_filter :load_user
 
   def index
-    @collections = @user.collections.order("position").all
+    @collections = @user.collections.order("position").load
   end
 
   def sort

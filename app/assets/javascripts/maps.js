@@ -172,11 +172,9 @@ function removeIFrame(){
 function extractIFrameErrors(){
   var rawErrors;
   var iframeId = $("#blank_iframe");
-  $("#blank_iframe").on("load",function(){
-    if (iframeId.contents()) {
-        rawErrors = $("#blank_iframe").contents().find(".error_messages").html();
-    }
-  });
+  if (iframeId.contents()) {
+    rawErrors = iframeId.contents().find(".error_messages").html();
+  }
   return rawErrors;
 }
 
