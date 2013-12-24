@@ -4,6 +4,8 @@ class Geomarker < ActiveRecord::Base
                    :lng_column_name => :longitude
   mount_uploader :image, ImageUploader
 
+  validates :name, presence: true
+  validates :tag_list, presence: true
 
   belongs_to :user
 

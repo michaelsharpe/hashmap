@@ -3,5 +3,6 @@
 <% else %>
   getGeomarkerShow(<%= @geomarker.id %>);
   updateMap();
+  $("#blank_iframe").remove();
   quitGeomarkerForm();
 <% end %>

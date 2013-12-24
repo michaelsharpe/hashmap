@@ -10,12 +10,19 @@ $("#cancelFormButton").on("click", function(){
 $(".edit_geomarker").on("submit", function(){
   var id = $(".geomarker-edit").attr("data-id");
   $("#blank_iframe").on("load", function(){
-    removeMarker(id);
-    updateMap();
-    getGeomarkerShow(id);
-    $(this).remove();
+    var errors = extractIFrameErrors();
+    if (errors) {
+      $("#blank_iframe").off();
+      $("#geomarker-form-errors").empty();
+      $("#geomarker-form-errors").append(errors);
+    } else {
+      removeMarker(id);
+      updateMap();
+      getGeomarkerShow(id);
+      $(this).remove();
+      removeGeomarkerEdit();
+    }
   });
-  removeGeomarkerEdit();
 });
 
 if ($("#geomarker_remove_image")) {
