@@ -171,11 +171,15 @@ function removeIFrame(){
 
 function extractIFrameErrors(){
   var rawErrors;
+  var errors;
   var iframeId = $("#blank_iframe");
   if (iframeId.contents()) {
     rawErrors = iframeId.contents().find(".error_messages").html();
   }
-  return rawErrors;
+  if (rawErrors.search("Image Failed") != -1) {
+    errors = "<h4>The file you've attached must not be an image.</h4><p>Please select an image file to upload, or create this geomarker without one. You can always attach one later.</p><p>Acceptable file formats are: jpg, jpeg, gif, and png</p>"
+  }
+  return errors;
 }
 
 function getGeomarkerShow(id){
