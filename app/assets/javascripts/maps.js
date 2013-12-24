@@ -173,21 +173,21 @@ function extractIFrameErrors(){
   var rawErrors;
   var errors;
   var iframeId = $("#blank_iframe");
-  if (iframeId.contents()) {
+  if (iframeId.contents().find(".error_messages").html()) {
     errors = "<h4>Form is invalid</h4>";
     rawErrors = iframeId.contents().find(".error_messages").html();
-  }
-  debugger
-  if (rawErrors.search("Name can't") != -1) {
-    errors = errors + "<p>Your geomarker must have a name.</p>"
-  }
 
-  if (rawErrors.search("Tag list can't") != -1) {
-    errors = errors + "<p>Please add at least one tag to your geomarker.</p><p>Tags are written as a comma separated list (eg. subway, bus stop, last remaining pay phone)</p>"
-  }
+    if (rawErrors.search("Name can't") != -1) {
+      errors = errors + "<p>Your geomarker must have a name.</p>"
+    }
 
-  if (rawErrors.search("Image Failed") != -1) {
-    errors = errors + "<h6>The file you've attached must not be an image.</h6><p>Please select an image file to upload, or create this geomarker without one. You can always attach one later.</p><p>Acceptable file formats are: jpg, jpeg, gif, and png</p>"
+    if (rawErrors.search("Tag list can't") != -1) {
+      errors = errors + "<p>Please add at least one tag to your geomarker.</p><p>Tags are written as a comma separated list (eg. subway, bus stop, last remaining pay phone)</p>"
+    }
+
+    if (rawErrors.search("Image Failed") != -1) {
+      errors = errors + "<h6>The file you've attached must not be an image.</h6><p>Please select an image file to upload, or create this geomarker without one. You can always attach one later.</p><p>Acceptable file formats are: jpg, jpeg, gif, and png</p>"
+    }
   }
   return errors;
 }
