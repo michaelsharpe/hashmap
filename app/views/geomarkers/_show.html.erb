@@ -32,3 +32,13 @@
 <% if @geomarker.tags.any? %>
  <p>Tags: <%= @geomarker.tag_list %> </p>
 <% end %>
+
+<!-- Comment form -->
+<%= form_for [@geomarker, @comment], :remote => true do |f| %>
+  <div id="review-form-errors" >  
+    <%= render :partial => "review_form_errors" %>
+  </div>
+  <%= f.label :comment %>
+  <%= f.text_area :comment %>
+  <%= f.submit "Post", :class => "button centered"%></p>
+<% end %>
