@@ -2,6 +2,7 @@
   $('#geomarker-form-errors').html('<%= escape_javascript(render "geomarker_form_errors") %>' );
 <% else %>
   getGeomarkerShow(<%= @geomarker.id %>);
+  $("#new-marker-button").trigger("click");
   updateMap();
   $("#blank_iframe").remove();
   quitGeomarkerForm();
