@@ -1,0 +1,10 @@
+<% @geomarker.comments.reverse.each do |comment| %>
+  <% if comment.user != nil %>
+    <div class="comment-wrapper">
+      <p><b><%= comment.comment %></b></p>
+      <p>Posted by: <em><%= comment.user.username %></em></p>
+      <p><em><%= comment.created_at.to_s(:long) %></em></p>
+    </div>
+    <hr>
+  <% end %>
+<% end %>

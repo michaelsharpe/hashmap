@@ -1,0 +1,7 @@
+<% if @comment.errors.any? %>
+  $("#comment-form-errors").html("<%= j render 'geomarkers/comment_form_errors' %>");
+<% else %>
+  $("#comment-form-errors").html("")
+  $('#comment-display').append("<%= j render 'geomarkers/comment' %>");
+  $('#new_comment')[0].reset();
+<% end %>

@@ -18,7 +18,6 @@ class GeomarkersController < ApplicationController
       @geomarker = Geomarker.find(params[:id])
     end
     @user = User.find(@geomarker.user_id)
-    binding.pry
     @comment = @geomarker.comments.build
 
     respond_to do |format|

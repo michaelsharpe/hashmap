@@ -35,10 +35,20 @@
 
 <!-- Comment form -->
 <%= form_for [@geomarker, @comment], :remote => true do |f| %>
-  <div id="review-form-errors" >  
-    <%= render :partial => "review_form_errors" %>
+  <div id="comment-form-errors" >  
+    <%= render :partial => "comment_form_errors" %>
   </div>
-  <%= f.label :comment %>
+  <%= f.label "Add a Comment" %>
   <%= f.text_area :comment %>
   <%= f.submit "Post", :class => "button centered"%></p>
+<% end %>
+
+<!-- Comment display -->
+<% if @geomarker.comments.length > 1 %>
+  <div id="comment-display">
+    <h3>What people've been saying:</h3>
+    <%= render :partial => "comments" %>
+  </div>
+<% else %>
+  <h3>Be the first to comment.</h3>
 <% end %>
