@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131229185038) do
+ActiveRecord::Schema.define(version: 20131229194232) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 20131229185038) do
   create_table "comments", force: true do |t|
     t.integer  "geomarker_id"
     t.integer  "user_id"
-    t.text     "comment"
+    t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
