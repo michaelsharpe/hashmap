@@ -246,3 +246,10 @@
     font-size: 2em;
   }
 }
+
+#comment-form-errors {
+  ul {
+    list-style: none;
+    color: #c66;
+  }
+}
