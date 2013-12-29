@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
 
   private
   def comment_params
-    params.require(:comment).permit(:comment, :geomarker_id)
+    params.require(:comment).permit(:content, :geomarker_id)
   end
 
   def load_geomarker

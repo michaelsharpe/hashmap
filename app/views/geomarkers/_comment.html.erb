@@ -1,5 +1,6 @@
+<hr>
 <div class="comment-wrapper">
-  <p><%= @comment.comment %></p>
+  <p><b><%= @comment.content %></b></p>
   <p>Posted by: <em><%= @comment.user.username %></em></p>
-  <p>At: <%= comment.created_at %></p>
+  <p><em><%= @comment.created_at.to_s(:long) %></em></p>
 </div>

@@ -39,16 +39,18 @@
     <%= render :partial => "comment_form_errors" %>
   </div>
   <%= f.label "Add a Comment" %>
-  <%= f.text_area :comment %>
+  <%= f.text_area :content %>
   <%= f.submit "Post", :class => "button centered"%></p>
 <% end %>
 
 <!-- Comment display -->
+<h3 id="comment-header">
 <% if @geomarker.comments.length > 1 %>
-  <div id="comment-display">
-    <h3>What people've been saying:</h3>
-    <%= render :partial => "comments" %>
-  </div>
+  What people've been saying:
 <% else %>
-  <h3>Be the first to comment.</h3>
+  Be the first to comment.
 <% end %>
+</h3>
+<div id="comment-display">
+  <%= render :partial => "comments" %>
+</div>
