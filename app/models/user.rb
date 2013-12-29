@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   has_many :collections
   has_many :collectionTags, through: :collections
+  has_many :comments
+  has_many :geomarkers, :through => :comments
   acts_as_tagger
 
   authenticates_with_sorcery!

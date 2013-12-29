@@ -8,6 +8,8 @@ class Geomarker < ActiveRecord::Base
   validates :tag_list, presence: true
 
   belongs_to :user
+  has_many :comments
+  has_many :users, :through => :comments
 
   def self.all_collection_tags(user)
     collections= user.collections

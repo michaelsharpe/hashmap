@@ -16,5 +16,7 @@ Hashmap::Application.routes.draw do
   end
 
   resources :sessions, only: [:index, :new, :create, :destroy]
-  resources :geomarkers
+  resources :geomarkers do
+    resources :comments
+  end
 end
