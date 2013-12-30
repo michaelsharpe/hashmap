@@ -28,3 +28,14 @@ $("#closeShowButton").on("click", function(){
   enableMap();
   removeGeomarkerShow();
 });
+
+$("#comment-display").on("click", ".deleteCommentButton", function(e){
+  var geomarkerID = $(".geomarker-show").attr("data-id");
+  var commentID = $(this).attr("data-comment-id");
+  deleteComment(geomarkerID, commentID);
+  $(this).parent().remove();
+  if ($.trim($("#comment-display").html()) == ""){
+    $("#comment-header").text("Be the first to comment.");
+  }
+  e.stopPropagation();
+});

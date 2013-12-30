@@ -1,5 +1,6 @@
-<hr>
 <div class="comment-wrapper">
+  <hr>
+  <a class="deleteCommentButton" data-comment-id="<%= @comment.id %>" href="#">Delete</a>
   <p><b><%= @comment.content %></b></p>
   <p>Posted by: <em><%= @comment.user.username %></em></p>
   <p><em><%= @comment.created_at.to_s(:long) %></em></p>

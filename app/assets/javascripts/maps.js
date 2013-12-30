@@ -237,12 +237,18 @@ function deleteGeomarker(id){
   });
 }
 
+function deleteComment(geomarkerID, commentID){
+  $.ajax({
+    type: "DELETE",
+    url: "/geomarkers/" + geomarkerID + "/comments/" + commentID,
+    dataType: "script"
+  });
+}
+
 function changeFocus(latlng, zoom){
   map.panTo(latlng);
   map.setZoom(zoom);
 }
-
-
 
 function updateMap() {
   var tags = currentTags.join(', ')

@@ -1,7 +1,10 @@
 <% @geomarker.comments.reverse.each do |comment| %>
   <% if comment.user != nil %>
-    <hr>
     <div class="comment-wrapper">
+      <hr>
+      <% if comment.user_id == current_user.id %>
+        <a class="deleteCommentButton" data-comment-id="<%= comment.id %>" href="#">Delete</a>
+      <% end %>
       <p><b><%= comment.content %></b></p>
       <p>Posted by: <em><%= comment.user.username %></em></p>
       <p><em><%= comment.created_at.to_s(:long) %></em></p>

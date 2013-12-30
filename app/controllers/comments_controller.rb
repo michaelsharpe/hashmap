@@ -16,6 +16,16 @@ class CommentsController < ApplicationController
     end
   end
 
+  def destroy
+    @comment = Comment.find(params[:id])
+    @comment.destroy
+
+    respond_to do |format|
+      format.html { redirect_to geomarker_comments_path(params[:geomarker_id])}
+      format.js
+    end
+  end
+
   private
   def comment_params
     params.require(:comment).permit(:content, :geomarker_id)
