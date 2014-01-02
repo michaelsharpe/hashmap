@@ -253,3 +253,41 @@
     color: #c66;
   }
 }
+
+// New geomarker tag styling
+.new-tag-bar {
+  @extend .large-8;
+  @extend .medium-8;
+  @extend .small-9;
+  @extend .large-centered;
+  @extend .medium-centered;
+  @extend .small-centered;
+  @extend .columns;
+  display: none;
+}
+
+.new-tag-wrapper {
+  @extend .row;
+  @extend .collapse;
+}
+
+.newTags {
+  @extend .large-8;
+  @extend .medium-8;
+  @extend .small-9;
+  @extend .columns;
+  z-index: 100;
+}
+
+.tagSubmitButton {
+  @extend .large-4;
+  @extend .medium-4;
+  @extend .small-2;
+  @extend .columns;
+}
+
+#tagSubmit {
+  @extend .button;
+  @extend .tiny;
+  @extend .postfix;
+}

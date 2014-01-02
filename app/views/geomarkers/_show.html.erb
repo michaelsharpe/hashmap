@@ -1,3 +1,4 @@
+<!-- Geomarker options buttons -->
 <ul class="showOptions">
   <li>
   <% if current_user.id == @geomarker.user_id %>
@@ -13,6 +14,7 @@
   </li>
 </ul>
 <hr>
+<!-- Geomarker information display -->
 <h2><%= @geomarker.name %></h2>
 <p><%= @geomarker.description %></p>
 <br>
@@ -28,10 +30,23 @@
   <% end %>
 <% end %>
 <br>
+<!-- Display tags -->
 <p>Created by: <%= @user.username %></p>
 <% if @geomarker.tags.any? %>
  <p>Tags: <%= @geomarker.tag_list %> </p>
 <% end %>
+<a id="addTagButton" href="#">Add tags</a>
+
+<div class="new-tag-bar">
+  <div class="new-tag-wrapper">
+    <div class="newTags">
+      <input type="text" id="new-geomarker-tags"></input>
+    </div>
+    <div class="tagSubmitButton">
+      <a href="#" id="tagSubmit">Add</a>
+    </div>
+  </div>
+</div>
 
 <!-- Comment form -->
 <%= form_for [@geomarker, @comment], :remote => true do |f| %>

@@ -166,7 +166,9 @@ function quitGeomarkerForm(){
 }
 
 function removeIFrame(){
-  $("#blank_iframe").remove();
+  if ($("#blank_iframe")) {
+    $("#blank_iframe").remove();
+  }
 }
 
 function extractIFrameErrors(){
@@ -212,11 +214,15 @@ function getLastGeomarkerCreatedByUser(){
 }
 
 function removeGeomarkerShow(){
-  $(".geomarker-show").remove();
+  if ($(".geomarker-show")) {  
+    $(".geomarker-show").remove();
+  }
 }
 
 function removeGeomarkerEdit(){
-  $(".geomarker-edit").remove();
+  if ($(".geomarker-edit")) {
+    $(".geomarker-edit").remove();
+  }
 }
 
 function getGeomarkerEdit(id){
@@ -242,6 +248,17 @@ function deleteComment(geomarkerID, commentID){
     type: "DELETE",
     url: "/geomarkers/" + geomarkerID + "/comments/" + commentID,
     dataType: "script"
+  });
+}
+
+function addNewTags(geomarkerID){
+  var tags = $("#new-geomarker-tags").val();
+  $.ajax({
+    type: "PATCH",
+    url: "/geomarkers/" + geomarkerID,
+    dataType: "script",
+    data: { geomarker: {
+      new_tags: tags }}
   });
 }
 

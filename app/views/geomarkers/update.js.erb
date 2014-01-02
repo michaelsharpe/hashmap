@@ -4,7 +4,10 @@
   var id = <%= @geomarker.id %>;
   removeMarker(id);
   updateMap();
-  $("#blank_iframe").remove();
+  
+  // with exception of getGeomarkerShow(), each of the following methods contains control flow to adapt to circumstances of update
+  removeIFrame();
+  removeGeomarkerShow();
   getGeomarkerShow(id);
   removeGeomarkerEdit();
 <% end %>

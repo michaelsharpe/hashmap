@@ -29,6 +29,15 @@ $("#closeShowButton").on("click", function(){
   removeGeomarkerShow();
 });
 
+$("#addTagButton").on("click", function(){
+  $(".new-tag-bar").slideToggle("slow")
+});
+
+$("#tagSubmit").on("click", function(){
+  var id = $(".geomarker-show").attr("data-id");
+  addNewTags(id)
+});
+
 $("#comment-display").on("click", ".deleteCommentButton", function(e){
   var geomarkerID = $(".geomarker-show").attr("data-id");
   var commentID = $(this).attr("data-comment-id");

@@ -60,11 +60,20 @@ class GeomarkersController < ApplicationController
   
   def update
     @geomarker = Geomarker.find(params[:id])
+    
     if params[:geomarker][:remove_image].present?
       @geomarker.remove_image!
       @geomarker.save
       params[:geomarker][:remove_image] = nil
     end
+    
+    if params[:geomarker][:new_tags].present?
+      params[:geomarker][:tag_list] = ""
+      @geomarker.tag_list.each { |tag| params[:geomarker][:tag_list] << tag + ", " }
+      params[:geomarker][:tag_list] = params[:geomarker][:tag_list] + params[:geomarker][:new_tags]
+      params[:geomarker].delete("new_tags")
+    end
+    
     if @geomarker.update_attributes(geomarker_params)
       respond_to do |format|
         format.html { redirect_to geomarker_path(@geomarker) }
@@ -90,6 +99,6 @@ class GeomarkersController < ApplicationController
 
   private
   def geomarker_params
-    params.require(:geomarker).permit(:name, :description, :latitude, :longitude, :tag_list, :view, :sw, :ne, :remove_image, :image)
+    params.require(:geomarker).permit(:name, :description, :latitude, :longitude, :tag_list, :view, :sw, :ne, :remove_image, :image, :new_tags)
   end
 end
