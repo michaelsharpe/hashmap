@@ -33,7 +33,7 @@
 <!-- Display tags -->
 <p>Created by: <%= @user.username %></p>
 <% if @geomarker.tags.any? %>
- <p>Tags: <%= @geomarker.tag_list %> </p>
+ <p>Tags: <span class="tag-list"><%= @geomarker.tag_list %></span> </p>
 <% end %>
 <a id="addTagButton" href="#">Add tags</a>
 

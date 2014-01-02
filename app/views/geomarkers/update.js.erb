@@ -1,5 +1,13 @@
 <% if @geomarker.errors.any? %>
   $('#geomarker-form-errors').html('<%= escape_javascript(render "geomarker_form_errors") %>' );
+<% elsif @new_tags %>
+  var id = <%= @geomarker.id %>;
+  removeMarker(id);
+  updateMap();
+  $(".tag-list").empty();
+  $(".tag-list").append("<%= @geomarker.tag_list %>");
+  $("#new-geomarker-tags").val("");
+  $("#addTagButton").trigger("click");
 <% else %>
   var id = <%= @geomarker.id %>;
   removeMarker(id);

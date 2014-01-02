@@ -71,6 +71,7 @@ class GeomarkersController < ApplicationController
       @geomarker.tag_list.each { |tag| params[:geomarker][:tag_list] << tag + ", " }
       params[:geomarker][:tag_list] = params[:geomarker][:tag_list] + params[:geomarker][:new_tags]
       params[:geomarker].delete("new_tags")
+      @new_tags = true
     end
     
     if @geomarker.update_attributes(geomarker_params)
