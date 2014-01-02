@@ -1,13 +1,19 @@
 class GeomarkersController < ApplicationController
   def index
-    ne = params[:ne].split(',').collect{|e|e.to_f}  
-    sw = params[:sw].split(',').collect{|e|e.to_f}
+    if params[:ne] && params[:sw]
+      ne = params[:ne].split(',').collect{|e|e.to_f}  
+      sw = params[:sw].split(',').collect{|e|e.to_f}
+    end
     params[:tags] != "" ? params[:tags] : params[:tags] = nil
   
-    if params[:tags]
+    if ne && sw && params[:tags]
       @geomarkers = Geomarker.tagged_with(params[:tags], :any => true).in_bounds([sw, ne])
-    else
+    elsif params[:tags]
+      @geomarkers = Geomarker.tagged_with(params[:tags], :any => true)
+    elsif ne && sw
       @geomarkers = Geomarker.all.in_bounds([sw, ne])
+    else
+      @geomarkers = Geomarker.all
     end
   end
   
