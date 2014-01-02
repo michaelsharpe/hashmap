@@ -60,8 +60,7 @@ class GeomarkersController < ApplicationController
   
   def update
     @geomarker = Geomarker.find(params[:id])
-    
-    if params[:geomarker][:remove_image].present?
+    if params[:geomarker][:remove_image].present? && params[:geomarker][:remove_image] == 1
       @geomarker.remove_image!
       @geomarker.save
       params[:geomarker][:remove_image] = nil
