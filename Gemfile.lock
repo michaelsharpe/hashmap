@@ -31,7 +31,11 @@ GEM
     arel (4.0.1)
     atomic (1.1.14)
     awesome_print (1.2.0)
+<<<<<<< HEAD
     bcrypt-ruby (3.1.2)
+=======
+    bcrypt-ruby (3.0.1)
+>>>>>>> ce6404d7fb63bf29ffd21192c5c662a6ffa717bf
     binding.repl (0.9.0)
       toml (~> 0.0.3)
     blankslate (2.1.2.4)
@@ -209,8 +213,8 @@ GEM
       json (>= 1.1.3)
       rdoc (~> 3.10)
     slop (3.4.7)
-    sorcery (0.8.5)
-      bcrypt-ruby (>= 3.0)
+    sorcery (0.8.2)
+      bcrypt-ruby (~> 3.0.0)
       oauth (~> 0.4.4)
       oauth2 (>= 0.8.0, < 1.0.0)
     spoon (0.0.4)
@@ -273,5 +277,5 @@ DEPENDENCIES
   rmagick
   sass-rails (~> 4.0.0)
   sdoc
-  sorcery
+  sorcery (= 0.8.2)
   uglifier (>= 1.3.0)

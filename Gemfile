@@ -12,7 +12,7 @@ gem 'jquery-ui-rails'
 gem 'jbuilder', '~> 1.2'
 gem 'foundation-rails'
 gem 'acts-as-taggable-on'
-gem 'sorcery'
+gem 'sorcery', '0.8.2'
 gem 'geocoder'
 gem 'geokit-rails'
 gem 'newrelic_rpm'
@@ -20,7 +20,6 @@ gem 'foundation-icons-sass-rails'
 gem 'carrierwave'
 gem 'rmagick'
 gem 'font-awesome-rails'
-
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
