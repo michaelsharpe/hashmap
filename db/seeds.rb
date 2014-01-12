@@ -27,14 +27,23 @@ def createCollection(user, collection_name, *tags)
   end
 end
 
-@user = User.create!(username: "user", email: "test@test.com", password: "test888", password_confirmation: "test888")
-@user2 = User.create!(username: "user2", email: "test2@test.com", password: "test888", password_confirmation: "test888")
+if (User.find_by username: "user") == nil
+  @user = User.create!(username: "user", email: "test@test.com", password: "test888", password_confirmation: "test888")
+else
+  @user = User.find_by username: "user"
+end
+
+if (User.find_by username: "user2") == nil
+  @user2 = User.create!(username: "user2", email: "test2@test.com", password: "test888", password_confirmation: "test888")
+else
+  @user2 = User.find_by username: "user2"
+end
 
 500.times do |num|
   location = location()
   lat = location[0]
   lng = location[1]
-  geomarker = Geomarker.create!(name: Faker::Name.name, description: Faker::Company.catch_phrase,latitude: lat, longitude: lng, user_id: @user.id)
+  geomarker = Geomarker.new(name: Faker::Name.name, description: Faker::Company.catch_phrase,latitude: lat, longitude: lng, user_id: @user.id)
   geomarker.tag_list = tags.sample(3).join(', ')
   geomarker.save
 end
@@ -43,7 +52,7 @@ end
   location = location()
   lat = location[0]
   lng = location[1]
-  geomarker = Geomarker.create!(name: Faker::Name.name, description: Faker::Company.catch_phrase,latitude: lat, longitude: lng, user_id: @user2.id)
+  geomarker = Geomarker.new(name: Faker::Name.name, description: Faker::Company.catch_phrase,latitude: lat, longitude: lng, user_id: @user2.id)
   geomarker.tag_list = tags.sample(3).join(', ')
   geomarker.save
 end
