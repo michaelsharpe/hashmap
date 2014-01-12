@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-tags = %w(fruit tree dumpster restaurant gingerbread graffiti streetcar black_market_eggs santa_hat clothing book souffle infundibulum)
+tags = %w(cherry, maple, oak, tree, bush, fruit, ginko, sale, shoes, nike, gap, vegetarian, mexican, cheap food, restaurant, architecture, arts and craft movement, art deco, art nouveau, modern)
 
 def address()
   r = Random.new
@@ -17,6 +17,16 @@ def location()
   loc = Random.new.location(43.6464941, -79.39257729999997, 5000)
 end
 
+def createCollection(user, collection_name, *tags)
+  collection = Collection.create!(name: collection_name, description:Faker::Company.bs, user_id: user.id)
+  tags.each do |tagName|
+    tag_name = tagName
+    tag = collection.collectionTags.create!(name:tag_name, user_id: user.id, visibility: false)
+    tag.tag_list = tag_name
+    tag.save
+  end
+end
+
 @user = User.create!(username: "user", email: "test@test.com", password: "test888", password_confirmation: "test888")
 @user2 = User.create!(username: "user2", email: "test2@test.com", password: "test888", password_confirmation: "test888")
 
@@ -24,7 +34,7 @@ end
   location = location()
   lat = location[0]
   lng = location[1]
-  geomarker = Geomarker.create(name: Faker::Name.name, description: Faker::Company.catch_phrase,latitude: lat, longitude: lng, user_id: @user.id)
+  geomarker = Geomarker.create!(name: Faker::Name.name, description: Faker::Company.catch_phrase,latitude: lat, longitude: lng, user_id: @user.id)
   geomarker.tag_list = tags.sample(3).join(', ')
   geomarker.save
 end
@@ -33,29 +43,17 @@ end
   location = location()
   lat = location[0]
   lng = location[1]
-  geomarker = Geomarker.create(name: Faker::Name.name, description: Faker::Company.catch_phrase,latitude: lat, longitude: lng, user_id: @user2.id)
+  geomarker = Geomarker.create!(name: Faker::Name.name, description: Faker::Company.catch_phrase,latitude: lat, longitude: lng, user_id: @user2.id)
   geomarker.tag_list = tags.sample(3).join(', ')
   geomarker.save
 end
 
-10.times do |num|
-  collection = Collection.create(name:Faker::Commerce.department, description:Faker::Company.bs, user_id: @user.id )
-  3.times do
-    tag_name = tags.sample
-    tag = collection.collectionTags.create(name:tag_name, user_id: @user.id, visibility: false)
-    tag.tag_list = tag_name
-    tag.save
-  end
-  collection.save
-end
+createCollection(@user2, "plants", "cherry", "maple", "oak", "tree", "bush", "fruit", "ginko")
+createCollection(@user2, "architecture", "architecture", "arts and crafts movement", "art deco", "art nouveau", "modern")
+createCollection(@user2, "shopping", "sale", "shoes", "nike", "gap")
+createCollection(@user2, "food", "vegetarian", "cheap food", "restaurant", "mexican")
 
-10.times do |num|
-  collection = Collection.create(name:Faker::Commerce.department, description:Faker::Company.bs, user_id: @user2.id )
-  3.times do
-    tag_name = tags.sample
-    tag = collection.collectionTags.create(name:tag_name, user_id: @user.id, visibility: false)
-    tag.tag_list = tag_name
-    tag.save
-  end
-  collection.save
-end
+createCollection(@user, "plants", "cherry", "maple", "oak", "tree", "bush", "fruit", "ginko")
+createCollection(@user, "architecture", "architecture", "arts and crafts movement", "art deco", "art nouveau", "modern")
+createCollection(@user, "shopping", "sale", "shoes", "nike", "gap")
+createCollection(@user, "food", "vegetarian", "cheap food", "restaurant", "mexican")
