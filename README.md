@@ -1,10 +1,8 @@
 # HashMapp #
 
-------------------
-
 ## What is HashMapp? ##
 
-HashMapp is an application built utilizing Ruby on Rails to allow users to tag geographic locations of interest, organize collections, and share their markers with their friends.  It is a fresh concept that works with digital information and physical space to add a new level of exploration to our everday world.
+HashMapp is an application built utilizing Ruby on Rails to allow users to tag geographic locations of interest, organize collections, and share their collections with friends.  It is a fresh concept that works with digital information and physical space to add a new level of exploration to our everday world.
 
 ## Technologies used ##
 
@@ -14,11 +12,12 @@ HashMapp is built on a few core technologies:
 
 *  The front-end utilizes heavy Javascript, specifically AJAX, jQuery, and a map API called Leaflet.js.  Our map tiles are served from CloudMade and our geocoding comes from Google Maps.  Our slide out menu is Mmenu.js, a jQuery plugin to create multiple level sliding menus.
 
-## Future feates ##
+## Future features ##
 
 *  Friending other users
 *  Friend activity feed
 *  Ability to collect specific markers and add them to collections
+*  Edit and delete collections from side menu
 *  File and video upload on markers
 *  Landing page
 
