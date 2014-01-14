@@ -1,5 +1,7 @@
 # HashMapp #
 
+A new way to explore the world.
+
 ## What is HashMapp? ##
 
 HashMapp is an application built utilizing Ruby on Rails to allow users to tag geographic locations of interest, organize collections, and share their collections with friends.  It is a fresh concept that works with digital information and physical space to add a new level of exploration to our everday world.
