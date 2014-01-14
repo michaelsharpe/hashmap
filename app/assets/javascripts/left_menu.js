@@ -113,20 +113,18 @@ function loadCollection(collection){
 function disableLastCreatedCollection(newCollection){
   var lastCollection = $("[data-collection = '" + newCollection + "'] ").prev();
   $(lastCollection).attr("data-show", "false");
-  debugger
   $(lastCollection).find("i").removeClass("fa-eye").addClass("fa-eye-slash");
 }
 
 function loadTag(tag) {
   $menu.remove();
-  debugger
   loadMenu();
   $("[data-tag = '" + tag + "']").slideDown(400, function(){
     $(this).siblings(".tag-form").find("form")[0].reset()
   })
 }
 
-// Control flow for right menu button
+// Control flow for left menu button
 $(document).ready(function(){
   $("#open-menu").on("click", function(){
     if(controlOpen){

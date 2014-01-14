@@ -1,28 +1,27 @@
-== README
+# HashMapp #
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+------------------
 
-Things you may want to cover:
+## What is HashMapp? ##
 
-* Ruby version
+HashMapp is an application built utilizing Ruby on Rails to allow users to tag geographic locations of interest, organize collections, and share their markers with their friends.  It is a fresh concept that works with digital information and physical space to add a new level of exploration to our everday world.
 
-* System dependencies
+## Technologies used ##
 
-* Configuration
+HashMapp is built on a few core technologies: 
 
-* Database creation
+*  The back-end is an API built with Rails which serves stored data and views to the fornt end map.  It includes user authentication through Sorcery, file uploading through CarrierWave, geolocation calculations with Geokit, tagging with Acts-as-taggable-on, and a responsive design framework with Zurb Foundation 5.
 
-* Database initialization
+*  The front-end utilizes heavy Javascript, specifically AJAX, jQuery, and a map API called Leaflet.js.  Our map tiles are served from CloudMade and our geocoding comes from Google Maps.  Our slide out menu is Mmenu.js, a jQuery plugin to create multiple level sliding menus.
 
-* How to run the test suite
+## Future feates ##
 
-* Services (job queues, cache servers, search engines, etc.)
+*  Friending other users
+*  Friend activity feed
+*  Ability to collect specific markers and add them to collections
+*  File and video upload on markers
+*  Landing page
 
-* Deployment instructions
+## About us ##
 
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+HashMapp was built during the final sprint at [Bitmaker Labs](http://www.bitmakerlabs.com) by [Michael Sharpe](http://www.github.com/michaelsharpe) and [John Macpherson](https://github.com/jmacpherson).  It is an ongoing project.
