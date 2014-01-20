@@ -233,9 +233,6 @@ function removeGeomarkerForm(){
   if ($(".geomarker-form")) {
     $(".geomarker-form").remove();
   }
-  if (newMarkerModeOn) {
-    endNewMarkerMode();
-  }
 }
 
 function getGeomarkerEdit(id){

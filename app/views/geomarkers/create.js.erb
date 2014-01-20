@@ -4,6 +4,6 @@
   getGeomarkerShow(<%= @geomarker.id %>);
   $("#new-marker-button").trigger("click");
   updateMap();
-  $("#blank_iframe").remove();
-  quitGeomarkerForm();
+  removeIFrame();
+  removeGeomarkerForm();
 <% end %>
