@@ -16,6 +16,6 @@
 </h4>
 <ul>
   <% @friends.each do |friend| %>
-    <li><%= friend.username %></li>
+    <li><a class="friendProfileButton" href="#" data-id="<%= friend.id %>"><%= friend.username %></a></li>
   <% end %>
 </ul>

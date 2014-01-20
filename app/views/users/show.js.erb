@@ -4,3 +4,10 @@ $(".form-container").append("<div class='user-show'><%= j render 'users/show' %>
 $("#closeShowButton").on("click", function(){
   $("#user").trigger("click");
 });
+
+$(".friendProfileButton").on("click", function(){
+  var id = $(this).attr("data-id");
+  removeUserProfile();
+  getUserProfile(id);
+  return false
+});
