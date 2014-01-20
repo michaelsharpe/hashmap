@@ -160,13 +160,6 @@ function getGeomarkerForm(lat, lng){
   });
 }
 
-// function quitGeomarkerForm(){
-//   $(".geomarker-form").remove();
-//   if (newMarkerModeOn) {
-//     endNewMarkerMode();
-//   }
-// }
-
 function removeIFrame(){
   if ($("#blank_iframe")) {
     $("#blank_iframe").remove();
