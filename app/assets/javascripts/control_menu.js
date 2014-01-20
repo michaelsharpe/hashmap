@@ -2,6 +2,7 @@ var controlOpen = false;
 var newMarkerModeOn = false;
 var globalView = false;
 var searchMode = false;
+var profileView = false;
 
 $(document).ready(function(){
   $(".wheel-button").wheelmenu({
@@ -69,4 +70,20 @@ $(document).ready(function(){
       searchMode = false;
     }
   })
+});
+
+$(document).ready(function(){
+  $('#user').on('click', function(){
+    if(!profileView){
+      $(this).addClass("icon-glow");
+      disableMap();
+      getUserProfile(current_user_id);
+      profileView = true;
+    } else {
+      $(this).removeClass("icon-glow");
+      enableMap();
+      removeUserProfile();
+      profileView = false;
+    }
+  });
 });

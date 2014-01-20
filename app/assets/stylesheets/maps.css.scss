@@ -73,36 +73,36 @@
   z-index: -100;
 }
 
+// .geomarker-form {
+//   @extend .large-5;
+//   @extend .medium-6;
+//   @extend .small-12;
+//   @extend .large-centered;
+//   @extend .medium-centered;
+//   @extend .small-centered;
+//   @extend .columns;
+//   @media only screen and (min-width: 40em) {
+//     max-height: 90%;
+//     padding: 2em;
+//   }
+//   @media only screen and (max-width: 40em) {
+//     max-height: 100%;
+//     padding: 1em;
+//   }
+//   @media only screen and (max-height: 40em) {
+//     top: 5%;
+//   }
+//   @media only screen and (min-height: 40em) {
+//     top: 12.5%;
+//   }
+//   border: 1px solid black;
+//   border-radius: 7px;
+//   z-index: 1001;
+//   background-color: #fff;
+//   text-align: center;
+//   overflow: scroll;
+// }
 .geomarker-form {
-  @extend .large-5;
-  @extend .medium-6;
-  @extend .small-12;
-  @extend .large-centered;
-  @extend .medium-centered;
-  @extend .small-centered;
-  @extend .columns;
-  @media only screen and (min-width: 40em) {
-    max-height: 90%;
-    padding: 2em;
-  }
-  @media only screen and (max-width: 40em) {
-    max-height: 100%;
-    padding: 1em;
-  }
-  @media only screen and (max-height: 40em) {
-    top: 5%;
-  }
-  @media only screen and (min-height: 40em) {
-    top: 12.5%;
-  }
-  border: 1px solid black;
-  border-radius: 7px;
-  z-index: 1001;
-  background-color: #fff;
-  text-align: center;
-  overflow: scroll;
-}
-.geomarker-edit {
   @extend .large-5;
   @extend .medium-6;
   @extend .small-12;
@@ -166,6 +166,10 @@
   hr {
     margin: 0.5rem 0;
   }
+}
+
+.user-show {
+  @extend .geomarker-show;
 }
 
 #blank_iframe {

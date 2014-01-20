@@ -3,7 +3,7 @@ $(".form-container").append("<div class='geomarker-form'><%= j render 'geomarker
 $("#cancelFormButton").on("click", function(){
   enableMap();
   $("#new-marker-button").trigger("click");
-  quitGeomarkerForm();
+  removeGeomarkerForm();
   removeIFrame();
 });
 $("#new_geomarker").on("submit", function(){
@@ -18,7 +18,7 @@ $("#new_geomarker").on("submit", function(){
       $("#blank_iframe").remove();
       updateMap();
       $("#new-marker-button").trigger("click");
-      quitGeomarkerForm();
+      removeGeomarkerForm();
     }
   });
 });

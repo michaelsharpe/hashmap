@@ -1,0 +1,6 @@
+clearViews();
+$(".form-container").append("<div class='user-show'><%= j render 'users/show' %></div>");
+
+$("#closeShowButton").on("click", function(){
+  $("#user").trigger("click");
+});
