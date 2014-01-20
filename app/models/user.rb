@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_many :friendships
+  has_many :friends, through: :friendships
   has_many :collections
   has_many :collectionTags, through: :collections
   has_many :comments

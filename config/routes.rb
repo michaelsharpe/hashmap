@@ -19,4 +19,5 @@ Hashmap::Application.routes.draw do
   resources :geomarkers do
     resources :comments
   end
+  resources :friendships
 end
