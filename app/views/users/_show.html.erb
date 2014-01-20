@@ -13,7 +13,7 @@
     <h4>You have friend requests from:</h4>
     <ul class="requests">
       <% @user.friend_requests.each do |request| %>
-        <li><a class="friendProfileButton" href="#" data-id="<%= request[1].id %>"><%= request[1].username %></a>  <a class="acceptFriendshipButton" href="#" data-id="<%= request[0] %>">Accept Request</a></li>
+        <li class="request" data-request-id="<%= request[0] %>"><a class="friendProfileButton" href="#" data-id="<%= request[1].id %>"><%= request[1].username %></a>  <a class="acceptFriendshipButton" href="#">Accept Request</a>  <a class="ignoreRequestButton" href="#">Ignore</a></li>
       <% end %>
     </ul>
   </div>

@@ -12,11 +12,22 @@ $(".friendsList").on("click", ".friendProfileButton", function(e){
   e.stopPropagation();
 });
 
-$(".acceptFriendshipButton").on("click", function(){
-  var id = $(this).attr("data-id");
+$(".acceptFriendshipButton").on("click", function(e){
+  var id = $(this).parent().attr("data-request-id");
   acceptFriendship(id);
   $(this).parent().remove();
   if ($(".requestList li").length == 0){
     $(".requestList").remove();
   }
+  e.stopPropagation();
+});
+
+$(".ignoreRequestButton").on("click", function(e){
+  var id = $(this).parent().attr("data-request-id");
+  ignoreFriendship(id);
+  $(this).parent().remove();
+  if ($(".requestList li").length == 0){
+    $(".requestList").remove();
+  }
+  e.stopPropagation();
 });

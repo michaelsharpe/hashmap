@@ -20,3 +20,12 @@ function acceptFriendship(friendshipID){
     data: { accepted: true }
   });
 }
+
+function ignoreFriendship(friendshipID){
+  $.ajax({
+    type: "PATCH",
+    url: "/friendships/" + friendshipID,
+    dataType: "script",
+    data: { ignored: true }
+  });
+}

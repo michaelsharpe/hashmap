@@ -148,6 +148,10 @@
     @extend .button;
     @extend .tiny;
   }
+  .ignoreRequestButton {
+    @extend .button;
+    @extend .tiny;
+  }
 }
 
 #blank_iframe {

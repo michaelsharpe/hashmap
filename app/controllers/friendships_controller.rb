@@ -5,6 +5,9 @@ class FriendshipsController < ApplicationController
     if params[:accepted]
       @friendship.update_attribute("accepted", true)
     end
+    if params[:ignored]
+      @friendship.update_attribute("ignored", true)
+    end
     respond_to do |format|
       format.html
       format.js
