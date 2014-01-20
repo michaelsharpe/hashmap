@@ -1,6 +1,6 @@
 # HashMapp #
 
-A new way to explore the world.
+A new way to explore the world.h.
 
 ## What is HashMapp? ##
 
@@ -22,6 +22,12 @@ HashMapp is built on a few core technologies:
 *  Edit and delete collections from side menu
 *  File and video upload on markers
 *  Landing page
+*  Fog
+*  Story engine
+*  Random marker generator from stack of Data bits and store of locations
+*
+*  Flat design interface
+*
 
 ## About us ##
 

@@ -107,6 +107,7 @@ function loadCollection(collection){
       $(this).siblings("#collection-form").find("form")[0].reset()
     });
   });
+  activateSortable();
 }
 
 // Whena  new collection is created, the last created one is turned off.
