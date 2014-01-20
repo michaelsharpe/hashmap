@@ -3,5 +3,19 @@
       <input id="closeShowButton" type="button" value="Close"/>
   </li>
 </ul>
+<hr>
 <h1><%= @user.username %></h1>
 <p><span>Email:</span> <%= @user.email %></p>
+<hr>
+<h4>
+  <% if current_user.id == @user.id %>
+    Your Friends
+  <% else %>
+    <%= @user.username %>'s Friends
+  <% end %>
+</h4>
+<ul>
+  <% @friends.each do |friend| %>
+    <li><%= friend.username %></li>
+  <% end %>
+</ul>

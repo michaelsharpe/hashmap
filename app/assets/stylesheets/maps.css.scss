@@ -170,6 +170,9 @@
 
 .user-show {
   @extend .geomarker-show;
+  ul {
+    list-style: none;
+  }
 }
 
 #blank_iframe {
