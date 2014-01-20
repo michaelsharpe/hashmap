@@ -11,3 +11,12 @@ function removeUserProfile(){
     $(".user-show").remove();
   }
 }
+
+function acceptFriendship(friendshipID){
+  $.ajax({
+    type: "PATCH",
+    url: "/friendships/" + friendshipID,
+    dataType: "script",
+    data: { accepted: true }
+  });
+}

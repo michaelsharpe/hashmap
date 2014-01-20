@@ -5,9 +5,18 @@ $("#closeShowButton").on("click", function(){
   $("#user").trigger("click");
 });
 
-$(".friendProfileButton").on("click", function(){
+$(".friendsList").on("click", ".friendProfileButton", function(e){
   var id = $(this).attr("data-id");
   removeUserProfile();
   getUserProfile(id);
-  return false
+  e.stopPropagation();
+});
+
+$(".acceptFriendshipButton").on("click", function(){
+  var id = $(this).attr("data-id");
+  acceptFriendship(id);
+  $(this).parent().remove();
+  if ($(".requestList li").length == 0){
+    $(".requestList").remove();
+  }
 });

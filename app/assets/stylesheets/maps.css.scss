@@ -173,6 +173,10 @@
   ul {
     list-style: none;
   }
+  .acceptFriendshipButton {
+    @extend .button;
+    @extend .tiny;
+  }
 }
 
 #blank_iframe {

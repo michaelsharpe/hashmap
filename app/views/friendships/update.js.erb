@@ -1,0 +1,4 @@
+<% if params[:accepted] %>
+  $(".friendsList").empty();
+  $(".friendsList").append("<%= j render 'users/friends' %>");
+<% end %>

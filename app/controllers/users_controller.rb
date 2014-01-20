@@ -14,7 +14,6 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @friends = all_friends(params[:id])
     respond_to do |format|
       format.js
       format.html
@@ -24,16 +23,5 @@ class UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:username, :email, :password, :password_confirmation)
-  end
-
-  def all_friends(userid)
-    friend_list = []
-    Friendship.where("user_id = ?", userid).each do |friend|
-      friend_list << User.find(friend.friend_id)
-    end
-    Friendship.where("friend_id = ?", userid).each do |friend|
-      friend_list << User.find(friend.user_id)
-    end
-    friend_list
   end
 end
