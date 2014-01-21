@@ -1,11 +1,17 @@
 clearViews();
-$(".form-container").append("<div class='user-show'><%= j render 'users/show' %></div>");
+disableMap();
+$(".form-container").append("<div class='user-show' data-id='<%= @user.id %>'><%= j render 'users/show' %></div>");
 
 $("#closeShowButton").on("click", function(){
-  $("#user").trigger("click");
+  if(profileView){
+    $("#user").trigger("click");
+  } else {
+    clearViews();
+    enableMap();
+  }
 });
 
-$(".friendsList").on("click", ".friendProfileButton", function(e){
+$(".friendSection").on("click", ".friendProfileButton", function(e){
   var id = $(this).attr("data-id");
   removeUserProfile();
   getUserProfile(id);
@@ -22,7 +28,7 @@ $(".acceptFriendshipButton").on("click", function(e){
   e.stopPropagation();
 });
 
-$(".ignoreRequestButton").on("click", function(e){
+$("#ignoreRequestButton").on("click", function(e){
   var id = $(this).parent().attr("data-request-id");
   ignoreFriendship(id);
   $(this).parent().remove();

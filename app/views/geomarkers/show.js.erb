@@ -48,3 +48,9 @@ $("#comment-display").on("click", ".deleteCommentButton", function(e){
   }
   e.stopPropagation();
 });
+
+$(".friendProfileButton").on("click", function(e){
+  var id = $(this).attr("data-id");
+  getUserProfile(id);
+  e.stopPropagation();
+});

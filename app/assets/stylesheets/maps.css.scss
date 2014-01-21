@@ -144,11 +144,7 @@
   ul {
     list-style: none;
   }
-  .acceptFriendshipButton {
-    @extend .button;
-    @extend .tiny;
-  }
-  .ignoreRequestButton {
+  .friendshipButton {
     @extend .button;
     @extend .tiny;
   }

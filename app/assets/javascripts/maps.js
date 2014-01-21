@@ -211,9 +211,9 @@ function getLastGeomarkerCreatedByUser(){
 function clearViews(){
   removeGeomarkerShow();
   removeGeomarkerForm();
+  removeUserProfile();
   removeIFrame();
   endNewMarkerMode();
-  disableMap();
 }
 
 function removeGeomarkerShow(){

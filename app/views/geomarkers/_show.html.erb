@@ -31,7 +31,7 @@
 <% end %>
 <br>
 <!-- Display tags -->
-<p>Created by: <%= @user.username %></p>
+<p>Created by: <a class="friendProfileButton" href="#" data-id="<%= @user.id %>"><%= @user.username %></a></p>
 <% if @geomarker.tags.any? %>
  <p>Tags: <span class="tag-list"><%= @geomarker.tag_list %></span> </p>
 <% end %>

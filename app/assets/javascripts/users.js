@@ -12,6 +12,18 @@ function removeUserProfile(){
   }
 }
 
+function requestFriendship(friendID){
+  $.ajax({
+    type: "POST",
+    url: "/friendships",
+    dataType: "script",
+    data: { friendship: {
+      user_id: current_user_id,
+      friend_id: friendID }
+    }
+  });
+}
+
 function acceptFriendship(friendshipID){
   $.ajax({
     type: "PATCH",

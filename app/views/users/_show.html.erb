@@ -2,30 +2,49 @@
   <li>
       <input id="closeShowButton" type="button" value="Close"/>
   </li>
+  <% if current_user.id != @user.id && @user.not_connected?(current_user.id) %>
+    <li>
+      <input id="friendRequestButton" class="friendshipButton"  type="button" value="Add Friend"/>
+    </li>
+  <% elsif current_user.id != @user.id && @user.friends?(current_user.id) %>
+    <li>
+      <input id="friendshipOptionButton" class="friendshipButton" type="button" value="Friends"/>
+    </li>
+  <% elsif current_user.id != @user.id && current_user.request_pending?(@user.id) %>
+    <li>
+      <input id="acceptFriendshipButton" class="friendshipButton" type="button" value="Accept Friendship"/>
+    </li>
+  <% elsif current_user.id != @user.id && @user.request_pending?(current_user.id) %>
+    <li>
+      <input id="requestPendingButton" class="friendshipButton" type="button" value="Friend Request Pending"/>
+    </li>
+  <% end %>
 </ul>
 <hr>
 <h1><%= @user.username %></h1>
 <p><span>Email:</span> <%= @user.email %></p>
 <hr>
 <!-- Friend Requests -->
-<% unless @user.friend_requests.empty? %>
-  <div class="requestList">
-    <h4>You have friend requests from:</h4>
-    <ul class="requests">
-      <% @user.friend_requests.each do |request| %>
-        <li class="request" data-request-id="<%= request[0] %>"><a class="friendProfileButton" href="#" data-id="<%= request[1].id %>"><%= request[1].username %></a>  <a class="acceptFriendshipButton" href="#">Accept Request</a>  <a class="ignoreRequestButton" href="#">Ignore</a></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
-<!-- Friends List -->
-<h4>
-  <% if current_user.id == @user.id %>
-    Your Friends
-  <% else %>
-    <%= @user.username %>'s Friends
+<div class="friendSection">
+  <% unless @user.friend_requests.empty? || current_user != @user %>
+    <div class="requestList">
+      <h4>You have friend requests from:</h4>
+      <ul class="requests">
+        <% @user.friend_requests.each do |request| %>
+          <li class="request" data-request-id="<%= request[0] %>"><a class="friendProfileButton" href="#" data-id="<%= request[1].id %>"><%= request[1].username %></a>  <a class="acceptFriendshipButton friendshipButton"  href="#">Accept Request</a>  <a id="ignoreRequestButton" class="friendshipButton" href="#">Ignore</a></li>
+        <% end %>
+      </ul>
+    </div>
   <% end %>
-</h4>
-<ul class="friendsList">
-  <%= render "friends" %>
-</ul>
+  <!-- Friends List -->
+  <h4>
+    <% if current_user == @user %>
+      Your Friends
+    <% else %>
+      <%= @user.username %>'s Friends
+    <% end %>
+  </h4>
+  <ul class="friendsList">
+    <%= render "friends" %>
+  </ul>
+</div>

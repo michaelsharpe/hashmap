@@ -1,4 +1,20 @@
 class FriendshipsController < ApplicationController
+  def create
+    @friendship = Friendship.new(friendship_params)
+    if @friendship.save
+      respond_to do |format|
+        format.html
+        format.js
+      end
+    else
+      respond_to do |format|
+        format.html
+        format.js
+      end
+    end
+
+  end
+
   def update
     @friendship = Friendship.find(params[:id])
     @user = current_user
@@ -12,5 +28,10 @@ class FriendshipsController < ApplicationController
       format.html
       format.js
     end
+  end
+
+  private
+  def friendship_params
+    params.require(:friendship).permit(:user_id, :friend_id)
   end
 end
