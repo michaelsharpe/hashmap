@@ -24,12 +24,14 @@ function requestFriendship(friendID){
   });
 }
 
-function acceptFriendship(friendshipID){
+function acceptFriendship(friendshipID, ownProfile){
   $.ajax({
     type: "PATCH",
     url: "/friendships/" + friendshipID,
     dataType: "script",
-    data: { accepted: true }
+    data: {
+      accepted: true,
+      own_profile: ownProfile }
   });
 }
 

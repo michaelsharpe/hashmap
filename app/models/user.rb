@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   def friend_requests
     request_list = []
     Friendship.where("friend_id = ? and accepted = ? and ignored = ?", self.id, false, false).each do |request|
-      request_list << [request.id, User.find(request.user_id)]
+      request_list << User.find(request.user_id)
     end
     request_list
   end
@@ -58,5 +58,10 @@ class User < ActiveRecord::Base
       request_list << User.find(request.user_id)
     end
     request_list.include?(User.find(current_user_id))
+  end
+
+  def request_id(user)
+    request = Friendship.where("friend_id = ? and user_id = ? and accepted = ?", self.id, user.id, false)[0]
+    request.id
   end
 end

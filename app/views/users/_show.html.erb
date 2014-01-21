@@ -9,8 +9,8 @@
       <% elsif @user.friends?(current_user.id) %>
           <input id="friendshipOptionButton" class="friendshipButton" type="button" value="Friends"/>
       <% elsif current_user.request_pending?(@user.id) %>
-          <input id="acceptFriendshipButton" class="friendshipButton" type="button" value="Accept Friendship"/>
-      <% elsif @user.request_pending?(current_user.id) %>
+          <input id="acceptFriendshipButtonTop" class="friendshipButton" type="button" data-request-id="<%= current_user.request_id(@user) %>" value="Accept Friendship"/>
+      <% elsif @user.request_pending?(current_user) %>
           <input id="requestPendingButton" class="friendshipButton" type="button" value="Friend Request Pending"/>
       <% end %>
     </li>
@@ -26,8 +26,8 @@
     <div class="requestList">
       <h4>You have friend requests from:</h4>
       <ul class="requests">
-        <% @user.friend_requests.each do |request| %>
-          <li class="request" data-request-id="<%= request[0] %>"><a class="friendProfileButton" href="#" data-id="<%= request[1].id %>"><%= request[1].username %></a>  <a class="acceptFriendshipButton friendshipButton"  href="#">Accept Request</a>  <a id="ignoreRequestButton" class="friendshipButton" href="#">Ignore</a></li>
+        <% @user.friend_requests.each do |friend| %>
+          <li class="request"><a class="friendProfileButton" href="#" data-id="<%= friend.id %>"><%= friend.username %></a>  <a id="acceptFriendshipButton" class="friendshipButton"  href="#" data-request-id="<%= @user.request_id(friend) %>">Accept Request</a>  <a id="ignoreRequestButton" class="friendshipButton" href="#">Ignore</a></li>
         <% end %>
       </ul>
     </div>

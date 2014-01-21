@@ -6,7 +6,7 @@ $("#closeShowButton").on("click", function(){
   if(profileView){
     $("#user").trigger("click");
   } else {
-    clearViews();
+    removeUserProfile();
     enableMap();
   }
 });
@@ -18,13 +18,21 @@ $(".friendSection").on("click", ".friendProfileButton", function(e){
   e.stopPropagation();
 });
 
-$(".acceptFriendshipButton").on("click", function(e){
-  var id = $(this).parent().attr("data-request-id");
-  acceptFriendship(id);
+$("#acceptFriendshipButton").on("click", function(e){
+  var id = $(this).attr("data-request-id");
+  acceptFriendship(id, true);
   $(this).parent().remove();
   if ($(".requestList li").length == 0){
     $(".requestList").remove();
   }
+  e.stopPropagation();
+});
+
+$(".showOptions").on("click", "#acceptFriendshipButtonTop", function(e){
+  var id = $(this).attr("data-request-id");
+  acceptFriendship(id, false);
+  $(this).parent().append('<input id="friendshipOptionButton" class="friendshipButton" type="button" value="Friends"/>');
+  $(this).remove();
   e.stopPropagation();
 });
 
@@ -36,4 +44,8 @@ $("#ignoreRequestButton").on("click", function(e){
     $(".requestList").remove();
   }
   e.stopPropagation();
+});
+
+$("#friendRequestButton").on("click", function(e){
+  var id = $
 });
