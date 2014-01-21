@@ -123,6 +123,7 @@ function loadTag(tag) {
   $("[data-tag = '" + tag + "']").slideDown(400, function(){
     $(this).siblings(".tag-form").find("form")[0].reset()
   })
+  activateSortable();
 }
 
 // Control flow for left menu button
