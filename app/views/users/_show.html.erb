@@ -2,21 +2,17 @@
   <li>
       <input id="closeShowButton" type="button" value="Close"/>
   </li>
-  <% if current_user.id != @user.id && @user.not_connected?(current_user.id) %>
+  <% if current_user != @user %>
     <li>
-      <input id="friendRequestButton" class="friendshipButton"  type="button" value="Add Friend"/>
-    </li>
-  <% elsif current_user.id != @user.id && @user.friends?(current_user.id) %>
-    <li>
-      <input id="friendshipOptionButton" class="friendshipButton" type="button" value="Friends"/>
-    </li>
-  <% elsif current_user.id != @user.id && current_user.request_pending?(@user.id) %>
-    <li>
-      <input id="acceptFriendshipButton" class="friendshipButton" type="button" value="Accept Friendship"/>
-    </li>
-  <% elsif current_user.id != @user.id && @user.request_pending?(current_user.id) %>
-    <li>
-      <input id="requestPendingButton" class="friendshipButton" type="button" value="Friend Request Pending"/>
+      <% if @user.not_connected?(current_user.id) %>
+          <input id="friendRequestButton" class="friendshipButton"  type="button" value="Add Friend"/>
+      <% elsif @user.friends?(current_user.id) %>
+          <input id="friendshipOptionButton" class="friendshipButton" type="button" value="Friends"/>
+      <% elsif current_user.request_pending?(@user.id) %>
+          <input id="acceptFriendshipButton" class="friendshipButton" type="button" value="Accept Friendship"/>
+      <% elsif @user.request_pending?(current_user.id) %>
+          <input id="requestPendingButton" class="friendshipButton" type="button" value="Friend Request Pending"/>
+      <% end %>
     </li>
   <% end %>
 </ul>
