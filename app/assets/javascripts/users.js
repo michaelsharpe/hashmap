@@ -43,3 +43,15 @@ function ignoreFriendship(friendshipID){
     data: { ignored: true }
   });
 }
+
+function destroyFriendship(friendshipID){
+  $.ajax({
+    type: "DELETE",
+    url: "/friendships/" + friendshipID,
+    dataType: "script"
+  }).done(function(){
+    $("#friendshipOptionButton").remove();
+    $("#friendDropMenu").remove();
+    $(".showOptions").append('<input id="friendRequestButton" class="friendshipButton"  type="button" value="Add Friend"/>');
+  });
+}

@@ -1,6 +1,6 @@
 clearViews();
 disableMap();
-$(".form-container").append("<div class='user-show' data-id='<%= @user.id %>'><%= j render 'users/show' %></div>");
+$(".form-container").append("<div class='user-show'><%= j render 'users/show' %></div>");
 
 $("#closeShowButton").on("click", function(){
   if(profileView){
@@ -37,7 +37,7 @@ $(".showOptions").on("click", "#acceptFriendshipButtonTop", function(e){
 });
 
 $(".showOptions").on("click", "#friendRequestButton", function(e){
-  var id = $(this).attr("data-id");
+  var id = $(".showOptions").attr("data-id");
   requestFriendship(id);
   $(this).parent().append('<input id="requestPendingButton" class="friendshipButton" type="button" value="Friend Request Pending"/>');
   $(this).remove()
@@ -54,7 +54,7 @@ $("#ignoreRequestButton").on("click", function(e){
   e.stopPropagation();
 });
 
-$("#friendshipOptionButton").on("click", function(e){
+$(".showOptions").on("click", "#friendshipOptionButton", function(e){
   if ($("#friendDropMenu").is(":hidden")){
     $("#friendDropMenu").slideDown("fast");
     e.stopPropagation();
@@ -64,4 +64,11 @@ $(document).on("click", function(){
   if ($("#friendDropMenu").is(":visible")){
     $("#friendDropMenu").slideUp("fast");
   }
+});
+
+$(".showOptions").on("click", ".unfriend", function(e){
+  var id = $(this).attr("data-friendship-id");
+  destroyFriendship(id);
+
+  e.stopPropagation();
 });

@@ -60,4 +60,13 @@ class User < ActiveRecord::Base
     request = Friendship.where("friend_id = ? and user_id = ? and accepted = ?", self.id, user.id, false)[0]
     request.id
   end
+
+  def friendship_id(user)
+    if Friendship.where("friend_id = ? and user_id = ? and accepted = ?", self.id, user.id, true)[0]
+      friendship = Friendship.where("friend_id = ? and user_id = ? and accepted = ?", self.id, user.id, true)[0]
+    else
+      friendship = Friendship.where("friend_id = ? and user_id = ? and accepted = ?", user.id, self.id, true)[0]
+    end
+    friendship.id
+  end
 end

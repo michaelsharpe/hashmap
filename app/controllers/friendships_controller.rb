@@ -31,6 +31,16 @@ class FriendshipsController < ApplicationController
     end
   end
 
+  def destroy
+    @friendship = Friendship.find(params[:id])
+    @friendship.destroy
+
+    respond_to do |format|
+      format.js
+      format.html
+    end
+  end
+
   private
   def friendship_params
     params.require(:friendship).permit(:user_id, :friend_id)
