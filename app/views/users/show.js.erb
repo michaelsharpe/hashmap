@@ -39,7 +39,6 @@ $(".showOptions").on("click", "#acceptFriendshipButtonTop", function(e){
 $(".showOptions").on("click", "#friendRequestButton", function(e){
   var id = $(".showOptions").attr("data-id");
   requestFriendship(id);
-  $(this).parent().append('<a id="requestPendingButton" class="friendshipButton">Friend Request Pending</a>\n<ul id="requestDropMenu"><li><a class="cancelRequest" data-request-id="<%= @user.request_id(current_user) %>" href="#">Cancel Request</a></li></ul>');
 
   $(this).remove()
   e.stopPropagation();
