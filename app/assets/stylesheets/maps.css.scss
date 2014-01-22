@@ -209,12 +209,14 @@
   li:hover {
     background-color: #ccc;
   }
-  li:first-child {
-    border-bottom: none;
-  }
-  li:last-child {
-    border-top: none;
-  }
+}
+
+#optionsMenu li:first-child {
+  border-bottom: none;
+}
+
+#optionsMenu li:last-child {
+  border-top: none;
 }
 
 #closeShowButton {
@@ -278,20 +280,21 @@
   @extend .postfix;
 }
 
-#friendshipOptionButton {
+#friendshipOptionButton, #requestPendingButton {
   margin-bottom: 0;
 }
 
-#friendDropMenu {
+#friendDropMenu, #requestDropMenu {
   @extend #optionsMenu;
-  li:first-child {
-    border-bottom: none;
+  li:last-child{
+    border-bottom: 1px solid #999;
   }
-  li:nth-child(2) {
-    border-top: none;
-    border-bottom: none;
-  }
-  li:last-child {
-    border-top: none;
-  }
+}
+
+#requestDropMenu ul {
+  float: right;
+}
+
+#requestDropMenu li {
+    width: 159px;
 }

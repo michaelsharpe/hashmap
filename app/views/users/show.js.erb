@@ -39,7 +39,8 @@ $(".showOptions").on("click", "#acceptFriendshipButtonTop", function(e){
 $(".showOptions").on("click", "#friendRequestButton", function(e){
   var id = $(".showOptions").attr("data-id");
   requestFriendship(id);
-  $(this).parent().append('<input id="requestPendingButton" class="friendshipButton" type="button" value="Friend Request Pending"/>');
+  $(this).parent().append('<a id="requestPendingButton" class="friendshipButton">Friend Request Pending</a>\n<ul id="requestDropMenu"><li><a class="cancelRequest" data-request-id="<%= @user.request_id(current_user) %>" href="#">Cancel Request</a></li></ul>');
+
   $(this).remove()
   e.stopPropagation();
 });
@@ -66,9 +67,34 @@ $(document).on("click", function(){
   }
 });
 
+$(".showOptions").on("click", "#requestPendingButton", function(e){
+  if ($("#requestDropMenu").is(":hidden")){
+    $("#requestDropMenu").slideDown("fast");
+    e.stopPropagation();
+  };
+});
+$(document).on("click", function(){
+  if ($("#requestDropMenu").is(":visible")){
+    $("#requestDropMenu").slideUp("fast");
+  }
+});
+
 $(".showOptions").on("click", ".unfriend", function(e){
   var id = $(this).attr("data-friendship-id");
   destroyFriendship(id);
+  $("#friendshipOptionButton").remove();
+  $("#friendDropMenu").remove();
+  $(".showOptions").append('<a id="friendRequestButton" class="friendshipButton">Add Friend</a>');
+
+  e.stopPropagation();
+});
+
+$(".showOptions").on("click", ".cancelRequest", function(e){
+  var id = $(this).attr("data-request-id");
+  destroyFriendship(id);
+  $("#requestPendingButton").remove();
+  $("#requestDropMenu").remove();
+  $(".showOptions").append('<a id="friendRequestButton" class="friendshipButton">Add Friend</a>');
 
   e.stopPropagation();
 });
