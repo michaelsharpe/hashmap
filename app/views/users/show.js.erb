@@ -18,7 +18,7 @@ $(".friendSection").on("click", ".friendProfileButton", function(e){
   e.stopPropagation();
 });
 
-$("#acceptFriendshipButton").on("click", function(e){
+$(".requests").on("click", "#acceptFriendshipButton", function(e){
   var id = $(this).attr("data-request-id");
   acceptFriendship(id, true);
   $(this).parent().remove();
@@ -42,7 +42,7 @@ $(".showOptions").on("click", "#friendRequestButton", function(e){
   e.stopPropagation();
 });
 
-$("#ignoreRequestButton").on("click", function(e){
+$(".requests").on("click", "#ignoreRequestButton", function(e){
   var id = $(this).parent().attr("data-request-id");
   ignoreFriendship(id);
   $(this).parent().remove();
