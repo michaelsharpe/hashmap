@@ -4,7 +4,7 @@
         <input id="closeShowButton" type="button" value="Close"/>
     </li>
     <% if current_user != @user %>
-      <li>
+      <li class="friendshipOptions">
         <% if @user.not_connected?(current_user.id) %>
             <a id="friendRequestButton" class="friendshipButton">Add Friend</a>
         <% elsif @user.friends?(current_user.id) %>
