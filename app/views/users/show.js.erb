@@ -31,16 +31,14 @@ $("#acceptFriendshipButton").on("click", function(e){
 $(".showOptions").on("click", "#acceptFriendshipButtonTop", function(e){
   var id = $(this).attr("data-request-id");
   acceptFriendship(id, false);
-  $(this).parent().append('<input id="friendshipOptionButton" class="friendshipButton" type="button" value="Friends"/>');
   $(this).remove();
   e.stopPropagation();
 });
 
 $(".showOptions").on("click", "#friendRequestButton", function(e){
+  $(this).remove();
   var id = $(".showOptions").attr("data-id");
   requestFriendship(id);
-
-  $(this).remove()
   e.stopPropagation();
 });
 

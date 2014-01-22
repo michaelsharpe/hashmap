@@ -2,3 +2,7 @@
   $(".friendsList").empty();
   $(".friendsList").append("<%= j render 'users/friends' %>");
 <% end %>
+
+<% if params[:own_profile] == "false" %>
+  $(".showOptions").append('<a id="friendshipOptionButton" class="friendshipButton">Friends</a><br><ul id="friendDropMenu"><li><a class="unfriend" data-friendship-id="<%= current_user.friendship_id(@user) %>" href="#">Unfriend</a></li></ul>');
+<% end %>
