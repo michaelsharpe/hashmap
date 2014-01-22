@@ -2,13 +2,13 @@ $(".form-container").append("<div class='geomarker-show' data-id='<%= @geomarker
 
 $("#optionsButton").on("click", function(e){
   if ($("#optionsMenu").is(":hidden")){
-    $("#optionsMenu").slideDown("slow");
+    $("#optionsMenu").slideDown("fast");
     e.stopPropagation();
   };
 });
 $(document).on("click", function(){
   if ($("#optionsMenu").is(":visible")){
-    $("#optionsMenu").slideUp();
+    $("#optionsMenu").slideUp("fast");
   }
 });
 
@@ -30,7 +30,7 @@ $("#closeShowButton").on("click", function(){
 });
 
 $("#addTagButton").on("click", function(){
-  $(".new-tag-bar").slideToggle("slow")
+  $(".new-tag-bar").slideToggle("slow");
 });
 
 $("#tagSubmit").on("click", function(){
@@ -46,5 +46,11 @@ $("#comment-display").on("click", ".deleteCommentButton", function(e){
   if ($.trim($("#comment-display").html()) == ""){
     $("#comment-header").text("Be the first to comment.");
   }
+  e.stopPropagation();
+});
+
+$(".friendProfileButton").on("click", function(e){
+  var id = $(this).attr("data-id");
+  getUserProfile(id);
   e.stopPropagation();
 });

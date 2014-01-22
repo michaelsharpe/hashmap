@@ -90,35 +90,6 @@
     padding: 1em;
   }
   @media only screen and (max-height: 40em) {
-    top: 5%;
-  }
-  @media only screen and (min-height: 40em) {
-    top: 12.5%;
-  }
-  border: 1px solid black;
-  border-radius: 7px;
-  z-index: 1001;
-  background-color: #fff;
-  text-align: center;
-  overflow: scroll;
-}
-.geomarker-edit {
-  @extend .large-5;
-  @extend .medium-6;
-  @extend .small-12;
-  @extend .large-centered;
-  @extend .medium-centered;
-  @extend .small-centered;
-  @extend .columns;
-  @media only screen and (min-width: 40em) {
-    max-height: 90%;
-    padding: 2em;
-  }
-  @media only screen and (max-width: 40em) {
-    max-height: 100%;
-    padding: 1em;
-  }
-  @media only screen and (max-height: 40em) {
     top: 1%;
   }
   @media only screen and (min-height: 40em) {
@@ -168,6 +139,17 @@
   }
 }
 
+.user-show {
+  @extend .geomarker-show;
+  ul {
+    list-style: none;
+  }
+  .friendshipButton {
+    @extend .button;
+    @extend .tiny;
+  }
+}
+
 #blank_iframe {
   display: none;
   height: 0;
@@ -211,7 +193,7 @@
 }
 
 #optionsMenu {
-  z-index: 120;
+  z-index: 1001;
   display: none;
   list-style: none;
   position: absolute;
@@ -224,12 +206,17 @@
     border: 1px solid #999;
     width: 78px;
   }
-  li:first-child {
-    border-bottom: 1px solid #999;
+  li:hover {
+    background-color: #ccc;
   }
-  li:last-child {
-    border-top: none;
-  }
+}
+
+#optionsMenu li:first-child {
+  border-bottom: none;
+}
+
+#optionsMenu li:last-child {
+  border-top: none;
 }
 
 #closeShowButton {
@@ -291,4 +278,19 @@
   @extend .button;
   @extend .tiny;
   @extend .postfix;
+}
+
+#friendshipOptionButton, #requestPendingButton {
+  margin-bottom: 0;
+}
+
+#friendDropMenu, #requestDropMenu {
+  @extend #optionsMenu;
+  li:last-child{
+    border-bottom: 1px solid #999;
+  }
+}
+
+#requestDropMenu li {
+  width: 159px;
 }

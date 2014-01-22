@@ -1,0 +1,3 @@
+<% @user.all_friends.each do |friend| %>
+  <li><a class="friendProfileButton" href="#" data-id="<%= friend.id %>"><%= friend.username %></a></li>
+<% end %>

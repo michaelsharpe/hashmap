@@ -1,0 +1,8 @@
+<% if params[:accepted] %>
+  $(".friendsList").empty();
+  $(".friendsList").append("<%= j render 'users/friends' %>");
+<% end %>
+
+<% if params[:own_profile] == "false" %>
+  $(".friendshipOptions").append('<a id="friendshipOptionButton" class="friendshipButton">Friends</a><ul id="friendDropMenu"><li><a class="unfriend" data-friendship-id="<%= current_user.friendship_id(@user) %>" href="#">Unfriend</a></li></ul>');
+<% end %>

@@ -1,0 +1,97 @@
+clearViews();
+disableMap();
+$(".form-container").append("<div class='user-show'><%= j render 'users/show' %></div>");
+
+$("#closeShowButton").on("click", function(){
+  if(profileView){
+    $("#user").trigger("click");
+  } else {
+    removeUserProfile();
+    enableMap();
+  }
+});
+
+$(".friendSection").on("click", ".friendProfileButton", function(e){
+  var id = $(this).attr("data-id");
+  removeUserProfile();
+  getUserProfile(id);
+  e.stopPropagation();
+});
+
+$(".requests").on("click", "#acceptFriendshipButton", function(e){
+  var id = $(this).attr("data-request-id");
+  acceptFriendship(id, true);
+  $(this).parent().remove();
+  if ($(".requestList li").length == 0){
+    $(".requestList").remove();
+  }
+  e.stopPropagation();
+});
+
+$(".showOptions").on("click", "#acceptFriendshipButtonTop", function(e){
+  var id = $(this).attr("data-request-id");
+  acceptFriendship(id, false);
+  $(this).remove();
+  e.stopPropagation();
+});
+
+$(".showOptions").on("click", "#friendRequestButton", function(e){
+  $(this).remove();
+  var id = $(".showOptions").attr("data-id");
+  requestFriendship(id);
+  e.stopPropagation();
+});
+
+$(".requests").on("click", "#ignoreRequestButton", function(e){
+  var id = $(this).parent().attr("data-request-id");
+  ignoreFriendship(id);
+  $(this).parent().remove();
+  if ($(".requestList li").length == 0){
+    $(".requestList").remove();
+  }
+  e.stopPropagation();
+});
+
+$(".showOptions").on("click", "#friendshipOptionButton", function(e){
+  if ($("#friendDropMenu").is(":hidden")){
+    $("#friendDropMenu").slideDown("fast");
+    e.stopPropagation();
+  };
+});
+$(document).on("click", function(){
+  if ($("#friendDropMenu").is(":visible")){
+    $("#friendDropMenu").slideUp("fast");
+  }
+});
+
+$(".showOptions").on("click", "#requestPendingButton", function(e){
+  if ($("#requestDropMenu").is(":hidden")){
+    $("#requestDropMenu").slideDown("fast");
+    e.stopPropagation();
+  };
+});
+$(document).on("click", function(){
+  if ($("#requestDropMenu").is(":visible")){
+    $("#requestDropMenu").slideUp("fast");
+  }
+});
+
+$(".showOptions").on("click", ".unfriend", function(e){
+  var id = $(this).attr("data-friendship-id");
+  destroyFriendship(id);
+  $("#friendshipOptionButton").remove();
+  $("#friendDropMenu").remove();
+  $(".friendshipOptions").append('<a id="friendRequestButton" class="friendshipButton">Add Friend</a>');
+
+  e.stopPropagation();
+});
+
+$(".showOptions").on("click", ".cancelRequest", function(e){
+  var id = $(this).attr("data-request-id");
+  destroyFriendship(id);
+  $("#requestPendingButton").remove();
+  $("#requestDropMenu").remove();
+  $(".friendshipOptions").append('<a id="friendRequestButton" class="friendshipButton">Add Friend</a>');
+
+  e.stopPropagation();
+});

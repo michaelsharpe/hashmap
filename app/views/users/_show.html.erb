@@ -1,0 +1,58 @@
+<nav>
+  <ul class="showOptions" data-id="<%= @user.id %>">
+    <li>
+        <a id="closeShowButton">Close</a>
+    </li>
+    <% if current_user != @user %>
+      <li class="friendshipOptions">
+        <% if @user.not_connected?(current_user.id) %>
+            <a id="friendRequestButton" class="friendshipButton">Add Friend</a>
+        <% elsif @user.friends?(current_user.id) %>
+            <a id="friendshipOptionButton" class="friendshipButton">Friends</a>
+            <ul id="friendDropMenu">
+              <li>
+                <a class="unfriend" data-friendship-id="<%= current_user.friendship_id(@user) %>" href="#">Unfriend</a>
+              </li>
+            </ul>
+        <% elsif current_user.request_pending?(@user.id) %>
+            <a id="acceptFriendshipButtonTop" class="friendshipButton" data-request-id="<%= current_user.request_id(@user) %>">Accept Friendship</a>
+        <% elsif @user.request_pending?(current_user) %>
+            <a id="requestPendingButton" class="friendshipButton">Friend Request Pending</a>
+            <ul id="requestDropMenu">
+              <li>
+                <a class="cancelRequest" data-request-id="<%= @user.request_id(current_user) %>" href="#">Cancel Request</a>
+              </li>
+            </ul>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</nav>
+<hr>
+<h1><%= @user.username %></h1>
+<p><span>Email:</span> <%= @user.email %></p>
+<hr>
+<!-- Friend Requests -->
+<div class="friendSection">
+  <% unless @user.friend_requests.empty? || current_user != @user %>
+    <div class="requestList">
+      <h4>You have friend requests from:</h4>
+      <ul class="requests">
+        <% @user.friend_requests.each do |friend| %>
+          <li class="request"><a class="friendProfileButton" href="#" data-id="<%= friend.id %>"><%= friend.username %></a><a id="acceptFriendshipButton" class="friendshipButton"  href="#" data-request-id="<%= @user.request_id(friend) %>">Accept Request</a><a id="ignoreRequestButton" class="friendshipButton" href="#">Ignore</a></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <!-- Friends List -->
+  <h4>
+    <% if current_user == @user %>
+      Your Friends
+    <% else %>
+      <%= @user.username %>'s Friends
+    <% end %>
+  </h4>
+  <ul class="friendsList">
+    <%= render "friends" %>
+  </ul>
+</div>

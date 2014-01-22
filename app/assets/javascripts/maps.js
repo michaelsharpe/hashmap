@@ -113,12 +113,14 @@ function newMarkerMode(){
 }
 
 function endNewMarkerMode(){
-  $("#newMarkerButton").remove();
-  map.removeLayer(tempMarker);
-  tempMarker = undefined;
-  for (var i = 0; i < markers.length; i++){
-    if (markers[i]){
-      markers[i].setOpacity(1);
+  if(newMarkerModeOn){
+    $("#newMarkerButton").remove();
+    map.removeLayer(tempMarker);
+    tempMarker = undefined;
+    for (var i = 0; i < markers.length; i++){
+      if (markers[i]){
+        markers[i].setOpacity(1);
+      }
     }
   }
 }
@@ -156,13 +158,6 @@ function getGeomarkerForm(lat, lng){
       longitude: lng
     }}    
   });
-}
-
-function quitGeomarkerForm(){
-  $(".geomarker-form").remove();
-  if (newMarkerModeOn) {
-    endNewMarkerMode();
-  }
 }
 
 function removeIFrame(){
@@ -213,15 +208,23 @@ function getLastGeomarkerCreatedByUser(){
   });
 }
 
+function clearViews(){
+  removeGeomarkerShow();
+  removeGeomarkerForm();
+  removeUserProfile();
+  removeIFrame();
+  endNewMarkerMode();
+}
+
 function removeGeomarkerShow(){
   if ($(".geomarker-show")) {  
     $(".geomarker-show").remove();
   }
 }
 
-function removeGeomarkerEdit(){
-  if ($(".geomarker-edit")) {
-    $(".geomarker-edit").remove();
+function removeGeomarkerForm(){
+  if ($(".geomarker-form")) {
+    $(".geomarker-form").remove();
   }
 }
 
