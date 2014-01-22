@@ -81,7 +81,7 @@ $(".showOptions").on("click", ".unfriend", function(e){
   destroyFriendship(id);
   $("#friendshipOptionButton").remove();
   $("#friendDropMenu").remove();
-  $(".showOptions").append('<a id="friendRequestButton" class="friendshipButton">Add Friend</a>');
+  $(".friendshipOptions").append('<a id="friendRequestButton" class="friendshipButton">Add Friend</a>');
 
   e.stopPropagation();
 });
@@ -91,7 +91,7 @@ $(".showOptions").on("click", ".cancelRequest", function(e){
   destroyFriendship(id);
   $("#requestPendingButton").remove();
   $("#requestDropMenu").remove();
-  $(".showOptions").append('<a id="friendRequestButton" class="friendshipButton">Add Friend</a>');
+  $(".friendshipOptions").append('<a id="friendRequestButton" class="friendshipButton">Add Friend</a>');
 
   e.stopPropagation();
 });

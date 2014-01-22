@@ -1,14 +1,14 @@
 <nav>
   <ul class="showOptions" data-id="<%= @user.id %>">
     <li>
-        <input id="closeShowButton" type="button" value="Close"/>
+        <a id="closeShowButton">Close</a>
     </li>
     <% if current_user != @user %>
       <li class="friendshipOptions">
         <% if @user.not_connected?(current_user.id) %>
             <a id="friendRequestButton" class="friendshipButton">Add Friend</a>
         <% elsif @user.friends?(current_user.id) %>
-            <a id="friendshipOptionButton" class="friendshipButton">Friends</a><br>
+            <a id="friendshipOptionButton" class="friendshipButton">Friends</a>
             <ul id="friendDropMenu">
               <li>
                 <a class="unfriend" data-friendship-id="<%= current_user.friendship_id(@user) %>" href="#">Unfriend</a>
