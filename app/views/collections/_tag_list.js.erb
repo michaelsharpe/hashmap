@@ -1,5 +1,5 @@
 <% @collection.collectionTags.each do |tag| %>
-  <li data-tag="<%= tag.name %>" data-show="enabled"><a><i class="tag-eye fa fa-eye"></i><span><%= tag.name %></span></a></li>
+  <li data-tag="<%= tag.name %>" data-show="enabled" class="sortable-active"><a><span class='handle'><i class='fa fa-sort'></i></span><i class="tag-eye fa fa-eye"></i><span><%= tag.name %></span></a></li>
 <% end %>
 <li class="tag-form" style="display: none">
   <span>

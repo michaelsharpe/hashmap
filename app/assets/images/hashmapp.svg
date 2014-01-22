@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="713px" height="161px" viewBox="0 0 713 161" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <title>Collection UI sketch</title>
+    <description>Created with Sketch (http://www.bohemiancoding.com/sketch)</description>
+    <defs></defs>
+    <g id="Page-4" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="#-+-Oval-1-+-mapp-+-hash" sketch:type="MSLayerGroup" transform="translate(10.000000, 7.000000)">
+            <g>
+                <g id="#-+-Oval-1">
+                    <text id="#" sketch:type="MSTextLayer" font-family="Arial Rounded MT Bold" font-size="111.049938" font-weight="normal" fill="#FFFFFF">
+                        <tspan x="26" y="105">#</tspan>
+                    </text>
+                    <circle id="Oval-1" stroke="#FFFFFF" stroke-width="9" sketch:type="MSShapeGroup" cx="58" cy="67" r="58"></circle>
+                </g>
+                <text id="mapp" sketch:type="MSTextLayer" font-family="Multicolore " font-size="110.887701" font-weight="bold" fill="#FFFFFF">
+                    <tspan x="362" y="106">m</tspan>
+                    <tspan x="453.482353" y="106" font-size="120.128342">app</tspan>
+                </text>
+                <text id="hash" sketch:type="MSTextLayer" font-family="Avenir" font-size="111.212141" font-weight="686" fill="#FFBC4C">
+                    <tspan x="127" y="113">hash</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>
