@@ -54,6 +54,14 @@ $("#ignoreRequestButton").on("click", function(e){
   e.stopPropagation();
 });
 
-$("#friendRequestButton").on("click", function(e){
-  var id = $
+$("#friendshipOptionButton").on("click", function(e){
+  if ($("#friendDropMenu").is(":hidden")){
+    $("#friendDropMenu").slideDown("fast");
+    e.stopPropagation();
+  };
+});
+$(document).on("click", function(){
+  if ($("#friendDropMenu").is(":visible")){
+    $("#friendDropMenu").slideUp("fast");
+  }
 });

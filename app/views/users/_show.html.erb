@@ -7,7 +7,12 @@
       <% if @user.not_connected?(current_user.id) %>
           <input id="friendRequestButton" class="friendshipButton"  type="button" data-id="<%= @user.id %>" value="Add Friend"/>
       <% elsif @user.friends?(current_user.id) %>
-          <input id="friendshipOptionButton" class="friendshipButton" type="button" value="Friends"/>
+          <a id="friendshipOptionButton" class="friendshipButton">Friends</a><br>
+          <ul id="friendDropMenu">
+            <li><a href="#">Test</a></li>
+            <li><a href="#">Test2</a></li>
+            <li><a href="#">Unfriend</a></li>
+          </ul>
       <% elsif current_user.request_pending?(@user.id) %>
           <input id="acceptFriendshipButtonTop" class="friendshipButton" type="button" data-request-id="<%= current_user.request_id(@user) %>" value="Accept Friendship"/>
       <% elsif @user.request_pending?(current_user) %>

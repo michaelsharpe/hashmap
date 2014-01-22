@@ -193,7 +193,7 @@
 }
 
 #optionsMenu {
-  z-index: 120;
+  z-index: 1001;
   display: none;
   list-style: none;
   position: absolute;
@@ -206,8 +206,11 @@
     border: 1px solid #999;
     width: 78px;
   }
+  li:hover {
+    background-color: #ccc;
+  }
   li:first-child {
-    border-bottom: 1px solid #999;
+    border-bottom: none;
   }
   li:last-child {
     border-top: none;
@@ -273,4 +276,22 @@
   @extend .button;
   @extend .tiny;
   @extend .postfix;
+}
+
+#friendshipOptionButton {
+  margin-bottom: 0;
+}
+
+#friendDropMenu {
+  @extend #optionsMenu;
+  li:first-child {
+    border-bottom: none;
+  }
+  li:nth-child(2) {
+    border-top: none;
+    border-bottom: none;
+  }
+  li:last-child {
+    border-top: none;
+  }
 }
