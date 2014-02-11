@@ -3,7 +3,7 @@
 <% else %>
   getGeomarkerShow(<%= @geomarker.id %>);
   $("#new-marker-button").trigger("click");
-  updateMap();
+  getNewMarkerByUser();
   removeIFrame();
   removeGeomarkerForm();
 <% end %>

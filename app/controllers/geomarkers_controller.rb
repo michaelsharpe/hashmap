@@ -30,9 +30,11 @@ class GeomarkersController < ApplicationController
     @user = User.find(@geomarker.user_id)
     @comment = @geomarker.comments.build
 
+    # binding.pry
     respond_to do |format|
       format.html
       format.js
+      format.json
     end
   end
   

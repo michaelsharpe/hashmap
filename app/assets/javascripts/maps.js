@@ -7,6 +7,7 @@ var mapCenter;
 var cluster = new L.MarkerClusterGroup();
 var currentPositionMarker;
 var positionTimer;
+var activeMarker;
 var markers = new Array();
 var geocoder;
 var tempMarker;
@@ -217,12 +218,23 @@ function getGeomarkerShow(id){
   });
 }
 
-function getLastGeomarkerCreatedByUser(){
+function showNewGeomarkerByUser(){
   $.ajax({
     type: "GET",
     url: "/geomarkers/show",
     dataType: "script",
     data: { newMarker: true }
+  });
+}
+
+function getNewMarkerByUser(){
+  $.ajax({
+    type: "GET",
+    url: "/geomarkers/show",
+    dataType: "json",
+    data: { newMarker: true }
+  }).done(function(transport){
+    markers[transport.id] = activeMarker = makeMarker(transport);
   });
 }
 
@@ -260,7 +272,7 @@ function deleteGeomarker(id){
     url: "/geomarkers/" + id,
     dataType: "script"
   }).done(function(transport){
-    removeMarker(id);
+    removeMarker();
   });
 }
 
@@ -297,13 +309,15 @@ function updateMap() {
     url: "geomarkers",
     type: "GET",
     dataType: "json",
-    data: {sw:southWest, ne: northEast, tags: tags}
+    data: {
+      // sw:southWest, ne: northEast,
+      tags: tags}
   }).done( function(transport){
     var markersJSON = transport;
     cluster.clearLayers();
     for (var i=0; i < markersJSON.length; i++){
-      // markers[id] = 
-      makeMarker(markersJSON[i];);
+      var id = markersJSON[i].id;
+      markers[id] = makeMarker(markersJSON[i]);
     }
     map.addLayer(cluster);
   })
@@ -340,6 +354,7 @@ function makeMarker(markerJSON){
   cluster.addLayer(marker);
   // marker.addTo(map);
   marker.on("popupopen", function(){
+    activeMarker = this;
     $(".marker-popup").on("click", function(){
       var id = $(".marker-popup").attr("data-id");
       getGeomarkerShow(id);
@@ -353,7 +368,9 @@ function makeMarker(markerJSON){
   return marker
 }
 
-function removeMarker(id){
-  map.removeLayer(markers[id]);
-  markers[id] = null;
+function removeMarker(){
+  // map.removeLayer(markers[id]);
+  // markers[id] = null;
+  cluster.removeLayer(activeMarker);
+  activeMarker = null;
 }
