@@ -4,7 +4,7 @@ $(document).ready(function(){
 
 var map;
 var mapCenter;
-// var cluster = new L.MarkerClusterGroup();
+var cluster = new L.MarkerClusterGroup();
 var currentPositionMarker;
 var positionTimer;
 var markers = new Array();
@@ -29,7 +29,7 @@ function mapController(position){
     initializeMap(position);
     updateMap();
     watchCurrentPosition();
-    map.on('moveend', updateMap);
+    // map.on('moveend', updateMap);
 }
 
 function initializeMap(position){
@@ -283,9 +283,9 @@ function updateMap() {
     data: {sw:southWest, ne: northEast, tags: tags}
   }).done( function(transport){
     var markersJSON = transport;
-    if(markers.length > 0) {
-      removeMarkersOutsideOfMapBounds();
-    }
+    // if(markers.length > 0) {
+    //   removeMarkersOutsideOfMapBounds();
+    // }
     for (var i=0; i < markersJSON.length; i++){
       var marker = markersJSON[i];
       var id = marker.id;
@@ -293,6 +293,7 @@ function updateMap() {
         markers[id] = makeMarker(marker);
       }
     }
+    map.addLayer(cluster);
   })
 }
 
@@ -324,7 +325,8 @@ function makeMarker(markerJSON){
     imgURL = "<p>No image attached</p>";
   }
   marker.bindPopup("<div class='marker-popup' data-id='" + markerJSON.id + "'><p>Name: " + markerJSON.name + "</p><p>Tags: " + markerJSON.tag_list + "</p><br>" + imgURL + "</div>");
-  marker.addTo(map);
+  cluster.addLayer(marker);
+  // marker.addTo(map);
   marker.on("popupopen", function(){
     $(".marker-popup").on("click", function(){
       var id = $(".marker-popup").attr("data-id");
