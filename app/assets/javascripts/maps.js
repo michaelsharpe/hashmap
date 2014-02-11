@@ -96,11 +96,17 @@ function newMarkerMode(){
   });
   tempMarker.bindPopup("<h6>Drag me where you want me, then push the button!</h6>").addTo(map);
   tempMarker.openPopup();
-  for(var i = 0; i < markers.length; i++){
-    if (markers[i]){
-      markers[i].setOpacity(0.5);
-    }
-  }
+  // for(var i = 0; i < cluster.getLayers().length; i++){
+  //   if (cluster.getLayers()[i]){
+  //     cluster.getLayers()[i].setOpacity(0.5);
+  //   }
+  // }
+  map.on('moveend', function(){
+    cluster.eachLayer(function(marker){
+      marker.setOpacity(0.5);
+    });
+  });
+  map.fireEvent('moveend');
   $(".form-container").append("<div id='newMarkerButton'>Mark it</div>");
   $("#newMarkerButton").on("click", function(){
     $(this).remove();
@@ -118,11 +124,15 @@ function endNewMarkerMode(){
     $("#newMarkerButton").remove();
     map.removeLayer(tempMarker);
     tempMarker = undefined;
-    for (var i = 0; i < markers.length; i++){
-      if (markers[i]){
-        markers[i].setOpacity(1);
-      }
-    }
+    // for (var i = 0; i < markers.length; i++){
+    //   if (markers[i]){
+    //     markers[i].setOpacity(1);
+    //   }
+    // }
+    map.off('moveend');
+    cluster.eachLayer(function(marker){
+      marker.setOpacity(1);
+    });
   }
 }
 
