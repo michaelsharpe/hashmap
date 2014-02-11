@@ -4,6 +4,7 @@ $(document).ready(function(){
 
 var map;
 var mapCenter;
+// var cluster = new L.MarkerClusterGroup();
 var currentPositionMarker;
 var positionTimer;
 var markers = new Array();

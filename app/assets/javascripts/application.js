@@ -21,6 +21,7 @@
 //= require foundation
 //= require jQuery.mmenu/src/js/jquery.mmenu.min.all
 //= require jquery.wheelmenu.min
+//= require leaflet.markercluster/dist/leaflet.markercluster.js
 //= require left_menu
 //= require left_menu_sortable
 //= require maps
