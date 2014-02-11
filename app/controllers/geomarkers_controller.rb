@@ -12,9 +12,13 @@ class GeomarkersController < ApplicationController
     #   @geomarkers = Geomarker.tagged_with(params[:tags], :any => true)
     # elsif ne && sw
     #   @geomarkers = Geomarker.all.in_bounds([sw, ne])
-    # else
+    # binding.pry
+    if params[:tags].empty?
       @geomarkers = Geomarker.all
-    # end
+    else
+      @geomarkers = Geomarker.tagged_with(params[:tags], :any => true)
+      # binding.pry
+    end
   end
   
   def show

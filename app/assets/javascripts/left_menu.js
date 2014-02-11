@@ -93,7 +93,7 @@ function updateMapTags() {
       }
     })
   })
-  removeAllMarkers();
+  // removeAllMarkers();
   updateMap();
 };
 

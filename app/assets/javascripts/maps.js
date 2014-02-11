@@ -91,6 +91,8 @@ function enableMap(){
 }
 
 function newMarkerMode(){
+
+  // Make temporary marker
   tempMarker = L.marker(map.getCenter(), {
     draggable: true
   });
@@ -101,12 +103,17 @@ function newMarkerMode(){
   //     cluster.getLayers()[i].setOpacity(0.5);
   //   }
   // }
+  
+  // Set transparency of existing markers
   map.on('moveend', function(){
     cluster.eachLayer(function(marker){
       marker.setOpacity(0.5);
     });
   });
   map.fireEvent('moveend');
+
+
+
   $(".form-container").append("<div id='newMarkerButton'>Mark it</div>");
   $("#newMarkerButton").on("click", function(){
     $(this).remove();
@@ -283,9 +290,9 @@ function changeFocus(latlng, zoom){
 
 function updateMap() {
   var tags = currentTags.join(', ')
-  var bounds = map.getBounds()
-  var southWest = bounds._southWest.lat + "," + bounds._southWest.lng
-  var northEast = bounds._northEast.lat + "," + bounds._northEast.lng
+  // var bounds = map.getBounds()
+  // var southWest = bounds._southWest.lat + "," + bounds._southWest.lng
+  // var northEast = bounds._northEast.lat + "," + bounds._northEast.lng
   $.ajax({
     url: "geomarkers",
     type: "GET",
@@ -293,37 +300,32 @@ function updateMap() {
     data: {sw:southWest, ne: northEast, tags: tags}
   }).done( function(transport){
     var markersJSON = transport;
-    // if(markers.length > 0) {
-    //   removeMarkersOutsideOfMapBounds();
-    // }
+    cluster.clearLayers();
     for (var i=0; i < markersJSON.length; i++){
-      var marker = markersJSON[i];
-      var id = marker.id;
-      if (!markers[id] || markers[id] == null) {
-        markers[id] = makeMarker(marker);
-      }
+      // markers[id] = 
+      makeMarker(markersJSON[i];);
     }
     map.addLayer(cluster);
   })
 }
 
-function removeAllMarkers() {
-  for(i in markers) {
-    if(i > 0 && markers[i]) {
-      map.removeLayer(markers[i]);
-      markers[i] = null;
-    }
-  }
-}
+// function removeAllMarkers() {
+//   for(i in markers) {
+//     if(i > 0 && markers[i]) {
+//       map.removeLayer(markers[i]);
+//       markers[i] = null;
+//     }
+//   }
+// }
 
-function removeMarkersOutsideOfMapBounds() {
-  for(i in markers) {
-    if(i > 0 && markers[i] && !map.getBounds().contains(markers[i].getLatLng())) {
-      map.removeLayer(markers[i]);
-      markers[i] = null;
-    }
-  }
-}
+// function removeMarkersOutsideOfMapBounds() {
+//   for(i in markers) {
+//     if(i > 0 && markers[i] && !map.getBounds().contains(markers[i].getLatLng())) {
+//       map.removeLayer(markers[i]);
+//       markers[i] = null;
+//     }
+//   }
+// }
 
 function makeMarker(markerJSON){
   var latlng = L.latLng(markerJSON.latitude, markerJSON.longitude);
