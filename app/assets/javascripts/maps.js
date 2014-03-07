@@ -302,44 +302,31 @@ function changeFocus(latlng, zoom){
 
 function updateMap() {
   var tags = currentTags.join(', ')
-  // var bounds = map.getBounds()
-  // var southWest = bounds._southWest.lat + "," + bounds._southWest.lng
-  // var northEast = bounds._northEast.lat + "," + bounds._northEast.lng
   $.ajax({
     url: "geomarkers",
     type: "GET",
     dataType: "json",
     data: {
-      // sw:southWest, ne: northEast,
       tags: tags}
   }).done( function(transport){
-    var markersJSON = transport;
     cluster.clearLayers();
-    for (var i=0; i < markersJSON.length; i++){
-      var id = markersJSON[i].id;
-      markers[id] = makeMarker(markersJSON[i]);
+    for (var i=0; i < transport.length; i++){
+      var id = transport[i].id;
+      markers[id] = makeMarker(transport[i]);
     }
     map.addLayer(cluster);
   })
 }
 
-// function removeAllMarkers() {
-//   for(i in markers) {
-//     if(i > 0 && markers[i]) {
-//       map.removeLayer(markers[i]);
-//       markers[i] = null;
-//     }
-//   }
-// }
-
-// function removeMarkersOutsideOfMapBounds() {
-//   for(i in markers) {
-//     if(i > 0 && markers[i] && !map.getBounds().contains(markers[i].getLatLng())) {
-//       map.removeLayer(markers[i]);
-//       markers[i] = null;
-//     }
-//   }
-// }
+function updateMarker(id){
+  $.ajax({
+    url: "geomarkers/" + id,
+    type: "GET",
+    dataType: "json"
+  }).done(function(transport){
+    markers[id] = makeMarker(transport);
+  });
+}
 
 function makeMarker(markerJSON){
   var latlng = L.latLng(markerJSON.latitude, markerJSON.longitude);
@@ -369,8 +356,6 @@ function makeMarker(markerJSON){
 }
 
 function removeMarker(){
-  // map.removeLayer(markers[id]);
-  // markers[id] = null;
   cluster.removeLayer(activeMarker);
   activeMarker = null;
 }

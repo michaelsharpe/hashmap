@@ -11,7 +11,8 @@
 <% else %>
   var id = <%= @geomarker.id %>;
   removeMarker(id);
-  updateMap();
+  // updateMap();
+  updateMarker(id);
   
   // with exception of getGeomarkerShow(), each of the following methods contains control flow to adapt to circumstances of update
   removeIFrame();
