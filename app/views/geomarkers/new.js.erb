@@ -7,15 +7,18 @@ $("#cancelFormButton").on("click", function(){
   removeIFrame();
 });
 $("#new_geomarker").on("submit", function(){
+  $("#submit").val("Uploading...");
   $("#blank_iframe").on("load", function(){
     var errors = extractIFrameErrors();
     if (errors){
       $("#blank_iframe").off();
       $("#geomarker-form-errors").empty();
       $("#geomarker-form-errors").append(errors);
+      $("#submit").val("Submit");
     } else {
-      showNewGeomarkerByUser();
-      $("#blank_iframe").remove();
+      // showNewGeomarkerByUser();
+      getNewMarkerByUser();
+      removeIFrame();
       updateMap();
       $("#new-marker-button").trigger("click");
       removeGeomarkerForm();

@@ -234,6 +234,7 @@ function getNewMarkerByUser(){
     dataType: "json",
     data: { newMarker: true }
   }).done(function(transport){
+    getGeomarkerShow(transport.id);
     markers[transport.id] = activeMarker = makeMarker(transport);
   });
 }
