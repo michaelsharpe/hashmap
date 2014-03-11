@@ -29,7 +29,6 @@ function mapController(position){
     initializeMap(position);
     updateMap();
     watchCurrentPosition();
-    // map.on('moveend', updateMap);
 }
 
 function initializeMap(position){
@@ -311,7 +310,6 @@ function makeMarker(markerJSON){
   }
   marker.bindPopup("<div class='marker-popup' data-id='" + markerJSON.id + "'><p>Name: " + markerJSON.name + "</p><p>Tags: " + markerJSON.tag_list + "</p><br>" + imgURL + "</div>");
   cluster.addLayer(marker);
-  // marker.addTo(map);
   marker.on("popupopen", function(){
     $(".marker-popup").on("click", function(){
       var id = $(".marker-popup").attr("data-id");
