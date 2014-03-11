@@ -201,15 +201,6 @@ function getGeomarkerShow(id){
   });
 }
 
-// function showNewGeomarkerByUser(){
-//   $.ajax({
-//     type: "GET",
-//     url: "/geomarkers/show",
-//     dataType: "script",
-//     data: { newMarker: true }
-//   });
-// }
-
 function getNewMarker(){
   $.ajax({
     type: "GET",
