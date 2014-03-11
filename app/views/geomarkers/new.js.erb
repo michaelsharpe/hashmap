@@ -16,8 +16,7 @@ $("#new_geomarker").on("submit", function(){
       $("#geomarker-form-errors").append(errors);
       $("#submit").val("Submit");
     } else {
-      // showNewGeomarkerByUser();
-      getNewMarkerByUser();
+      getNewMarker();
       removeIFrame();
       updateMap();
       $("#new-marker-button").trigger("click");

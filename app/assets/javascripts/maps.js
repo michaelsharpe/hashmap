@@ -92,18 +92,12 @@ function enableMap(){
 }
 
 function newMarkerMode(){
-
   // Make temporary marker
   tempMarker = L.marker(map.getCenter(), {
     draggable: true
   });
   tempMarker.bindPopup("<h6>Drag me where you want me, then push the button!</h6>").addTo(map);
   tempMarker.openPopup();
-  // for(var i = 0; i < cluster.getLayers().length; i++){
-  //   if (cluster.getLayers()[i]){
-  //     cluster.getLayers()[i].setOpacity(0.5);
-  //   }
-  // }
   
   // Set transparency of existing markers
   map.on('moveend', function(){
@@ -112,8 +106,6 @@ function newMarkerMode(){
     });
   });
   map.fireEvent('moveend');
-
-
 
   $(".form-container").append("<div id='newMarkerButton'>Mark it</div>");
   $("#newMarkerButton").on("click", function(){
@@ -132,11 +124,6 @@ function endNewMarkerMode(){
     $("#newMarkerButton").remove();
     map.removeLayer(tempMarker);
     tempMarker = undefined;
-    // for (var i = 0; i < markers.length; i++){
-    //   if (markers[i]){
-    //     markers[i].setOpacity(1);
-    //   }
-    // }
     map.off('moveend');
     cluster.eachLayer(function(marker){
       marker.setOpacity(1);
@@ -145,11 +132,7 @@ function endNewMarkerMode(){
 }
 
 function toggleGeocoder(){
-  if($(".geocoder-bar").is(":visible")){
-    $(".geocoder-bar").slideUp("slow");
-  } else if($(".geocoder-bar").is(":hidden")) {
-    $(".geocoder-bar").slideDown("slow");
-  }
+  $(".geocoder-bar").slideToggle("slow");
 }
 
 function moveToAddress(){
@@ -218,16 +201,16 @@ function getGeomarkerShow(id){
   });
 }
 
-function showNewGeomarkerByUser(){
-  $.ajax({
-    type: "GET",
-    url: "/geomarkers/show",
-    dataType: "script",
-    data: { newMarker: true }
-  });
-}
+// function showNewGeomarkerByUser(){
+//   $.ajax({
+//     type: "GET",
+//     url: "/geomarkers/show",
+//     dataType: "script",
+//     data: { newMarker: true }
+//   });
+// }
 
-function getNewMarkerByUser(){
+function getNewMarker(){
   $.ajax({
     type: "GET",
     url: "/geomarkers/show",
@@ -325,7 +308,7 @@ function updateMarker(id){
     type: "GET",
     dataType: "json"
   }).done(function(transport){
-    markers[id] = makeMarker(transport);
+    markers[id] = activeMarker = makeMarker(transport);
   });
 }
 
