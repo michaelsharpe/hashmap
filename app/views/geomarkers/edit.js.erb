@@ -8,18 +8,20 @@ $("#cancelFormButton").on("click", function(){
 });
 
 $(".edit_geomarker").on("submit", function(){
-  var id = $(".geomarker-edit").attr("data-id");
+  $("#submit").val("Uploading...");
+  var id = $(".geomarker-form").attr("data-id");
   $("#blank_iframe").on("load", function(){
     var errors = extractIFrameErrors();
     if (errors) {
       $("#blank_iframe").off();
       $("#geomarker-form-errors").empty();
       $("#geomarker-form-errors").append(errors);
+      $("#submit").val("Submit");
     } else {
       removeMarker(id);
-      updateMap();
+      updateMarker(id);
       getGeomarkerShow(id);
-      $(this).remove();
+      removeIFrame();
       removeGeomarkerForm();
     }
   });
