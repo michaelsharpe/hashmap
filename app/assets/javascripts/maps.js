@@ -7,7 +7,6 @@ var mapCenter;
 var cluster = new L.MarkerClusterGroup();
 var currentPositionMarker;
 var positionTimer;
-var activeMarker;
 var markers = new Array();
 var geocoder;
 var tempMarker;
@@ -209,7 +208,7 @@ function getNewMarker(){
     data: { newMarker: true }
   }).done(function(transport){
     getGeomarkerShow(transport.id);
-    markers[transport.id] = activeMarker = makeMarker(transport);
+    markers[transport.id] = makeMarker(transport);
   });
 }
 
@@ -246,8 +245,6 @@ function deleteGeomarker(id){
     type: "DELETE",
     url: "/geomarkers/" + id,
     dataType: "script"
-  }).done(function(transport){
-    removeMarker();
   });
 }
 
@@ -299,7 +296,7 @@ function updateMarker(id){
     type: "GET",
     dataType: "json"
   }).done(function(transport){
-    markers[id] = activeMarker = makeMarker(transport);
+    markers[id] = makeMarker(transport);
   });
 }
 
@@ -316,7 +313,6 @@ function makeMarker(markerJSON){
   cluster.addLayer(marker);
   // marker.addTo(map);
   marker.on("popupopen", function(){
-    activeMarker = this;
     $(".marker-popup").on("click", function(){
       var id = $(".marker-popup").attr("data-id");
       getGeomarkerShow(id);
@@ -330,7 +326,6 @@ function makeMarker(markerJSON){
   return marker
 }
 
-function removeMarker(){
-  cluster.removeLayer(activeMarker);
-  activeMarker = null;
+function removeMarker(id){
+  cluster.removeLayer(markers[id]);
 }
